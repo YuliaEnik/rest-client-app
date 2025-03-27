@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format:fix": "prettier --write .",
+    "lint:fix": "eslint --fix --quiet .",
     "prepare": "husky",
     "type-check": "tsc --noEmit",
     "postinstall": "husky install"
@@ -30,5 +31,11 @@
     "prettier": "^3.4.2",
     "typescript": "^5"
   },
-  "lint-staged": "{\"*.{js,jsx,ts,tsx}\":[\"eslint --fix --quiet\",\"prettier --write\"]}"
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css}": "prettier --write"
+  }
 }

@@ -1,4 +1,3 @@
-cat > .husky/pre-commit << 'EOF'
 #!/usr/bin/env bash
 
 echo '🚀 Running pre-commit checks'
@@ -6,5 +5,3 @@ npx lint-staged || {
   echo '❌ Pre-commit checks failed'
   exit 1
 }
-EOF
-chmod +x .husky/pre-commit
