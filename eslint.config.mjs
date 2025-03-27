@@ -2,6 +2,7 @@ import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
 import unusedImports from "eslint-plugin-unused-imports";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -15,15 +16,31 @@ export default [
   {
     plugins: {
       "unused-imports": unusedImports,
+      "simple-import-sort": simpleImportSort
     },
     rules: {
+      "simple-import-sort/imports": [
+        "error",
+        {
+          groups: [
+            ["^react", "^next", "^@?\\w"],
+            ["^(@/|~/)", "^@(components|utils|hooks|types)"],
+            ["^\\.\\./"],
+            ["^\\./"],
+            ["^.+\\.(css|scss|less|sass|svg|png|jpg)$"],
+            ["^\\u0000"]
+          ]
+        }
+      ],
+      "simple-import-sort/exports": "error",
+      "unused-imports/no-unused-imports": "error",
       "unused-imports/no-unused-vars": [
         "error",
         {
           vars: "all",
           varsIgnorePattern: "^_",
           args: "after-used",
-          argsIgnorePattern: "^_" 
+          argsIgnorePattern: "^_"
         }
       ]
     }
