@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 /*---break---*/
 @custom-variant dark (&:is(.dark *));
 
@@ -13,7 +13,10 @@
 /*Normalize*/
 
 body {
-  @apply relative h-screen w-full text-base leading-normal;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* @apply relative h-screen w-full text-base leading-normal; */
   scroll-behavior: smooth;
   min-height: 100vh;
 }
