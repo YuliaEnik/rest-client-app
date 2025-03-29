@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Select,
   SelectContent,
@@ -8,8 +10,9 @@ import {
 
 interface SelectProps {
   options: Option[];
-  initialOption: Option;
-  onChange: (value: string) => void;
+  initialValue: string;
+  className?: string;
+  handleChangeAction: (value: string) => void;
 }
 
 export interface Option {
@@ -19,13 +22,14 @@ export interface Option {
 
 export function SelectElement({
   options,
-  initialOption,
-  onChange,
+  initialValue,
+  handleChangeAction,
+  className = 'w-[110px]',
 }: SelectProps) {
   return (
-    <Select onValueChange={onChange} defaultValue={initialOption.label}>
-      <SelectTrigger className={'w-[110px]'}>
-        <SelectValue defaultValue={initialOption.value} />
+    <Select onValueChange={handleChangeAction} defaultValue={initialValue}>
+      <SelectTrigger className={className}>
+        <SelectValue />
       </SelectTrigger>
       <SelectContent>
         {options.map((option) => (
