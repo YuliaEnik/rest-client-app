@@ -1,4 +1,4 @@
-import { RestfulView } from '@/components/restful/restful-view/restful-view';
+import { RestfulView } from '@/components/restful/restful-view';
 
 export default async function Page({
   params,

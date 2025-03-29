@@ -1,15 +1,13 @@
 import { PlusIcon, WandSparklesIcon } from 'lucide-react';
 
-import { SelectLanguage } from '@/components/restful/select-language/select-language';
-import {
-  METHODS,
-  SelectMethod,
-} from '@/components/restful/select-method/select-method';
+import { SelectLanguage } from '@/components/restful/select-language';
+import { SelectMethod } from '@/components/restful/select-method';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { METHODS } from '@/types/types';
 
 interface Props {
-  method: METHODS;
+  method: string;
   url: string[];
   headers: Record<string, string | string[] | undefined>;
 }
@@ -24,7 +22,7 @@ export function RestfulView({ method, url, headers }: Props) {
         }
       >
         <div className={'flex gap-2'}>
-          <SelectMethod currentMethod={method} />
+          <SelectMethod currentMethod={method as METHODS} />
           <Input type={'url'} placeholder={'API URL'} />
         </div>
         <div className={'flex flex-col gap-10'}>

@@ -7,17 +7,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Option } from '@/types/types';
 
 interface SelectProps {
   options: Option[];
   initialValue: string;
   className?: string;
   handleChangeAction: (value: string) => void;
-}
-
-export interface Option {
-  label: string;
-  value: string;
 }
 
 export function SelectElement({
