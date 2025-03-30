@@ -4,10 +4,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-primary-dark: rgba(91, 200, 172, 1);
-  --color-primary-light: rgba(152, 219, 198, 1);
-  --color-secondary-yellow: rgba(230, 215, 42, 1);
+  --color-primary-dark: oklch(0.437 0.078 188.216);
+  --color-primary-light: oklch(0.511 0.096 186.391);
+  --color-secondary-red: oklch(0.444 0.177 26.899);
   --color-secondary-rose: rgba(241, 141, 158, 1);
+  --color-text-light: oklch(0.929 0.013 255.508);
+  --color-hover-buttons: oklch(0.577 0.245 27.325);
 }
 
 /*Normalize*/

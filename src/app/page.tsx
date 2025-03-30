@@ -1,40 +1,26 @@
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
-import styles from './page.module.css';
+import { Button } from '@/components/ui/button';
 
 export default function WelcomePage() {
   return (
-    <div className={styles.page}>
+    <div className="flex flex-col items-center gap-4">
       <h2>this is our new progect</h2>
-      <h2 className="flex p-10 bg-primary-dark">footer</h2>
-      <Button className="bg-secondary-yellow">Click me!</Button>
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-2">
-          <AccordionTrigger>Is it styled?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It comes with default styles that matches the other
-            components&apos; aesthetic.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-3">
-          <AccordionTrigger>Is it animated?</AccordionTrigger>
-          <AccordionContent>
-            Yes. Its animated by default, but you can disable it if you prefer.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+      <Link href="/restapi" passHref>
+        <Button className="bg-secondary-red hover:bg-hover-buttons">
+          RestApi page
+        </Button>
+      </Link>
+      <Link href="/variables" passHref>
+        <Button className="bg-secondary-red hover:bg-hover-buttons">
+          Variables page
+        </Button>
+      </Link>
+      <Link href="/history" passHref>
+        <Button className="bg-secondary-red hover:bg-hover-buttons">
+          History page
+        </Button>
+      </Link>
     </div>
   );
 }
