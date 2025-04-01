@@ -15,13 +15,19 @@
 :root {
   --primary-color-bg: #e5e7eb;
   --primary-color-component: #f9fafb;
+  --color-details-primary: #e63ae3;
 }
 
 .primary-color-bg {
   background-color: var(--primary-color-bg);
 }
+
 .primary-color-component-bg {
   background-color: var(--primary-color-component);
+}
+
+.color-details-primary {
+  color: var(--color-details-primary);
 }
 
 /* -------------------------- */

@@ -6,3 +6,12 @@ export interface Option {
 }
 
 export type METHODS = (typeof RESTFUL_METHODS)[number];
+
+export interface IDeveloper {
+  id: string;
+  name: string;
+  photo: string;
+  gitHub: string;
+  description: string;
+  tasks: string[];
+}
