@@ -1,13 +1,7 @@
-export default function SignUpPage({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function SignUpPage() {
   return (
     <section>
-      {' '}
       <h2> Sign up </h2>
-      {children}
     </section>
   );
 }

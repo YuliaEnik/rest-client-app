@@ -1,13 +1,7 @@
-export default function VariablesPage({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function VariablesPage() {
   return (
     <section>
-      {' '}
       <h2> Variables </h2>
-      {children}
     </section>
   );
 }
