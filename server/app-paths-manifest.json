@@ -1,10 +1,10 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/(auth)/signUp/page": "app/(auth)/signUp/page.js",
-  "/(auth)/logIn/page": "app/(auth)/logIn/page.js",
   "/page": "app/page.js",
+  "/(auth)/logIn/page": "app/(auth)/logIn/page.js",
   "/(main)/[...restful]/page": "app/(main)/[...restful]/page.js",
   "/(main)/page": "app/(main)/page.js",
-  "/(main)/variables/page": "app/(main)/variables/page.js",
-  "/(main)/history/page": "app/(main)/history/page.js"
+  "/(main)/history/page": "app/(main)/history/page.js",
+  "/(main)/variables/page": "app/(main)/variables/page.js"
 }
