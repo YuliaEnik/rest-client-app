@@ -1,10 +1,7 @@
-import { ReactNode } from 'react';
-
-export default async function MainPage({ children }: { children: ReactNode }) {
+export default async function MainPage() {
   return (
     <>
       <h2> if auth ...</h2>
-      {children}
     </>
   );
 }
