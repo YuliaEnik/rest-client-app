@@ -1,9 +1,7 @@
-export default function LogInPage({ children }: { children: React.ReactNode }) {
+export default function LogInPage() {
   return (
     <section>
-      {' '}
       <h2> Log in </h2>
-      {children}
     </section>
   );
 }
