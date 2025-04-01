@@ -11,7 +11,9 @@
     "lint:fix": "eslint --fix --quiet .",
     "prepare": "husky",
     "type-check": "tsc --noEmit",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.3",
