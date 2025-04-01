@@ -1,0 +1,10 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/(auth)/signUp/page": "/signUp",
+  "/(auth)/logIn/page": "/logIn",
+  "/page": "/",
+  "/(main)/[...restful]/page": "/[...restful]",
+  "/(main)/page": "/",
+  "/(main)/variables/page": "/variables",
+  "/(main)/history/page": "/history"
+}
