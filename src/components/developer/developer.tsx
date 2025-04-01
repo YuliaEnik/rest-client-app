@@ -10,7 +10,7 @@ export interface IDeveloper {
 
 export const Developer = (props: IDeveloper) => {
   return (
-    <div className="flex flex-col flex-wrap gap-5  px-7 py-5  bg-gray-50">
+    <div className="flex flex-col flex-wrap gap-5  px-7 py-5  primary-color-component-bg">
       <div className="flex w-full justify-center items-center">
         <Image
           src={props.photo}

@@ -2,20 +2,20 @@ import Image from 'next/image';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="flex-0 min-h-10 w-full bg-gray-50">
-      <div className="flex h-full justify-center items-center flex-wrap gap-1 p-5 sm:justify-between">
+    <footer className="flex-0 min-h-10 w-full primary-color-component-bg">
+      <div className="flex h-full justify-center items-center flex-wrap gap-1 py-4   px-5 sm:justify-between">
         <a
           className="cursor:pointer color-black"
-          href="https://rs.school/"
+          href="https://rs.school/courses/reactjs"
           target="_blank"
           rel="noreferrer"
         >
           <Image
             className="hover:opacity-50"
-            src="/img/rsschool.svg"
+            src="/img/rss-logo.svg"
             alt="rsschool"
-            width={60}
-            height={100}
+            width={40}
+            height={40}
           />
         </a>
         <ul className="flex flex-wrap gap-5">
@@ -53,7 +53,7 @@ export const Footer: React.FC = () => {
         <div className="flex gap-2">
           <a
             className="cursor:pointer hover:opacity-50 color-black"
-            href="https://rs.school/react/"
+            href="https://rs.school/courses/reactjs"
             target="_blank"
             rel="noreferrer"
           >

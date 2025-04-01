@@ -10,16 +10,28 @@
   --color-secondary-rose: rgba(241, 141, 158, 1);
 }
 
+/* custom rest app variables*/
+
+:root {
+  --primary-color-bg: #e5e7eb;
+  --primary-color-component: #f9fafb;
+}
+
+.primary-color-bg {
+  background-color: var(--primary-color-bg);
+}
+.primary-color-component-bg {
+  background-color: var(--primary-color-component);
+}
+
+/* -------------------------- */
+
 /*Normalize*/
 
 body {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   width: 100%;
   height: 100%;
-  /* @apply relative h-screen w-full text-base leading-normal; */
   scroll-behavior: smooth;
   min-height: 100vh;
 }

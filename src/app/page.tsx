@@ -26,24 +26,24 @@ export default function WelcomePage() {
   `;
 
   return (
-    <div className="flex flex-col min-h-screen items-center w-full my-0 p-5 mx-auto gap-5 bg-gray-200">
+    <div className="flex flex-col min-h-screen items-center w-full my-0 p-5 mx-auto gap-5 primary-color-bg">
       <div className="flex flex-col flex-grow w-full items-center">
         <div className="flex justify-center gap-5">
           <button
-            className={`flex h-10 w-42 items-center justify-center cursor-pointer ${activeTab === 'rest' ? 'bg-gray-50' : 'bg-gray-300'}`}
+            className={`flex h-10 w-42 items-center justify-center cursor-pointer ${activeTab === 'rest' ? 'primary-color-component-bg' : 'bg-gray-300'}`}
             onClick={() => handleTabChange('rest')}
           >
             Rest App
           </button>
           <button
-            className={`flex h-10 w-42 items-center justify-center cursor-pointer ${activeTab === 'team' ? 'bg-gray-50' : 'bg-gray-300'}`}
+            className={`flex h-10 w-42 items-center justify-center cursor-pointer ${activeTab === 'team' ? 'primary-color-component-bg' : 'bg-gray-300'}`}
             onClick={() => handleTabChange('team')}
           >
             Team
           </button>
         </div>
 
-        <div className="w-screen p-6 bg-gray-50 flex-grow">
+        <div className="w-screen p-6 primary-color-component-bg flex-grow">
           <div className="flex flex-col items-center max-w-6xl mx-auto px-4 gap-5">
             <h2 className="text-center text-2xl w-full font-medium">
               {activeTab === 'rest' ? 'REST Client' : 'Our Team'}
