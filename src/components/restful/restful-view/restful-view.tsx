@@ -1,11 +1,11 @@
-import { PlusIcon } from 'lucide-react';
-
 import { CodeEditor } from '@/components/restful/code-editor';
 import { RequestBody } from '@/components/restful/request-body';
+import { RequestHeaders } from '@/components/restful/request-headers';
 import { SelectLanguage } from '@/components/restful/select-language';
 import { SelectMethod } from '@/components/restful/select-method';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
 import { prettify } from '@/lib/utils';
 import { METHODS } from '@/types/types';
 
@@ -21,24 +21,20 @@ export function RestfulView({ method, url, headers }: Props) {
     <div className={'w-full flex justify-center'}>
       <form
         className={
-          'flex flex-1 flex-col gap-[15px] max-w-[1200px] p-[10px] border border-(--color-primary-dark) inset-shadow-[0_0_2px_var(--color-primary-light)]'
+          'flex flex-1 flex-col gap-[15px] max-w-[1200px] p-[10px] primary-color-component-bg'
         }
       >
-        <div className={'flex gap-[5px]'}>
+        <div className={'flex gap-[5px] flex-col items-center sm:flex-row'}>
           <SelectMethod currentMethod={method as METHODS} />
           <Input type={'url'} placeholder={'API URL'} />
+          <Button type={'button'}>Send</Button>
         </div>
-        <div className={'flex flex-col gap-[10px]'}>
-          <div className={'flex gap-[10px] items-center'}>
-            <h3>Headers</h3>
-            <Button type={'button'} variant={'outline'}>
-              <PlusIcon /> Add headers
-            </Button>
-          </div>
-        </div>
+        <Separator className={'my-4'} />
+        <RequestHeaders headers={headers} />
+        <Separator className={'my-4'} />
         <div className={'flex flex-col gap-[10px]'}>
           <div className={'flex gap-[5px] items-center'}>
-            <h3>Code: </h3>
+            <h3>Code </h3>
             <SelectLanguage />
           </div>
           <textarea
@@ -46,7 +42,9 @@ export function RestfulView({ method, url, headers }: Props) {
             defaultValue={'request code'}
           ></textarea>
         </div>
+        <Separator className={'my-4'} />
         <RequestBody body={''} />
+        <Separator className={'my-2'} />
         <div className={'flex flex-col gap-[10px]'}>
           <h3>Response</h3>
           <div className={'flex gap-[5px]'}>
