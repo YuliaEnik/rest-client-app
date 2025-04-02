@@ -11,7 +11,11 @@ export default async function Page({
   const headers = await searchParams;
 
   return (
-    <section className={'flex flex-col gap-[20px] items-center p-[20px]'}>
+    <section
+      className={
+        'flex flex-col gap-[20px] items-center p-[20px] primary-color-bg'
+      }
+    >
       <h2> RESTful </h2>
       <RestfulView method={method} url={url} headers={headers} />
     </section>
