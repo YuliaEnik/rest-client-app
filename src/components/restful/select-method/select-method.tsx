@@ -13,7 +13,7 @@ export function SelectMethod({ currentMethod }: { currentMethod: METHODS }) {
   return (
     <SelectElement
       options={METHODS_OPTIONS}
-      initialValue={currentMethod}
+      initialValue={currentMethod.toUpperCase()}
       handleChangeAction={(value) => console.log(value)}
     />
   );
