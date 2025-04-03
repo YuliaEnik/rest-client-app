@@ -16,7 +16,7 @@ interface Props {
 }
 
 export function RestfulView({ method, url, headers }: Props) {
-  console.log(method, url, headers);
+  console.log(url);
   return (
     <div className={'w-full flex justify-center'}>
       <div
