@@ -21,7 +21,7 @@ export function RestfulView({ method, url, headers }: Props) {
     <div className={'w-full flex justify-center'}>
       <form
         className={
-          'flex flex-1 flex-col gap-[15px] max-w-[1200px] p-[10px] primary-color-component-bg'
+          'flex flex-1 flex-col gap-[15px] max-w-[1200px] p-[20px] primary-color-component-bg'
         }
       >
         <div className={'flex gap-[5px] flex-col items-center sm:flex-row'}>

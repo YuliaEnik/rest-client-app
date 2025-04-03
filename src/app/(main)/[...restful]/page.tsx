@@ -11,13 +11,15 @@ export default async function Page({
   const headers = await searchParams;
 
   return (
-    <section
-      className={
-        'flex flex-col gap-[20px] items-center p-[20px] primary-color-bg'
-      }
-    >
-      <h2> RESTful </h2>
-      <RestfulView method={method} url={url} headers={headers} />
+    <section className={'flex justify-center primary-color-bg w-full'}>
+      <div
+        className={
+          'flex-1 flex flex-col gap-[15px] items-center p-[15px] max-w-[1200px]'
+        }
+      >
+        <h2 className={'self-start'}>RESTful</h2>
+        <RestfulView method={method} url={url} headers={headers} />
+      </div>
     </section>
   );
 }
