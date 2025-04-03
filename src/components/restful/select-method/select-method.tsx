@@ -9,11 +9,18 @@ const METHODS_OPTIONS: Option[] = RESTFUL_METHODS.map((method) => ({
   label: method,
 }));
 
-export function SelectMethod({ currentMethod }: { currentMethod: METHODS }) {
+export function SelectMethod({
+  currentMethod,
+  className,
+}: {
+  currentMethod: METHODS;
+  className?: string;
+}) {
   return (
     <SelectElement
+      className={className}
       options={METHODS_OPTIONS}
-      initialValue={currentMethod}
+      initialValue={currentMethod.toUpperCase()}
       handleChangeAction={(value) => console.log(value)}
     />
   );

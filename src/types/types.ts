@@ -16,3 +16,13 @@ export interface IDeveloper {
   description: string;
   tasks: string[];
 }
+
+export interface RequestHeader {
+  isChecked: boolean;
+  headerKey: string;
+  headerValue: string;
+}
+
+export interface RequestHeadersInterface {
+  headers: RequestHeader[];
+}
