@@ -59,6 +59,9 @@ export function RequestHeaders({
             <Controller
               render={({ field: { value, onChange } }) => (
                 <Checkbox
+                  className={
+                    'primary-color-component-bg data-[state=checked]:text-black'
+                  }
                   defaultChecked={value}
                   checked={value}
                   onCheckedChange={onChange}
@@ -68,16 +71,32 @@ export function RequestHeaders({
               name={`headers.${index}.isChecked`}
             />
             <Controller
-              render={({ field }) => <Input placeholder={'key'} {...field} />}
+              render={({ field }) => (
+                <Input
+                  className={'primary-color-component-bg'}
+                  placeholder={'key'}
+                  {...field}
+                />
+              )}
               control={control}
               name={`headers.${index}.headerKey`}
             />
             <Controller
-              render={({ field }) => <Input placeholder={'value'} {...field} />}
+              render={({ field }) => (
+                <Input
+                  className={'primary-color-component-bg'}
+                  placeholder={'value'}
+                  {...field}
+                />
+              )}
               control={control}
               name={`headers.${index}.headerValue`}
             />
-            <Button type={'button'} onClick={() => removeField(index)}>
+            <Button
+              type={'button'}
+              variant={'outline'}
+              onClick={() => removeField(index)}
+            >
               <TrashIcon />
             </Button>
           </div>

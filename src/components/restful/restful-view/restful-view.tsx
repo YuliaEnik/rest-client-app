@@ -21,30 +21,39 @@ export function RestfulView({ method, url, headers }: Props) {
     <div className={'w-full flex justify-center'}>
       <form
         className={
-          'flex flex-1 flex-col gap-[15px] max-w-[1200px] p-[20px] primary-color-component-bg'
+          'flex flex-1 flex-col gap-[15px] max-w-[1200px] p-[20px] primary-color-bg'
         }
       >
         <div className={'flex gap-[5px] flex-col items-center sm:flex-row'}>
-          <SelectMethod currentMethod={method as METHODS} />
-          <Input type={'url'} placeholder={'API URL'} />
-          <Button type={'button'}>Send</Button>
+          <SelectMethod
+            className={'primary-color-component-bg'}
+            currentMethod={method as METHODS}
+          />
+          <Input
+            className={'primary-color-component-bg'}
+            type={'url'}
+            placeholder={'API URL'}
+          />
+          <Button variant={'outline'} className={'bg-lime-300'} type={'button'}>
+            Send
+          </Button>
         </div>
-        <Separator className={'my-4'} />
+        <Separator className={'primary-color-component-bg my-4'} />
         <RequestHeaders headers={headers} />
-        <Separator className={'my-4'} />
+        <Separator className={'primary-color-component-bg my-4'} />
         <div className={'flex flex-col gap-[10px]'}>
           <div className={'flex gap-[5px] items-center'}>
             <h3>Code </h3>
-            <SelectLanguage />
+            <SelectLanguage className={'primary-color-component-bg'} />
           </div>
           <textarea
             className={'border border-(--color-primary-dark) p-[5px]'}
             defaultValue={'request code'}
           ></textarea>
         </div>
-        <Separator className={'my-4'} />
+        <Separator className={'primary-color-component-bg my-4'} />
         <RequestBody body={''} />
-        <Separator className={'my-2'} />
+        <Separator className={'primary-color-component-bg my-2'} />
         <div className={'flex flex-col gap-[10px]'}>
           <h3>Response</h3>
           <div className={'flex gap-[5px]'}>
