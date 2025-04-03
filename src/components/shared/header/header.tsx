@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
       <LanguageSelect
         value={language}
         onChangeAction={setLanguage}
-        className="w-[140px] bg-amber-200 text-sm p-2 gap-1"
+        className="w-15 bg-amber-200 text-sm p-2 gap-1"
       />
     </header>
   );

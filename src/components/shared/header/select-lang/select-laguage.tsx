@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import { SelectElement } from '@/components/restful/select';
+import { SelectElement } from '@/components/shared/select';
 import { Option } from '@/types/types';
 
 type Language = 'en' | 'ru' | 'be';
@@ -28,6 +28,7 @@ export function LanguageSelect({
     <SelectElement
       options={LanguageOptions}
       initialValue={value}
+      shortLabel={value?.toUpperCase()}
       handleChangeAction={onChangeAction}
       className={className}
     />
