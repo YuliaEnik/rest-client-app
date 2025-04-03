@@ -8,16 +8,16 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { RequestHeadersInterface } from '@/types/types';
+import { parseHeaders } from '@/utils/request-headers';
 
 export function RequestHeaders({
   headers,
 }: {
   headers: Record<string, string | string[] | undefined>;
 }) {
-  console.log(headers);
   const { control } = useForm<RequestHeadersInterface>({
     defaultValues: {
-      headers: [{ isChecked: true, headerKey: '', headerValue: '' }],
+      headers: parseHeaders(headers),
     },
   });
   const { fields, append, remove } = useFieldArray({
