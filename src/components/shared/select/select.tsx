@@ -12,6 +12,7 @@ import { Option } from '@/types/types';
 interface SelectProps<T extends string> {
   options: Option[];
   initialValue: T;
+  shortLabel?: string;
   className?: string;
   handleChangeAction: (value: T) => void;
 }
@@ -19,13 +20,14 @@ interface SelectProps<T extends string> {
 export function SelectElement<T extends string>({
   options,
   initialValue,
+  shortLabel,
   handleChangeAction,
   className = 'w-[110px]',
 }: SelectProps<T>) {
   return (
     <Select onValueChange={handleChangeAction} defaultValue={initialValue}>
       <SelectTrigger className={className}>
-        <SelectValue />
+        {shortLabel ? <SelectValue>{shortLabel}</SelectValue> : <SelectValue />}
       </SelectTrigger>
       <SelectContent>
         {options.map((option) => (
