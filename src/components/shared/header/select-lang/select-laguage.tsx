@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 
-type Language = 'en' | 'ru' | 'br';
+type Language = 'en' | 'ru' | 'be';
 
 interface LanguageSelectProps {
   value?: Language;
