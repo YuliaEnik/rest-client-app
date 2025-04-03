@@ -19,7 +19,7 @@ export function RestfulView({ method, url, headers }: Props) {
   console.log(method, url, headers);
   return (
     <div className={'w-full flex justify-center'}>
-      <form
+      <div
         className={
           'flex flex-1 flex-col gap-[15px] max-w-[1200px] p-[20px] primary-color-bg'
         }
@@ -61,7 +61,7 @@ export function RestfulView({ method, url, headers }: Props) {
           </div>
           <CodeEditor value={prettify('{}')} readOnly={true} />
         </div>
-      </form>
+      </div>
     </div>
   );
 }
