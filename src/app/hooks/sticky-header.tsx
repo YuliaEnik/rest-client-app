@@ -1,10 +1,10 @@
 import { useCallback, useLayoutEffect, useState } from 'react';
 
 export const useStickyHeader = (offset = 0) => {
-  const [stick, setStick] = useState(false);
+  const [sticky, setSticky] = useState(false);
 
   const handleScroll = useCallback(() => {
-    setStick(window.scrollY > offset);
+    setSticky(window.scrollY > offset);
   }, [offset]);
 
   useLayoutEffect(() => {
@@ -14,5 +14,5 @@ export const useStickyHeader = (offset = 0) => {
     };
   }, [handleScroll]);
 
-  return stick;
+  return sticky;
 };
