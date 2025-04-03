@@ -2,59 +2,36 @@
 
 import * as React from 'react';
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { cn } from '@/lib/utils';
+import { SelectElement } from '@/components/restful/select';
+import { Option } from '@/types/types';
 
 type Language = 'en' | 'ru' | 'be';
 
+const LanguageOptions: Option[] = [
+  { value: 'en', label: 'English (EN)' },
+  { value: 'ru', label: 'Русский (RU)' },
+  { value: 'be', label: 'Беларуски (BE)' },
+];
+
 interface LanguageSelectProps {
   value?: Language;
-  onChange?: (language: Language) => void;
+  onChangeAction: (language: Language) => void;
   className?: string;
 }
 
-export const LanguageSelect = React.forwardRef<
-  HTMLButtonElement,
-  LanguageSelectProps
->(({ value = 'en', onChange, className }, ref) => {
+export function LanguageSelect({
+  value = 'en',
+  onChangeAction,
+  className,
+}: LanguageSelectProps) {
   return (
-    <Select value={value} onValueChange={onChange}>
-      <SelectTrigger
-        ref={ref}
-        className={cn(
-          'outline-none ring-0 focus:ring-0 focus:outline-none active:outline-none, active:ring-0, focus-visible:outline-none, focus-visible:ring-0 h-12 px-4 text-base',
-          className
-        )}
-      >
-        <SelectValue placeholder="Select language">
-          {value.toUpperCase()}
-        </SelectValue>
-      </SelectTrigger>
-      <SelectContent className="bg-white">
-        <SelectItem value="en">
-          <div className="flex items-center gap-1">
-            <span>English (EN)</span>
-          </div>
-        </SelectItem>
-        <SelectItem value="ru">
-          <div className="flex items-center gap-1">
-            <span>Русский (RU)</span>
-          </div>
-        </SelectItem>
-        <SelectItem value="br">
-          <div className="flex items-center gap-1">
-            <span>Беларуски (BE)</span>
-          </div>
-        </SelectItem>
-      </SelectContent>
-    </Select>
+    <SelectElement
+      options={LanguageOptions}
+      initialValue={value}
+      handleChangeAction={onChangeAction}
+      className={className}
+    />
   );
-});
+}
 
 LanguageSelect.displayName = 'LanguageSelect';
