@@ -25,7 +25,7 @@ export function RestfulView({ method, url, headers }: Props) {
         }
       >
         <div className={'flex gap-[5px]'}>
-          <SelectMethod currentMethod={method as METHODS} />
+          <SelectMethod currentMethod={method.toUpperCase() as METHODS} />
           <Input type={'url'} placeholder={'API URL'} />
         </div>
         <div className={'flex flex-col gap-[10px]'}>
