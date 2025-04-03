@@ -1,6 +1,6 @@
 'use client';
 
-import { SelectElement } from '@/components/restful/select';
+import { SelectElement } from '@/components/shared/select';
 import { RESTFUL_METHODS } from '@/constants/constants';
 import { METHODS, Option } from '@/types/types';
 
