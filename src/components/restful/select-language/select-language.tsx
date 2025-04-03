@@ -1,6 +1,6 @@
 'use client';
 
-import { SelectElement } from '@/components/restful/select';
+import { SelectElement } from '@/components/shared/select';
 import { LANGUAGES } from '@/constants/constants';
 
 export function SelectLanguage({ className }: { className?: string }) {

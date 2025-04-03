@@ -16,7 +16,7 @@ interface Props {
 }
 
 export function RestfulView({ method, url, headers }: Props) {
-  console.log(method, url, headers);
+  console.log(url);
   return (
     <div className={'w-full flex justify-center'}>
       <div
@@ -27,7 +27,7 @@ export function RestfulView({ method, url, headers }: Props) {
         <div className={'flex gap-[5px] flex-col items-center sm:flex-row'}>
           <SelectMethod
             className={'primary-color-component-bg'}
-            currentMethod={method as METHODS}
+            currentMethod={method.toUpperCase() as METHODS}
           />
           <Input
             className={'primary-color-component-bg'}
