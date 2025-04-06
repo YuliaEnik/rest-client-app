@@ -9,23 +9,25 @@ import {
 } from '@/components/ui/select';
 import { Option } from '@/types/types';
 
-interface SelectProps {
+interface SelectProps<T extends string> {
   options: Option[];
-  initialValue: string;
+  initialValue: T;
+  shortLabel?: string;
   className?: string;
-  handleChangeAction: (value: string) => void;
+  handleChangeAction: (value: T) => void;
 }
 
-export function SelectElement({
+export function SelectElement<T extends string>({
   options,
   initialValue,
+  shortLabel,
   handleChangeAction,
   className = 'w-[110px]',
-}: SelectProps) {
+}: SelectProps<T>) {
   return (
     <Select onValueChange={handleChangeAction} defaultValue={initialValue}>
       <SelectTrigger className={className}>
-        <SelectValue />
+        {shortLabel ? <SelectValue>{shortLabel}</SelectValue> : <SelectValue />}
       </SelectTrigger>
       <SelectContent>
         {options.map((option) => (

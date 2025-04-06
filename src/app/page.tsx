@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-import { Developer } from '@/components/welcomePage/developer';
+import { Developer } from '@/components/welcome-page/developer';
 import { developers } from '@/utils';
 
 export default function WelcomePage() {

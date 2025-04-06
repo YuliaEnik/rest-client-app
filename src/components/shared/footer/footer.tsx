@@ -3,7 +3,7 @@ import Image from 'next/image';
 export const Footer: React.FC = () => {
   return (
     <footer className="flex-0 min-h-10 w-full primary-color-component-bg">
-      <div className="flex h-full justify-center items-center flex-wrap gap-1 py-4   px-5 sm:justify-between">
+      <div className="flex h-full justify-center items-center flex-wrap gap-1 py-3   px-5 sm:justify-between">
         <a
           className="cursor:pointer color-black"
           href="https://rs.school/courses/reactjs"

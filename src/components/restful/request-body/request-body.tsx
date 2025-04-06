@@ -32,7 +32,7 @@ export function RequestBody({ body = '' }: { body: string }) {
   return (
     <div className={'flex flex-col gap-2 min-h-[200px] relative'}>
       <div className={'flex items-center justify-between'}>
-        <h3>Body:</h3>
+        <h3>Body</h3>
         <Button type={'button'} variant={'outline'} onClick={handleClick}>
           <WandSparklesIcon /> Prettify
         </Button>
