@@ -18,6 +18,7 @@ interface CreateVariableProps {
 export const CreateVariable: React.FC<CreateVariableProps> = ({
   showCreateBlock,
 }) => {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const [nextId, setNextId] = useState(1);
   const router = useRouter();
   const {
@@ -32,17 +33,16 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
 
   useEffect(() => {
     const fetchVariables = async () => {
-      const res = await fetch('http://localhost:3000/api/variables', {
+      const res = await fetch(`${apiUrl}/api/variables`, {
         cache: 'no-store',
       });
       const data = await res.json();
       setNextId(
         data.length > 0 ? Number(data[data.length - 1].id.slice(1)) + 1 : 1
       );
-      console.log(nextId, 'id');
     };
     fetchVariables();
-  }, [nextId]);
+  }, [apiUrl, nextId]);
 
   const onSubmit = async (data: { name: string; value: string }) => {
     const newVariable = [

@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 export const validationSchema = Yup.object().shape({
   name: Yup.string()
     .required('Variable name is required')
@@ -17,7 +19,7 @@ export const addVariables = async (
   variables: { id: string; name: string; value: string }[]
 ) => {
   try {
-    const response = await fetch('/api/variables', {
+    const response = await fetch(`${apiUrl}/api/variables`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +45,7 @@ export const addVariables = async (
 
 export const handleDelete = async (id: string) => {
   console.log(id);
-  const res = await fetch(`http://localhost:3000/api/variables`, {
+  const res = await fetch(`${apiUrl}/api/variables`, {
     method: 'DELETE',
     body: JSON.stringify({ id }),
   });
@@ -58,7 +60,7 @@ export const handleDelete = async (id: string) => {
 };
 
 export const handleUpdate = async (id: string, name: string, value: string) => {
-  const res = await fetch(`http://localhost:3000/api/variables`, {
+  const res = await fetch(`${apiUrl}/api/variables`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

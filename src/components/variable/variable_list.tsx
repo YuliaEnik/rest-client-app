@@ -2,7 +2,9 @@ import { VariableItem } from '@/components';
 import { Variable } from '@/types/types';
 
 const fetchVariables = async () => {
-  const res = await fetch('http://localhost:3000/api/variables', {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const res = await fetch(`${apiUrl}/api/variables`, {
+    method: 'GET',
     cache: 'no-store',
   });
 
