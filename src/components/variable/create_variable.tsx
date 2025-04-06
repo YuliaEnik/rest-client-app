@@ -82,19 +82,23 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
           type="text"
           {...register('name')}
           placeholder="Variable Name"
-          className="border border-gray-300 rounded p-2"
+          className="border border-gray-300 rounded p-2 bg-white"
         />
         <Input
           type="text"
           {...register('value')}
           placeholder="Variable Value"
-          className="border border-gray-300 rounded p-2"
+          className="border border-gray-300 rounded p-2 bg-white"
         />
-        <Button type="submit" className="max-w-[100px]" variant="outline">
+        <Button
+          type="submit"
+          className="max-w-[100px] bg-amber-200 hover:bg-primary-light"
+          variant="outline"
+        >
           <PlusIcon />
         </Button>
         <Button
-          className="max-w-[100px] bg-secondary-rose"
+          className="max-w-[100px] bg-secondary-rose hover:bg-red-400"
           type="button"
           variant="outline"
           onClick={handleClose}

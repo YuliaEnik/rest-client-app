@@ -63,17 +63,23 @@ export const VariableItem: React.FC<VariableItemProps> = ({
               placeholder="Name"
               {...register('name')}
               defaultValue={variable.name}
+              className="bg-white"
             />
             <Input
               placeholder="Value"
               {...register('value')}
               defaultValue={variable.value}
+              className="bg-white"
             />
-            <Button className="max-w-[100px]" type="submit" variant="outline">
+            <Button
+              className="max-w-[100px] bg-amber-200 hover:bg-primary-light"
+              type="submit"
+              variant="outline"
+            >
               <Save />
             </Button>
             <Button
-              className="max-w-[100px] bg-secondary-rose"
+              className="max-w-[100px] bg-secondary-rose hover:bg-red-400"
               type="button"
               variant="outline"
               onClick={deleteVar}
@@ -105,10 +111,10 @@ export const VariableItem: React.FC<VariableItemProps> = ({
       ) : (
         <>
           <SendHorizontal />
-          <Input value={variable.name} disabled />
-          <Input value={variable.value} disabled />
+          <Input value={variable.name} disabled className="bg-white" />
+          <Input value={variable.value} disabled className="bg-white" />
           <Button
-            className="max-w-[100px]"
+            className="max-w-[100px] bg-amber-200 hover:bg-primary-light"
             type="button"
             variant="outline"
             onClick={toggleEdit}
@@ -116,7 +122,7 @@ export const VariableItem: React.FC<VariableItemProps> = ({
             <Edit2 />
           </Button>
           <Button
-            className="max-w-[100px] bg-secondary-rose"
+            className="max-w-[100px] bg-secondary-rose hover:bg-red-400"
             type="button"
             variant="outline"
             onClick={deleteVar}

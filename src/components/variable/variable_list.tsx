@@ -12,7 +12,7 @@ const fetchVariables = async () => {
   return res.json();
 };
 
-export const VariableList = async () => {
+const VariableList = async () => {
   const variables: Variable[] = await fetchVariables();
   return (
     <>
@@ -27,3 +27,5 @@ export const VariableList = async () => {
     </>
   );
 };
+
+export default VariableList;

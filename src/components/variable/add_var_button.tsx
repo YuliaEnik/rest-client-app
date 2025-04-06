@@ -14,7 +14,6 @@ import { addVariables } from './variable_actions';
 
 const AddButton = () => {
   const [showInputBlock, setShowInputBlock] = useState(false);
-  // const [variables, setVariables] = useState<Variable[]>([]);
   const [storageVariables, setStorageVariables] = useLocalStorage<Variable[]>(
     'variables',
     []
@@ -41,7 +40,7 @@ const AddButton = () => {
   return (
     <>
       <Button
-        className="w-full"
+        className="w-full bg-amber-200 hover:bg-primary-light"
         type="button"
         variant="outline"
         onClick={toggleInputBlock}
