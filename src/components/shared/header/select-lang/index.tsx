@@ -1,1 +1,1 @@
-export { LanguageSelect } from './select-laguage';
+export { LanguageSelect } from './select-language';
