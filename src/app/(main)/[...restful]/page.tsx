@@ -1,3 +1,6 @@
+import { redirect } from 'next/navigation';
+import { METHODS } from 'node:http';
+
 import { RestfulView } from '@/components/restful/restful-view';
 
 export default async function Page({
@@ -9,6 +12,8 @@ export default async function Page({
 }) {
   const [method, ...url] = (await params).restful;
   const headers = await searchParams;
+
+  if (!METHODS.includes(method.toUpperCase())) redirect('/GET');
 
   return (
     <section
