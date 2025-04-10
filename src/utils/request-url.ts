@@ -3,7 +3,7 @@ import { convertToAnsii } from '@/utils/base64';
 import { convertToBase64 } from '@/utils/base64';
 
 export function parseUrl(url: string) {
-  const [method, ...params] = url.split('/');
+  const [_lang, method, ...params] = url.split('/');
   const data: UrlParams = { method, apiUrl: '', requestBody: '' };
   if (!params.length) return data;
   const parsedParams = parseParams(params);
