@@ -1,12 +1,16 @@
+'use client';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 
 import { IDeveloper } from '@/types/types';
 
 import { GitHubIcon } from '../github-Icon/ghicon';
 
-export const Developer = (props: IDeveloper) => {
+export function Developer(props: IDeveloper) {
+  const t = useTranslations('developers');
+
   return (
-    <div className="flex flex-col flex-wrap gap-5  px-7 py-5  primary-color-component-bg">
+    <div className="flex flex-1 flex-col flex-wrap gap-5  px-7 py-5  primary-color-component-bg">
       <div className="flex w-full justify-center items-center">
         <Image
           src={props.photo}
@@ -19,22 +23,22 @@ export const Developer = (props: IDeveloper) => {
         />
       </div>
       <div className="flex gap-5 items-center justify-center">
-        <h2 className="text-3xl">{props.name}</h2>
+        <h2 className="text-3xl">{t(props.name)}</h2>
         <a
           href={props.gitHub}
           target="_blank"
           rel="noreferrer"
-          className="hover:opacity-50 color-details-primary"
+          className="hover-opacity-50 color-details-primary"
         >
           <GitHubIcon />
         </a>
       </div>
       <ul>
-        {props.tasks.map((el: string, index) => (
-          <li key={index}>{el}</li>
+        {props.tasks.map((taskKey, index) => (
+          <li key={index}>{t(taskKey)}</li>
         ))}
       </ul>
-      <p>{props.description}</p>
+      <p>{t(props.description)}</p>
     </div>
   );
-};
+}
