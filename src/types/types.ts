@@ -25,3 +25,14 @@ export interface RequestHeader {
 export interface RequestHeadersInterface {
   headers: RequestHeader[];
 }
+
+export interface EncodedParams {
+  apiUrl: string;
+  requestBody: string;
+}
+
+export interface UrlParams {
+  method: string;
+  apiUrl: string;
+  requestBody: string;
+}

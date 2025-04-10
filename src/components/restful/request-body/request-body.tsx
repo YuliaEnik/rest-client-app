@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { WandSparklesIcon } from 'lucide-react';
 
 import { CodeEditor } from '@/components/restful/code-editor';
@@ -8,10 +9,12 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { prettify } from '@/lib/utils';
+import { updateUrl } from '@/utils/request-url';
 
 export function RequestBody({ body = '' }: { body: string }) {
   const [value, setValue] = useState(prettify(body));
   const [mode, setMode] = useState<'json' | 'text'>('json');
+  const router = useRouter();
 
   const handleClick = useCallback(() => {
     setValue(prettify(value));
@@ -22,8 +25,9 @@ export function RequestBody({ body = '' }: { body: string }) {
   }, []);
 
   const handleBlur = useCallback(() => {
-    console.log('blur');
-  }, []);
+    const newUrl = updateUrl({ requestBody: value });
+    router.replace(newUrl);
+  }, [router, value]);
 
   const handleSwitchChange = useCallback((checked: boolean) => {
     setMode(checked ? 'text' : 'json');

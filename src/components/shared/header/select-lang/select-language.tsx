@@ -1,7 +1,9 @@
 'use client';
 
-import { useTransition } from 'react';
+import { useCallback, useTransition } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
+import { QueryParams } from 'next-intl/navigation';
 
 import { SelectElement } from '@/components/shared/select';
 import { usePathname, useRouter } from '@/i18n/navigation';
@@ -14,6 +16,7 @@ export function LanguageSelect() {
   const locale = useLocale() as Language;
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [_, startTransition] = useTransition();
 
   const LanguageOptions: Option[] = [
@@ -22,9 +25,20 @@ export function LanguageSelect() {
     { value: 'be', label: t('belarusian') },
   ];
 
+  const generateQuery = useCallback(() => {
+    const params: QueryParams = searchParams.keys().reduce((obj, key) => {
+      obj[key] = searchParams.get(key);
+      return obj;
+    }, {} as QueryParams);
+    return params;
+  }, [searchParams]);
+
   const handleLanguageChange = (language: Language) => {
     startTransition(() => {
-      router.replace({ pathname }, { locale: language });
+      router.replace(
+        { pathname, query: generateQuery() },
+        { locale: language }
+      );
     });
   };
 
