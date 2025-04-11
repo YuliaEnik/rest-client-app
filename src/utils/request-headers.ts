@@ -7,7 +7,11 @@ export function parseHeaders(
     return Object.keys(headers).reduce((acc, key) => {
       if (Array.isArray(headers[key])) {
         headers[key].forEach((value) =>
-          acc.push({ isChecked: true, headerKey: key, headerValue: value })
+          acc.push({
+            isChecked: true,
+            headerKey: decodeURIComponent(key),
+            headerValue: decodeURIComponent(value),
+          })
         );
       } else {
         acc.push({
@@ -26,10 +30,7 @@ export function parseHeaders(
 export function generateHeaders(headers: RequestHeader[]) {
   const preparedHeaders = headers
     .filter((header) => header.isChecked && header.headerKey)
-    .map((header) => [
-      encodeURIComponent(header.headerKey),
-      encodeURIComponent(header.headerValue),
-    ]);
+    .map((header) => [header.headerKey, header.headerValue]);
   return new URLSearchParams(preparedHeaders);
 }
 
