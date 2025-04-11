@@ -12,7 +12,7 @@ import { prettify } from '@/lib/utils';
 import { updateUrl } from '@/utils/request-url';
 
 export function RequestBody({ body = '' }: { body: string }) {
-  const [value, setValue] = useState(prettify(body));
+  const [value, setValue] = useState(body);
   const [mode, setMode] = useState<'json' | 'text'>('json');
   const router = useRouter();
 
