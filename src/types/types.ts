@@ -45,3 +45,8 @@ export interface UrlParams {
   apiUrl: string;
   requestBody: string;
 }
+
+export interface RestfulResponse {
+  data: string;
+  code: number;
+}

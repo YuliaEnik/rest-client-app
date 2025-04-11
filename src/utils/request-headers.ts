@@ -43,3 +43,13 @@ export function generateHeadersForSnippet(headers: URLSearchParams) {
     [] as { key: string; value: string }[]
   );
 }
+
+export function generateHeadersForRequest(headers: URLSearchParams) {
+  return headers.keys().reduce(
+    (obj, key) => {
+      obj[key] = headers.get(key) || '';
+      return obj;
+    },
+    {} as Record<string, string>
+  );
+}
