@@ -1,8 +1,8 @@
 import { CodeEditor } from '@/components/restful/code-editor';
+import { HttpSnippet } from '@/components/restful/http-snippet/http-snippet';
 import { RequestBody } from '@/components/restful/request-body';
 import { RequestHeaders } from '@/components/restful/request-headers';
 import { RequestUrl } from '@/components/restful/request-url/request-url';
-import { SelectLanguage } from '@/components/restful/select-language';
 import { SelectMethod } from '@/components/restful/select-method';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -39,16 +39,7 @@ export function RestfulView({ method, url, headers }: Props) {
         <Separator className={'primary-color-component-bg my-4'} />
         <RequestHeaders headers={headers} />
         <Separator className={'primary-color-component-bg my-4'} />
-        <div className={'flex flex-col gap-[10px]'}>
-          <div className={'flex gap-[5px] items-center'}>
-            <h3>Code </h3>
-            <SelectLanguage className={'primary-color-component-bg'} />
-          </div>
-          <textarea
-            className={'border border-(--color-primary-dark) p-[5px]'}
-            defaultValue={'request code'}
-          ></textarea>
-        </div>
+        <HttpSnippet />
         <Separator className={'primary-color-component-bg my-4'} />
         <RequestBody body={requestBody} />
         <Separator className={'primary-color-component-bg my-2'} />

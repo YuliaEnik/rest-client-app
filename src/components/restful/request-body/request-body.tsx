@@ -51,7 +51,7 @@ export function RequestBody({ body = '' }: { body: string }) {
         value={value}
         onChangeAction={handleChange}
         onBlurAction={handleBlur}
-        mode={mode}
+        lang={mode}
       />
     </div>
   );

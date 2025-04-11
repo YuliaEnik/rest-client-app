@@ -39,6 +39,7 @@
     "next-i18next": "^15.4.2",
     "next-intl": "^4.0.2",
     "postcss": "^8.5.3",
+    "postman-code-generators": "^2.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^15.4.1",
