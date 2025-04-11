@@ -25,7 +25,7 @@ export function RequestBody({ body = '' }: { body: string }) {
   }, []);
 
   const handleBlur = useCallback(() => {
-    const newUrl = updateUrl({ requestBody: value });
+    const newUrl = updateUrl({ requestBody: value || '' });
     router.replace(newUrl);
   }, [router, value]);
 
