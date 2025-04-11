@@ -32,3 +32,13 @@ export function generateHeaders(headers: RequestHeader[]) {
     ]);
   return new URLSearchParams(preparedHeaders);
 }
+
+export function generateHeadersForSnippet(headers: URLSearchParams) {
+  return headers.keys().reduce(
+    (array, key) => {
+      array.push({ key, value: headers.get(key) || '' });
+      return array;
+    },
+    [] as { key: string; value: string }[]
+  );
+}

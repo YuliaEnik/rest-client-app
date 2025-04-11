@@ -4,25 +4,29 @@ import { langs } from '@uiw/codemirror-extensions-langs';
 import { githubLight } from '@uiw/codemirror-theme-github';
 import CodeMirror from '@uiw/react-codemirror';
 
+import { lang } from '@/types/types';
+
 export function CodeEditor({
   readOnly,
   value,
   height = '200px',
   onChangeAction,
   onBlurAction,
-  mode = 'json',
+  lang = 'json',
 }: {
   readOnly: boolean;
   value?: string;
   height?: string;
   onChangeAction?: (value: string) => void;
   onBlurAction?: () => void;
-  mode?: 'json' | 'text';
+  lang?: lang;
 }) {
   return (
     <CodeMirror
       onBlur={onBlurAction}
-      extensions={mode === 'json' ? [langs.json(), githubLight] : [githubLight]}
+      extensions={
+        lang !== 'text' ? [langs[lang](), githubLight] : [githubLight]
+      }
       readOnly={readOnly}
       height={height}
       value={value}

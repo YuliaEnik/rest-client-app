@@ -7,6 +7,15 @@ export interface Option {
 
 export type METHODS = (typeof RESTFUL_METHODS)[number];
 
+export type lang =
+  | 'javascript'
+  | 'python'
+  | 'text'
+  | 'java'
+  | 'csharp'
+  | 'go'
+  | 'json';
+
 export interface IDeveloper {
   id: string;
   name: string;
