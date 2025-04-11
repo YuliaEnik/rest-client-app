@@ -21,7 +21,7 @@ export function HttpSnippet() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const { method, apiUrl, requestBody } = parseUrl(pathname.slice(1));
+    const { method, apiUrl, requestBody } = parseUrl(pathname);
     if (!apiUrl) {
       setSnippet(SNIPPET_MESSAGE);
       return;
