@@ -26,7 +26,7 @@ export function updateUrl({ method, apiUrl, requestBody }: Partial<UrlParams>) {
   const parsedUrl = parseUrl(currentUrl);
   const url = [
     method || parsedUrl.method,
-    convertToBase64(apiUrl || parsedUrl.apiUrl),
+    convertToBase64(apiUrl !== undefined ? apiUrl : parsedUrl.apiUrl),
     convertToBase64(
       requestBody !== undefined ? requestBody : parsedUrl.requestBody
     ),
