@@ -8,16 +8,15 @@ export async function sendRequest(
   url: string,
   search: string
 ): Promise<RestfulResponse> {
-  const { method, requestBody, apiUrl } = parseUrl(url);
-  const searchParams = new URLSearchParams(search);
-  const headers = generateHeadersForRequest(searchParams);
-  const request = new Request(apiUrl, {
-    headers,
-    method,
-    body: method !== 'GET' ? requestBody : null,
-  });
-
   try {
+    const { method, requestBody, apiUrl } = parseUrl(url);
+    const searchParams = new URLSearchParams(search);
+    const headers = generateHeadersForRequest(searchParams);
+    const request = new Request(apiUrl, {
+      headers,
+      method,
+      body: method !== 'GET' ? requestBody : null,
+    });
     const response = await fetch(request);
     if (!response.ok) {
       return { data: response.statusText, code: response.status };
@@ -25,7 +24,7 @@ export async function sendRequest(
     const data = await response.json();
     return { data: JSON.stringify(data, null, 2), code: response.status };
   } catch (error) {
-    if (error instanceof Error) return { data: error.message, code: 520 };
+    if (error instanceof Error) return { data: error.message, code: 500 };
     else return { data: 'Unknown error', code: 520 };
   }
 }

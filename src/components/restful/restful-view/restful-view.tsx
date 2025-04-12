@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 import { CodeEditor } from '@/components/restful/code-editor';
 import { HttpSnippet } from '@/components/restful/http-snippet/http-snippet';
@@ -28,6 +29,8 @@ export function RestfulView({ method, url, headers }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  const t = useTranslations('restfulPage');
 
   const codeColor = useMemo(() => {
     if (!data.code) return '';
@@ -66,7 +69,7 @@ export function RestfulView({ method, url, headers }: Props) {
             variant={'outline'}
             className={'bg-lime-300'}
           >
-            Send
+            {t('send')}
           </Button>
         </div>
         <Separator className={'primary-color-component-bg my-4'} />
@@ -77,11 +80,11 @@ export function RestfulView({ method, url, headers }: Props) {
         <RequestBody body={requestBody} />
         <Separator className={'primary-color-component-bg my-2'} />
         <div className={'flex flex-col gap-[10px]'}>
-          <h3>Response</h3>
+          <h3>{t('response')}</h3>
           <div className={`flex gap-[5px] min-h-[16px] ${codeColor}`}>
             {!!data.code && (
               <>
-                Status: <span>{data.code}</span>
+                {t('status')} <span>{data.code}</span>
               </>
             )}
           </div>
