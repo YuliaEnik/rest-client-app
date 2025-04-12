@@ -46,5 +46,19 @@
   },
   "footer": {
     "course": "РЫЯКТ"
+  },
+  "restfulPage": {
+    "urlError": "",
+    "send": "Адправіць",
+    "headers": "Загалоўкі",
+    "addHeader": "Дадаць загаловак",
+    "placeholderKey": "ключ",
+    "placeholderValue": "значэнне",
+    "snippet": "Запытаць фрагмент кода",
+    "body": "Цела",
+    "prettify": "Прыхарошваць",
+    "bodyText": "Тэкст",
+    "response": "Адказ",
+    "status": "Статус: "
   }
 }

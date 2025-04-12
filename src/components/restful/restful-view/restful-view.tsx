@@ -1,3 +1,9 @@
+'use client';
+
+import { useCallback, useMemo, useState } from 'react';
+import { usePathname, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+
 import { CodeEditor } from '@/components/restful/code-editor';
 import { HttpSnippet } from '@/components/restful/http-snippet/http-snippet';
 import { RequestBody } from '@/components/restful/request-body';
@@ -7,7 +13,8 @@ import { SelectMethod } from '@/components/restful/select-method';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { prettify } from '@/lib/utils';
-import { METHODS } from '@/types/types';
+import { METHODS, RestfulResponse } from '@/types/types';
+import { sendRequest } from '@/utils/request';
 import { parseParams } from '@/utils/request-url';
 
 interface Props {
@@ -18,6 +25,29 @@ interface Props {
 
 export function RestfulView({ method, url, headers }: Props) {
   const { apiUrl, requestBody } = parseParams(url);
+  const [data, setData] = useState<RestfulResponse>({ data: '', code: 0 });
+  const [isLoading, setIsLoading] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const t = useTranslations('restfulPage');
+
+  const codeColor = useMemo(() => {
+    if (!data.code) return '';
+    if (Math.floor(data.code / 100) < 3) return 'text-green-500';
+    if (Math.floor(data.code / 100) >= 4) return 'text-red-500';
+  }, [data.code]);
+
+  const handleClick = useCallback(async () => {
+    setData({ data: '', code: 0 });
+    setIsLoading(true);
+    const response = await sendRequest(
+      pathname.slice(1),
+      searchParams.toString()
+    );
+    setData(response);
+    setIsLoading(false);
+  }, [pathname, searchParams]);
 
   return (
     <div className={'w-full flex justify-center'}>
@@ -32,8 +62,14 @@ export function RestfulView({ method, url, headers }: Props) {
             currentMethod={method.toUpperCase() as METHODS}
           />
           <RequestUrl url={apiUrl} />
-          <Button variant={'outline'} className={'bg-lime-300'} type={'button'}>
-            Send
+          <Button
+            disabled={isLoading}
+            type={'button'}
+            onClick={handleClick}
+            variant={'outline'}
+            className={'bg-lime-300'}
+          >
+            {t('send')}
           </Button>
         </div>
         <Separator className={'primary-color-component-bg my-4'} />
@@ -44,11 +80,15 @@ export function RestfulView({ method, url, headers }: Props) {
         <RequestBody body={requestBody} />
         <Separator className={'primary-color-component-bg my-2'} />
         <div className={'flex flex-col gap-[10px]'}>
-          <h3>Response</h3>
-          <div className={'flex gap-[5px]'}>
-            Status: <span>status code</span>
+          <h3>{t('response')}</h3>
+          <div className={`flex gap-[5px] min-h-[16px] ${codeColor}`}>
+            {!!data.code && (
+              <>
+                {t('status')} <span>{data.code}</span>
+              </>
+            )}
           </div>
-          <CodeEditor value={prettify('{}')} readOnly={true} />
+          <CodeEditor value={prettify(data.data)} readOnly={true} />
         </div>
       </div>
     </div>
