@@ -22,7 +22,7 @@ const VariableList: React.FC<VariableListProps> = ({
   }, [variables]);
 
   if (isLoading) {
-    return <div>{t('varList')}</div>;
+    return <div>{t('loadSavedVars')}</div>;
   }
 
   if (variables.length === 0) {
