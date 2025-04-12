@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 import { VariableItem } from '@/components';
 import { Variable } from '@/types/types';
@@ -14,22 +15,23 @@ const VariableList: React.FC<VariableListProps> = ({
   setVariables,
 }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const t = useTranslations('variablesPage');
 
   useEffect(() => {
     if (variables) setIsLoading(false);
   }, [variables]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>{t('varList')}</div>;
   }
 
   if (variables.length === 0) {
-    return <div>No variables saved.</div>;
+    return <div>{t('emptySavedVars')}</div>;
   }
 
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-lg font-semibold text-center">Saved Variables:</h3>
+      <h3 className="text-lg font-semibold text-center">{t('varList')}</h3>
       {variables.map((variable) => (
         <VariableItem
           key={variable.id}

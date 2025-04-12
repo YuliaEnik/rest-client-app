@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { PlusIcon } from 'lucide-react';
 
 import { AddButtonProps } from '@/types/types';
@@ -11,6 +12,7 @@ import { CreateVariable } from './create_variable';
 
 const AddButton: React.FC<AddButtonProps> = ({ setVariables }) => {
   const [showInputBlock, setShowInputBlock] = useState(false);
+  const t = useTranslations('variablesPage');
 
   const toggleInputBlock = () => {
     setShowInputBlock((prev) => !prev);
@@ -27,7 +29,7 @@ const AddButton: React.FC<AddButtonProps> = ({ setVariables }) => {
         aria-controls="variable-input-block"
       >
         <PlusIcon />
-        New variable
+        {t('addButton')}
       </Button>
       {showInputBlock && (
         <div id="variable-input-block" className="mt-2">

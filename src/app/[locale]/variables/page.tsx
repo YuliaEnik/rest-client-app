@@ -1,6 +1,7 @@
 'use client';
 import { Suspense, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import { useTranslations } from 'next-intl';
 
 import useLocalStorage from '@/hooks/local_storage';
 import { Variable } from '@/types/types';
@@ -13,6 +14,7 @@ const AddButton = dynamic(() => import('@/components/variable/add_var_button'));
 const VariablesPage = () => {
   const [localStorageVariables] = useLocalStorage<Variable[]>('variables', []);
   const [variables, setVariables] = useState<Variable[]>(localStorageVariables);
+  const t = useTranslations('variablesPage');
 
   useEffect(() => {
     setVariables(localStorageVariables);
@@ -21,9 +23,9 @@ const VariablesPage = () => {
   return (
     <section className="flex flex-col items-center gap-4 p-4">
       <div className="flex flex-col items-center gap-4 border border-gray-300 rounded-lg primary-color-component-bg p-4 w-full md:w-1/2 lg:w-1/4">
-        <h2 className="text-2xl font-semibold text-center">Variables</h2>
+        <h2 className="text-2xl font-semibold text-center">{t('title')}</h2>
         <div className="flex flex-col items-center gap-4 w-full">
-          <Suspense fallback={<div>Loading Variables...</div>}>
+          <Suspense fallback={<div>{t('loadingPage')}</div>}>
             <AddButton setVariables={setVariables} />
             <VariableList variables={variables} setVariables={setVariables} />
           </Suspense>

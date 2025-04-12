@@ -50,5 +50,27 @@ declare const messages: {
   footer: {
     course: 'REACT';
   };
+  restfulPage: {
+    urlError: 'API_URL must be a valid URL';
+    send: 'Send';
+    headers: 'Headers';
+    addHeader: 'Add header';
+    placeholderKey: 'key';
+    placeholderValue: 'value';
+    snippet: 'Request code snippet';
+    body: 'Body';
+    prettify: 'Prettify';
+    bodyText: 'Text';
+    response: 'Response';
+    status: 'Status: ';
+  };
+  variablesPage: {
+    title: 'Variables';
+    varList: 'Saved variables';
+    loadingPage: 'Loading Variables Page...';
+    addButton: 'New variable';
+    loadSavedVars: 'Loading...';
+    emptySavedVars: 'No variables saved.';
+  };
 };
 export default messages;
