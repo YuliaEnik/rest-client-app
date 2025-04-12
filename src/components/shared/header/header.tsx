@@ -1,25 +1,15 @@
-'use client';
-import React from 'react';
+import { Suspense } from 'react';
 
-import { useStickyHeader } from '@/app/hooks/sticky-header';
+import { HeaderLogo } from './header-logo';
+import { LanguageSelect } from './select-lang';
 
-import { HeaderLogo } from './header-logo/header-logo';
-import { LanguageSelect } from './select-lang/select-laguage';
-
-export const Header: React.FC = () => {
-  const sticky = useStickyHeader(1);
-  const [language, setLanguage] = React.useState<'en' | 'ru' | 'be'>('en');
-
+export function Header({ locale: _locale }: { locale: string }) {
   return (
-    <header
-      className={`flex w-full justify-between flex-wrap px-5 py-3 gap-4 items-center ${sticky ? 'bg-gray-100 sticky top-0 z-50 shadow-md' : 'primary-color-component-bg'}`}
-    >
+    <header className="flex flex-0 w-full justify-between flex-wrap px-5 py-3 gap-4 items-center">
       <HeaderLogo />
-      <LanguageSelect
-        value={language}
-        onChangeAction={setLanguage}
-        className="w-15 bg-amber-200 text-sm p-2 gap-1"
-      />
+      <Suspense>
+        <LanguageSelect />
+      </Suspense>
     </header>
   );
-};
+}

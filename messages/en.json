@@ -1,0 +1,64 @@
+{
+  "LanguageSwitcher": {
+    "english": "English (EN)",
+    "russian": "Russian (RU)",
+    "belarusian": "Belarusian (BE)"
+  },
+  "welcomePage": {
+    "description_restAppText": "A powerful REST API integrated development environment (IDE). This tool provides everything you need to build, test, and debug RESTful services. Key features: smart code completion, interactive API testing, built-in documentation, and team collaboration support. Perfect for developers, testers, and API architects.",
+    "description_ourTeamText": "Our team consists of experienced developers specializing in modern web applications. We use cutting-edge technologies and best development practices. Each team member contributes to creating a high-quality product. Our specializations include: frontend, UX/UI design, and testing.",
+    "title_main": {
+      "rest": "REST Client App",
+      "team": "Our Team"
+    },
+    "title1": "WEB Developers of our team",
+    "title2": " We may not have much experience, but we are wearing navy stripes!",
+    "tabs": {
+      "rest": "Rest App",
+      "team": "Team"
+    }
+  },
+  "developers": {
+    "nikolay": {
+      "name": "Nikolay",
+      "task1": "REST page",
+      "task2": "Client page",
+      "description": "i'm the best"
+    },
+    "anastasiya": {
+      "name": "Anastasiya",
+      "task1": "History page",
+      "task2": "Variables page",
+      "description": "i'm the best too"
+    },
+    "yuliya": {
+      "name": "Julia",
+      "task1": "Welcome page",
+      "task2": "Localization",
+      "description": "Hello, my name is Yuliya. I am a self-taught front-end developer. I primarily focus on writing clean, elegant, and efficient code. I am proficient in HTML, CSS, SCSS, JavaScript, React and Type Script. And I get real pleasure from the results of my work."
+    }
+  },
+  "header": {
+    "main": "go to main page",
+    "signin": "signin",
+    "signup": "signup",
+    "logout": "logout"
+  },
+  "footer": {
+    "course": "REACT"
+  },
+  "restfulPage": {
+    "urlError": "API_URL must be a valid URL",
+    "send": "Send",
+    "headers": "Headers",
+    "addHeader": "Add header",
+    "placeholderKey": "key",
+    "placeholderValue": "value",
+    "snippet": "Request code snippet",
+    "body": "Body",
+    "prettify": "Prettify",
+    "bodyText": "Text",
+    "response": "Response",
+    "status": "Status: "
+  }
+}

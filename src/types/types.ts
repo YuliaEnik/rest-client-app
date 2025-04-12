@@ -1,5 +1,4 @@
 import { RESTFUL_METHODS } from '@/constants/constants';
-
 export interface Option {
   label: string;
   value: string;
@@ -7,6 +6,15 @@ export interface Option {
 }
 
 export type METHODS = (typeof RESTFUL_METHODS)[number];
+
+export type lang =
+  | 'javascript'
+  | 'python'
+  | 'text'
+  | 'java'
+  | 'csharp'
+  | 'go'
+  | 'json';
 
 export interface IDeveloper {
   id: string;
@@ -25,6 +33,22 @@ export interface RequestHeader {
 
 export interface RequestHeadersInterface {
   headers: RequestHeader[];
+}
+
+export interface EncodedParams {
+  apiUrl: string;
+  requestBody: string;
+}
+
+export interface UrlParams {
+  method: string;
+  apiUrl: string;
+  requestBody: string;
+}
+
+export interface RestfulResponse {
+  data: string;
+  code: number;
 }
 
 export interface Variable {
