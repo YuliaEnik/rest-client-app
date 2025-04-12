@@ -3,6 +3,7 @@
 import { useCallback } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { usePathname, useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { PlusIcon, TrashIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -27,6 +28,7 @@ export function RequestHeaders({
     control,
     name: 'headers',
   });
+  const t = useTranslations('restfulPage');
 
   const appendHeader = useCallback(() => {
     append({ isChecked: true, headerKey: '', headerValue: '' });
@@ -48,9 +50,9 @@ export function RequestHeaders({
   return (
     <div className={'flex flex-col gap-[10px]'}>
       <div className={'flex gap-[10px] items-center'}>
-        <h3>Headers</h3>
+        <h3>{t('headers')}</h3>
         <Button type={'button'} variant={'outline'} onClick={appendHeader}>
-          <PlusIcon /> Add headers
+          <PlusIcon /> {t('addHeader')}
         </Button>
       </div>
       <form
@@ -84,7 +86,7 @@ export function RequestHeaders({
               render={({ field }) => (
                 <Input
                   className={'primary-color-component-bg'}
-                  placeholder={'key'}
+                  placeholder={t('placeholderKey')}
                   {...field}
                 />
               )}
@@ -95,7 +97,7 @@ export function RequestHeaders({
               render={({ field }) => (
                 <Input
                   className={'primary-color-component-bg'}
-                  placeholder={'value'}
+                  placeholder={t('placeholderValue')}
                   {...field}
                 />
               )}

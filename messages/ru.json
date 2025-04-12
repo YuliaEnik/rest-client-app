@@ -46,5 +46,18 @@
   },
   "footer": {
     "course": "РЕАКТ"
+  },
+  "restfulPage": {
+    "send": "Отправить",
+    "headers": "Заголовки",
+    "addHeader": "Добавить заголовок",
+    "placeholderKey": "ключ",
+    "placeholderValue": "значение",
+    "snippet": "Фрагмент кода запроса",
+    "body": "Тело запроса",
+    "prettify": "Форматировать",
+    "bodyText": "Текст",
+    "response": "Ответ",
+    "status": "Статус: "
   }
 }
