@@ -1,31 +1,27 @@
 'use client';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AlertCircle, Edit2, Save, SendHorizontal, Trash2 } from 'lucide-react';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import useLocalStorage from '@/hooks/local_storage';
+import { Variable, VariableItemProps } from '@/types/types';
 
-import {
-  handleDelete,
-  handleUpdate,
-  validationSchema,
-} from './variable_actions';
-
-interface VariableItemProps {
-  variable: { id: string; name: string; value: string };
-  key: string;
-}
+import { validationSchema } from './variable_validation_shema';
 
 export const VariableItem: React.FC<VariableItemProps> = ({
   variable,
-  key,
+  variables,
+  setVariables,
 }) => {
+  const [_localStorageVariables, setLocalStorageVariables] = useLocalStorage<
+    Variable[]
+  >('variables', []);
   const [isEditing, setIsEditing] = useState(false);
-  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -38,37 +34,46 @@ export const VariableItem: React.FC<VariableItemProps> = ({
 
   const toggleEdit = () => {
     setIsEditing(true);
+    setValue('name', variable.name);
+    setValue('value', variable.value);
   };
 
   const deleteVar = () => {
-    handleDelete(variable.id);
-    router.refresh();
+    const updatedVariables = variables.filter(
+      (item) => item.id !== variable.id
+    );
+    setLocalStorageVariables(updatedVariables);
+    setVariables(updatedVariables);
   };
 
-  const onSubmit = (data: any) => {
-    handleUpdate(variable.id, data.name, data.value);
-    router.refresh();
+  const onSubmit = (data: { name: string; value: string }) => {
+    const updatedVariables = variables.map((item) =>
+      item.id === variable.id
+        ? { ...item, name: data.name, value: data.value }
+        : item
+    );
+    setLocalStorageVariables(updatedVariables);
+    setVariables(updatedVariables);
     setIsEditing(false);
-    setValue('name', '');
-    setValue('value', '');
   };
 
   return (
-    <div key={key} className="flex items-center gap-2 w-full">
+    <div key={variable.id} className="flex items-center gap-2 w-full">
       {isEditing ? (
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-1">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col gap-1 w-full"
+        >
           <div className="flex items-center gap-2">
             <SendHorizontal />
             <Input
               placeholder="Name"
               {...register('name')}
-              defaultValue={variable.name}
               className="bg-white"
             />
             <Input
               placeholder="Value"
               {...register('value')}
-              defaultValue={variable.value}
               className="bg-white"
             />
             <Button
@@ -82,7 +87,7 @@ export const VariableItem: React.FC<VariableItemProps> = ({
               className="max-w-[100px] bg-secondary-rose hover:bg-red-400"
               type="button"
               variant="outline"
-              onClick={deleteVar}
+              onClick={() => setIsEditing(false)}
             >
               <Trash2 />
             </Button>
@@ -92,18 +97,14 @@ export const VariableItem: React.FC<VariableItemProps> = ({
               <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4" />
                 <AlertTitle>Error</AlertTitle>
-                <AlertDescription>
-                  {errors.name && errors.name.message}
-                </AlertDescription>
+                <AlertDescription>{errors.name.message}</AlertDescription>
               </Alert>
             )}
             {errors.value && (
               <Alert variant="destructive">
                 <AlertCircle className="h-4 w-4" />
                 <AlertTitle>Error</AlertTitle>
-                <AlertDescription>
-                  {errors.value && errors.value.message}
-                </AlertDescription>
+                <AlertDescription>{errors.value.message}</AlertDescription>
               </Alert>
             )}
           </div>
@@ -134,3 +135,4 @@ export const VariableItem: React.FC<VariableItemProps> = ({
     </div>
   );
 };
+export default React.memo(VariableItem);

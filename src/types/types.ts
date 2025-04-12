@@ -32,3 +32,18 @@ export interface Variable {
   name: string;
   value: string;
 }
+
+export interface AddButtonProps {
+  setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
+}
+
+export interface CreateVariableProps {
+  showCreateBlock: (show: boolean) => void;
+  setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
+}
+
+export interface VariableItemProps {
+  variable: { id: string; name: string; value: string };
+  variables: Variable[];
+  setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
+}

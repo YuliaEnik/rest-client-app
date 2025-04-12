@@ -1,66 +1,58 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AlertCircle, PlusIcon, SendHorizontal, SquareX } from 'lucide-react';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import useLocalStorage from '@/hooks/local_storage';
+import { CreateVariableProps, Variable } from '@/types/types';
 
-import { addVariables, validationSchema } from './variable_actions';
-
-interface CreateVariableProps {
-  showCreateBlock: (show: boolean) => void;
-}
+import { validationSchema } from './variable_validation_shema';
 
 export const CreateVariable: React.FC<CreateVariableProps> = ({
   showCreateBlock,
+  setVariables,
 }) => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const [localStorageVariables, setLocalStorageValue] = useLocalStorage<
+    Variable[]
+  >('variables', []);
   const [nextId, setNextId] = useState(1);
-  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(validationSchema),
     mode: 'onChange',
   });
 
   useEffect(() => {
-    const fetchVariables = async () => {
-      const res = await fetch(`${apiUrl}/api/variables`, {
-        cache: 'no-store',
-      });
-      const data = await res.json();
-      setNextId(
-        data.length > 0 ? Number(data[data.length - 1].id.slice(1)) + 1 : 1
+    if (localStorageVariables.length > 0) {
+      const lastId = Number(
+        localStorageVariables[localStorageVariables.length - 1].id.slice(1)
       );
-    };
-    fetchVariables();
-  }, [apiUrl, nextId]);
+      setNextId(lastId + 1);
+    }
+  }, [localStorageVariables]);
 
   const onSubmit = async (data: { name: string; value: string }) => {
-    const newVariable = [
-      {
-        id: `#${nextId}`,
-        name: data.name,
-        value: data.value,
-      },
+    const newVariable: Variable = {
+      id: `#${nextId}`,
+      name: data.name,
+      value: data.value,
+    };
+
+    const updatedVariables: Variable[] = [
+      ...localStorageVariables,
+      newVariable,
     ];
-    try {
-      const data = await addVariables(newVariable);
-      console.log('Variable added:', data);
-      setValue('name', '');
-      setValue('value', '');
-      router.refresh();
-    } catch (error) {
-      console.error('Error adding variable:', error);
-    }
+    setLocalStorageValue(updatedVariables);
+    setVariables(updatedVariables);
     handleClose();
   };
 
@@ -82,18 +74,23 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
           type="text"
           {...register('name')}
           placeholder="Variable Name"
+          aria-invalid={!!errors.name}
+          aria-describedby="name-error"
           className="border border-gray-300 rounded p-2 bg-white"
         />
         <Input
           type="text"
           {...register('value')}
           placeholder="Variable Value"
+          aria-invalid={!!errors.value}
+          aria-describedby="value-error"
           className="border border-gray-300 rounded p-2 bg-white"
         />
         <Button
           type="submit"
           className="max-w-[100px] bg-amber-200 hover:bg-primary-light"
           variant="outline"
+          disabled={isSubmitting}
         >
           <PlusIcon />
         </Button>
@@ -107,21 +104,17 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
         </Button>
       </div>
       {errors.name && (
-        <Alert variant="destructive">
+        <Alert variant="destructive" id="name-error">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Error</AlertTitle>
-          <AlertDescription>
-            {errors.name && errors.name.message}
-          </AlertDescription>
+          <AlertDescription>{errors.name.message}</AlertDescription>
         </Alert>
       )}
       {errors.value && (
-        <Alert variant="destructive">
+        <Alert variant="destructive" id="value-error">
           <AlertCircle className="h-4 w-4" />
           <AlertTitle>Error</AlertTitle>
-          <AlertDescription>
-            {errors.value && errors.value.message}
-          </AlertDescription>
+          <AlertDescription>{errors.value.message}</AlertDescription>
         </Alert>
       )}
     </form>

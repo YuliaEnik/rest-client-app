@@ -1,38 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { PlusIcon } from 'lucide-react';
 
-import useLocalStorage from '@/hooks/local_storage';
-import { Variable } from '@/types/types';
+import { AddButtonProps } from '@/types/types';
 
 import { Button } from '../ui/button';
 
 import { CreateVariable } from './create_variable';
-import { addVariables } from './variable_actions';
 
-const AddButton = () => {
+const AddButton: React.FC<AddButtonProps> = ({ setVariables }) => {
   const [showInputBlock, setShowInputBlock] = useState(false);
-  const [storageVariables, setStorageVariables] = useLocalStorage<Variable[]>(
-    'variables',
-    []
-  );
-  const router = useRouter();
-  useEffect(() => {
-    const loadVariables = async () => {
-      if (storageVariables.length > 0) {
-        try {
-          await addVariables(storageVariables);
-          setStorageVariables([]);
-          router.refresh();
-        } catch (error) {
-          console.error('Failed to add variables:', error);
-        }
-      }
-    };
-    loadVariables();
-  });
+
   const toggleInputBlock = () => {
     setShowInputBlock((prev) => !prev);
   };
@@ -40,15 +19,24 @@ const AddButton = () => {
   return (
     <>
       <Button
-        className="w-full bg-amber-200 hover:bg-primary-light"
+        className="w-full bg-amber-200 hover:bg-primary-light transition-colors"
         type="button"
         variant="outline"
         onClick={toggleInputBlock}
+        aria-expanded={showInputBlock}
+        aria-controls="variable-input-block"
       >
         <PlusIcon />
         New variable
       </Button>
-      {showInputBlock && <CreateVariable showCreateBlock={toggleInputBlock} />}
+      {showInputBlock && (
+        <div id="variable-input-block" className="mt-2">
+          <CreateVariable
+            showCreateBlock={toggleInputBlock}
+            setVariables={setVariables}
+          />
+        </div>
+      )}
     </>
   );
 };

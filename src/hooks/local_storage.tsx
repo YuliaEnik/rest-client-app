@@ -1,33 +1,33 @@
-import { useEffect, useState } from 'react';
+'use client';
+import { useState } from 'react';
 
-function useLocalStorage<T>(key: string, defaultValue: T) {
+function useLocalStorage<T>(
+  key: string,
+  defaultValue: []
+): [T, (value: T) => void] {
   const isClient = typeof window !== 'undefined';
+  const [value, setValue] = useState<T>(initValue());
 
-  const [localStorageValue, setLocalStorageValue] = useState<T>(() => {
-    if (!isClient) return defaultValue;
-
-    const storedValue = localStorage.getItem(key);
-    if (storedValue) {
-      try {
-        return JSON.parse(storedValue);
-      } catch {
-        return storedValue;
-      }
-    }
-    return defaultValue;
-  });
-
-  useEffect(() => {
+  function initValue() {
     if (isClient) {
-      localStorage.setItem(key, JSON.stringify(localStorageValue));
+      const storedValue = localStorage.getItem(key);
+      if (storedValue) {
+        try {
+          return JSON.parse(storedValue);
+        } catch (error) {
+          console.error('Error parsing stored value:', error);
+        }
+      } else return defaultValue;
     }
-  }, [key, localStorageValue, isClient]);
+  }
 
-  const saveToLocalStorage = (value: T) => {
-    setLocalStorageValue(value);
-  };
+  function saveValue(value: T) {
+    localStorage.setItem(key, JSON.stringify(value));
+    window.dispatchEvent(new Event('storage'));
+    setValue(value);
+  }
 
-  return [localStorageValue, saveToLocalStorage] as const;
+  return [value, saveValue];
 }
 
 export default useLocalStorage;

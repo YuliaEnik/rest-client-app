@@ -1,32 +1,44 @@
+'use client';
+import React, { useEffect, useState } from 'react';
+
 import { VariableItem } from '@/components';
 import { Variable } from '@/types/types';
 
-const fetchVariables = async () => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const res = await fetch(`${apiUrl}/api/variables`, {
-    method: 'GET',
-    cache: 'no-store',
-  });
+interface VariableListProps {
+  variables: Variable[];
+  setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
+}
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch variables');
+const VariableList: React.FC<VariableListProps> = ({
+  variables = [],
+  setVariables,
+}) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (variables) setIsLoading(false);
+  }, [variables]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
-  return res.json();
-};
 
-const VariableList = async () => {
-  const variables: Variable[] = await fetchVariables();
+  if (variables.length === 0) {
+    return <div>No variables saved.</div>;
+  }
+
   return (
-    <>
-      {variables.length > 0 && (
-        <div className="flex flex-col gap-4">
-          <h3>Saved Variables:</h3>
-          {variables.map((variable) => (
-            <VariableItem key={variable.id} variable={variable} />
-          ))}
-        </div>
-      )}
-    </>
+    <div className="flex flex-col gap-4">
+      <h3 className="text-lg font-semibold text-center">Saved Variables:</h3>
+      {variables.map((variable) => (
+        <VariableItem
+          key={variable.id}
+          variable={variable}
+          variables={variables}
+          setVariables={setVariables}
+        />
+      ))}
+    </div>
   );
 };
 
