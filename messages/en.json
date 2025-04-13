@@ -48,13 +48,14 @@
     "course": "REACT"
   },
   "restfulPage": {
-    "urlError": "API_URL must be a valid URL",
+    "urlError": "API URL must be a valid",
     "send": "Send",
     "headers": "Headers",
     "addHeader": "Add header",
     "placeholderKey": "key",
     "placeholderValue": "value",
     "snippet": "Request code snippet",
+    "snippetMessage": "Please provide at least api url to generate request snippet",
     "body": "Body",
     "prettify": "Prettify",
     "bodyText": "Text",

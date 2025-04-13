@@ -18,21 +18,17 @@ import { CODEMIRROR_LANGUAGES, LANGUAGES } from '@/constants/constants';
 import { generateHeadersForSnippet } from '@/utils/request-headers';
 import { parseUrl } from '@/utils/request-url';
 
-const SNIPPET_MESSAGE =
-  'Please provide at least api url to generate request snippet';
-
 export function HttpSnippet() {
+  const t = useTranslations('restfulPage');
   const [value, setValue] = useState<string>(LANGUAGES[0].value);
-  const [snippet, setSnippet] = useState(SNIPPET_MESSAGE);
+  const [snippet, setSnippet] = useState(t('snippetMessage'));
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
-  const t = useTranslations('restfulPage');
 
   useEffect(() => {
     const { method, apiUrl, requestBody } = parseUrl(pathname);
     if (!apiUrl) {
-      setSnippet(SNIPPET_MESSAGE);
+      setSnippet(t('snippetMessage'));
       return;
     }
     const [language, variant] = value.split('/');
@@ -57,7 +53,7 @@ export function HttpSnippet() {
         setSnippet(snippet);
       }
     );
-  }, [pathname, searchParams, value]);
+  }, [pathname, searchParams, t, value]);
 
   return (
     <Accordion

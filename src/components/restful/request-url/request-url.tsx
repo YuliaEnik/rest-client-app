@@ -3,6 +3,7 @@
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { schema } from '@/components/restful/request-url/schema';
@@ -20,6 +21,8 @@ export function RequestUrl({ url }: { url: string }) {
     mode: 'onChange',
     resolver: yupResolver(schema),
   });
+
+  const t = useTranslations('restfulPage');
 
   const handleBlur = useCallback(() => {
     if (isValid) {
@@ -43,7 +46,7 @@ export function RequestUrl({ url }: { url: string }) {
           'absolute top-[40px] left-[10px] min-h-[14px] text-[14px] text-(--color-destructive)'
         }
       >
-        {errors.API_URL && errors.API_URL.message}
+        {errors.API_URL?.message && t(errors.API_URL.message)}
       </span>
     </div>
   );
