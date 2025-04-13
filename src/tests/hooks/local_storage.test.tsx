@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, test } from 'vitest';
 
 import { Variable } from '@/types/types';
 
-import useLocalStorage from './local_storage';
+import useLocalStorage from '../../hooks/local_storage';
 
 describe('useLocalStorage', () => {
   const key = 'testKey';

@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, test } from 'vitest';
 
-import VariablesPage from './page';
+import VariablesPage from '@/app/[locale]/variables/page';
 
 const messages = {
   variablesPage: {

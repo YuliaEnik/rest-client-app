@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { Variable } from '@/types/types';
 
-import { VariableItem } from './variable_item';
+import { VariableItem } from '../../components/variable/variable_item';
 
 const mockSetVariables = vi.fn();
 const mockLocalStorageSet = vi.fn();

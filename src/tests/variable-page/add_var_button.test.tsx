@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import AddButton from './add_var_button';
+import AddButton from '../../components/variable/add_var_button';
 
 const messages = {
   variablesPage: {

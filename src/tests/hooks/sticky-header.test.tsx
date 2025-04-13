@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, test } from 'vitest';
 
-import { useStickyHeader } from './sticky-header';
+import { useStickyHeader } from '@/hooks/sticky-header';
 
 describe('useStickyHeader', () => {
   beforeEach(() => {

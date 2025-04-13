@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
 import { Variable } from '@/types/types';
 
-import VariableList from './variable_list';
+import VariableList from '../../components/variable/variable_list';
 
 const mockSetVariables = vi.fn();
 
