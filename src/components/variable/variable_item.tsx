@@ -145,4 +145,3 @@ export const VariableItem: React.FC<VariableItemProps> = ({
     </div>
   );
 };
-export default React.memo(VariableItem);

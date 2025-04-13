@@ -2,9 +2,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
+import { VariableList } from '@/components';
 import { Variable } from '@/types/types';
-
-import VariableList from '../../components/variable/variable_list';
 
 const mockSetVariables = vi.fn();
 

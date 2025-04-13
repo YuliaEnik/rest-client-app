@@ -10,7 +10,7 @@ import { Button } from '../ui/button';
 
 import { CreateVariable } from './create_variable';
 
-const AddButton: React.FC<AddButtonProps> = ({ setVariables }) => {
+export const AddButton: React.FC<AddButtonProps> = ({ setVariables }) => {
   const [showInputBlock, setShowInputBlock] = useState(false);
   const t = useTranslations('variablesPage');
 

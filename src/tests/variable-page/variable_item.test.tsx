@@ -8,9 +8,8 @@ import {
 } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
+import { VariableItem } from '@/components';
 import { Variable } from '@/types/types';
-
-import { VariableItem } from '../../components/variable/variable_item';
 
 const mockSetVariables = vi.fn();
 const mockLocalStorageSet = vi.fn();
