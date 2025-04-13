@@ -3,6 +3,7 @@ import { Suspense, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 
+import { LOCAL_STORAGE_KEYS } from '@/constants/constants';
 import useLocalStorage from '@/hooks/local_storage';
 import { Variable } from '@/types/types';
 
@@ -12,7 +13,10 @@ const VariableList = dynamic(
 const AddButton = dynamic(() => import('@/components/variable/add_var_button'));
 
 const VariablesPage = () => {
-  const [localStorageVariables] = useLocalStorage<Variable[]>('variables', []);
+  const [localStorageVariables] = useLocalStorage<Variable[]>(
+    LOCAL_STORAGE_KEYS.VARIABLES,
+    []
+  );
   const [variables, setVariables] = useState<Variable[]>(localStorageVariables);
   const t = useTranslations('variablesPage');
 
