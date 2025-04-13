@@ -10,7 +10,7 @@ interface VariableListProps {
   setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
 }
 
-const VariableList: React.FC<VariableListProps> = ({
+export const VariableList: React.FC<VariableListProps> = ({
   variables = [],
   setVariables,
 }) => {
@@ -43,5 +43,4 @@ const VariableList: React.FC<VariableListProps> = ({
     </div>
   );
 };
-
 export default VariableList;
