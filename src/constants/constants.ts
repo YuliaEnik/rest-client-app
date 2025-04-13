@@ -30,3 +30,8 @@ export const CODEMIRROR_LANGUAGES: Record<string, lang> = {
   'csharp/HttpClient': 'csharp',
   'go/Native': 'go',
 };
+
+export enum LOCAL_STORAGE_KEYS {
+  'VARIABLES' = 'variables',
+  'HISTORY' = 'requestsHistory',
+}
