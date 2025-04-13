@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 function useLocalStorage<T>(
   key: string,
-  defaultValue: []
+  defaultValue: T
 ): [T, (value: T) => void] {
   const isClient = typeof window !== 'undefined';
   const [value, setValue] = useState<T>(initValue());
