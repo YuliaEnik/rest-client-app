@@ -94,6 +94,7 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
           className="max-w-[100px] bg-amber-200 hover:bg-primary-light"
           variant="outline"
           disabled={isSubmitting}
+          data-testid="addnewvar-button"
         >
           <PlusIcon />
         </Button>
@@ -102,6 +103,7 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
           type="button"
           variant="outline"
           onClick={handleClose}
+          data-testid="canceladdnewvar-button"
         >
           <SquareX />
         </Button>

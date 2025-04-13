@@ -83,6 +83,7 @@ export const VariableItem: React.FC<VariableItemProps> = ({
               className="max-w-[100px] bg-amber-200 hover:bg-primary-light"
               type="submit"
               variant="outline"
+              data-testid="save-button"
             >
               <Save />
             </Button>
@@ -126,6 +127,7 @@ export const VariableItem: React.FC<VariableItemProps> = ({
             type="button"
             variant="outline"
             onClick={toggleEdit}
+            data-testid="edit-button"
           >
             <Edit2 />
           </Button>
@@ -134,6 +136,7 @@ export const VariableItem: React.FC<VariableItemProps> = ({
             type="button"
             variant="outline"
             onClick={deleteVar}
+            data-testid="delete-button"
           >
             <Trash2 />
           </Button>
