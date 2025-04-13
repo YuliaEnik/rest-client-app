@@ -60,5 +60,13 @@
     "bodyText": "Тэкст",
     "response": "Адказ",
     "status": "Статус: "
+  },
+  "variablesPage": {
+    "title": "Зменныя",
+    "varList": "Захаваныя зменныя",
+    "loadingPage": "Загрузка старонкі са зменнымі...",
+    "addButton": "Новая зменная",
+    "loadSavedVars": "Загрузка...",
+    "emptySavedVars": "Няма захаваных зменных."
   }
 }

@@ -59,5 +59,13 @@
     "bodyText": "Текст",
     "response": "Ответ",
     "status": "Статус: "
+  },
+  "variablesPage": {
+    "title": "Переменные",
+    "varList": "Сохраненные переменные",
+    "loadingPage": "Загрузка странички с переменными...",
+    "addButton": "Новая переменная",
+    "loadSavedVars": "Загрузка...",
+    "emptySavedVars": "Нет сохраненных переменных."
   }
 }
