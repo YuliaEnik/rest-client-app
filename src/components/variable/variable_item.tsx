@@ -7,6 +7,7 @@ import { AlertCircle, Edit2, Save, SendHorizontal, Trash2 } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { LOCAL_STORAGE_KEYS } from '@/constants/constants';
 import useLocalStorage from '@/hooks/local_storage';
 import { Variable, VariableItemProps } from '@/types/types';
 
@@ -19,7 +20,7 @@ export const VariableItem: React.FC<VariableItemProps> = ({
 }) => {
   const [_localStorageVariables, setLocalStorageVariables] = useLocalStorage<
     Variable[]
-  >('variables', []);
+  >(LOCAL_STORAGE_KEYS.VARIABLES, []);
   const [isEditing, setIsEditing] = useState(false);
 
   const {
