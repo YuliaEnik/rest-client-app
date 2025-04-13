@@ -48,13 +48,14 @@
     "course": "РЫЯКТ"
   },
   "restfulPage": {
-    "urlError": "",
+    "urlError": "URL API павінен быць сапраўдным",
     "send": "Адправіць",
     "headers": "Загалоўкі",
     "addHeader": "Дадаць загаловак",
     "placeholderKey": "ключ",
     "placeholderValue": "значэнне",
     "snippet": "Запытаць фрагмент кода",
+    "snippetMessage": "Калі ласка, пакажыце хаця б URL-адрас api для генерацыі фрагмента запыту",
     "body": "Цела",
     "prettify": "Прыхарошваць",
     "bodyText": "Тэкст",
