@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AlertCircle, Edit2, Save, SendHorizontal, Trash2 } from 'lucide-react';
 
@@ -22,6 +23,7 @@ export const VariableItem: React.FC<VariableItemProps> = ({
     Variable[]
   >(LOCAL_STORAGE_KEYS.VARIABLES, []);
   const [isEditing, setIsEditing] = useState(false);
+  const t = useTranslations('variablesPage');
 
   const {
     register,
@@ -95,17 +97,21 @@ export const VariableItem: React.FC<VariableItemProps> = ({
           </div>
           <div className="flex flex-col gap-1">
             {errors.name && (
-              <Alert variant="destructive">
+              <Alert variant="destructive" id="name-error">
                 <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>{errors.name.message}</AlertDescription>
+                <AlertTitle>{t('error')}</AlertTitle>
+                <AlertDescription>
+                  {errors.name.message && t(errors.name.message)}
+                </AlertDescription>
               </Alert>
             )}
             {errors.value && (
-              <Alert variant="destructive">
+              <Alert variant="destructive" id="value-error">
                 <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>{errors.value.message}</AlertDescription>
+                <AlertTitle>{t('error')}</AlertTitle>
+                <AlertDescription>
+                  {errors.value.message && t(errors.value.message)}
+                </AlertDescription>
               </Alert>
             )}
           </div>
