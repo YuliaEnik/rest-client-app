@@ -67,7 +67,7 @@ export interface CreateVariableProps {
 }
 
 export interface VariableItemProps {
-  variable: { id: string; name: string; value: string };
+  variable: Variable;
   variables: Variable[];
   setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
 }

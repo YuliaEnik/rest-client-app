@@ -51,13 +51,14 @@ declare const messages: {
     course: 'REACT';
   };
   restfulPage: {
-    urlError: 'API_URL must be a valid URL';
+    urlError: 'API URL must be a valid';
     send: 'Send';
     headers: 'Headers';
     addHeader: 'Add header';
     placeholderKey: 'key';
     placeholderValue: 'value';
     snippet: 'Request code snippet';
+    snippetMessage: 'Please provide at least api url to generate request snippet';
     body: 'Body';
     prettify: 'Prettify';
     bodyText: 'Text';
@@ -71,6 +72,12 @@ declare const messages: {
     addButton: 'New variable';
     loadSavedVars: 'Loading...';
     emptySavedVars: 'No variables saved.';
+    error: 'Error';
+    varNamerequired: 'Variable name is required';
+    varNameMin: 'Variable name must be at least 2 characters';
+    varNameMatch: 'Variable name must be on English uppercase, camelCase, or uppercase with one underscore';
+    varValuerequired: 'Variable value is required';
+    varValueMin: 'Variable value must be at least 1 character';
   };
 };
 export default messages;

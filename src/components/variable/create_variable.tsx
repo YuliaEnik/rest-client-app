@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslations } from 'next-intl';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AlertCircle, PlusIcon, SendHorizontal, SquareX } from 'lucide-react';
 
@@ -21,6 +22,7 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
     Variable[]
   >(LOCAL_STORAGE_KEYS.VARIABLES, []);
   const [nextId, setNextId] = useState(1);
+  const t = useTranslations('variablesPage');
 
   const {
     register,
@@ -92,6 +94,7 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
           className="max-w-[100px] bg-amber-200 hover:bg-primary-light"
           variant="outline"
           disabled={isSubmitting}
+          data-testid="addnewvar-button"
         >
           <PlusIcon />
         </Button>
@@ -100,6 +103,7 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
           type="button"
           variant="outline"
           onClick={handleClose}
+          data-testid="canceladdnewvar-button"
         >
           <SquareX />
         </Button>
@@ -107,15 +111,19 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
       {errors.name && (
         <Alert variant="destructive" id="name-error">
           <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{errors.name.message}</AlertDescription>
+          <AlertTitle>{t('error')}</AlertTitle>
+          <AlertDescription>
+            {errors.name.message && t(errors.name.message)}
+          </AlertDescription>
         </Alert>
       )}
       {errors.value && (
         <Alert variant="destructive" id="value-error">
           <AlertCircle className="h-4 w-4" />
-          <AlertTitle>Error</AlertTitle>
-          <AlertDescription>{errors.value.message}</AlertDescription>
+          <AlertTitle>{t('error')}</AlertTitle>
+          <AlertDescription>
+            {errors.value.message && t(errors.value.message)}
+          </AlertDescription>
         </Alert>
       )}
     </form>
