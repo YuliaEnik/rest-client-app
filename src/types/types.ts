@@ -71,3 +71,9 @@ export interface VariableItemProps {
   variables: Variable[];
   setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
 }
+
+export interface History {
+  executedAt: number;
+  apiUrl: string;
+  restfulUrl: string;
+}

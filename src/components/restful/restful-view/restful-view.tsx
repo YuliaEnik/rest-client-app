@@ -12,10 +12,12 @@ import { RequestUrl } from '@/components/restful/request-url/request-url';
 import { SelectMethod } from '@/components/restful/select-method';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { LOCAL_STORAGE_KEYS } from '@/constants/constants';
+import useLocalStorage from '@/hooks/local_storage';
 import { prettify } from '@/lib/utils';
-import { METHODS, RestfulResponse } from '@/types/types';
+import { History, METHODS, RestfulResponse } from '@/types/types';
 import { sendRequest } from '@/utils/request';
-import { parseParams } from '@/utils/request-url';
+import { parseParams, parseUrl } from '@/utils/request-url';
 
 interface Props {
   method: string;
@@ -29,6 +31,10 @@ export function RestfulView({ method, url, headers }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [history, saveToHistory] = useLocalStorage<History[]>(
+    LOCAL_STORAGE_KEYS.HISTORY,
+    []
+  );
 
   const t = useTranslations('restfulPage');
 
@@ -45,9 +51,17 @@ export function RestfulView({ method, url, headers }: Props) {
       pathname.slice(1),
       searchParams.toString()
     );
+    if (response.code < 300) {
+      const historyItem: History = {
+        executedAt: new Date().getTime(),
+        restfulUrl: `${pathname}?${searchParams.toString()}`,
+        apiUrl: parseUrl(pathname).apiUrl,
+      };
+      saveToHistory([...history, historyItem]);
+    }
     setData(response);
     setIsLoading(false);
-  }, [pathname, searchParams]);
+  }, [history, pathname, saveToHistory, searchParams]);
 
   return (
     <div className={'w-full flex justify-center'}>

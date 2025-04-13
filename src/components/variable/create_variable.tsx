@@ -7,6 +7,7 @@ import { AlertCircle, PlusIcon, SendHorizontal, SquareX } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { LOCAL_STORAGE_KEYS } from '@/constants/constants';
 import useLocalStorage from '@/hooks/local_storage';
 import { CreateVariableProps, Variable } from '@/types/types';
 
@@ -18,7 +19,7 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
 }) => {
   const [localStorageVariables, setLocalStorageValue] = useLocalStorage<
     Variable[]
-  >('variables', []);
+  >(LOCAL_STORAGE_KEYS.VARIABLES, []);
   const [nextId, setNextId] = useState(1);
 
   const {

@@ -48,12 +48,14 @@
     "course": "РЕАКТ"
   },
   "restfulPage": {
+    "urlError": "API URL должен быть валидным",
     "send": "Отправить",
     "headers": "Заголовки",
     "addHeader": "Добавить заголовок",
     "placeholderKey": "ключ",
     "placeholderValue": "значение",
     "snippet": "Фрагмент кода запроса",
+    "snippetMessage": "Пожалуйста, укажите хотя бы URL-адрес api для генерации фрагмента запроса",
     "body": "Тело запроса",
     "prettify": "Форматировать",
     "bodyText": "Текст",
