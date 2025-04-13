@@ -60,5 +60,13 @@
     "bodyText": "Text",
     "response": "Response",
     "status": "Status: "
+  },
+  "variablesPage": {
+    "title": "Variables",
+    "varList": "Saved variables",
+    "loadingPage": "Loading Variables Page...",
+    "addButton": "New variable",
+    "loadSavedVars": "Loading...",
+    "emptySavedVars": "No variables saved."
   }
 }
