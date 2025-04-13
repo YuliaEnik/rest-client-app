@@ -10,6 +10,7 @@ import { RequestBody } from '@/components/restful/request-body';
 import { RequestHeaders } from '@/components/restful/request-headers';
 import { RequestUrl } from '@/components/restful/request-url/request-url';
 import { SelectMethod } from '@/components/restful/select-method';
+import { VariablesList } from '@/components/restful/variables-list';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { LOCAL_STORAGE_KEYS } from '@/constants/constants';
@@ -90,7 +91,7 @@ export function RestfulView({ method, url, headers }: Props) {
         <RequestHeaders headers={headers} />
         <Separator className={'primary-color-component-bg my-4'} />
         <HttpSnippet />
-        <Separator className={'primary-color-component-bg my-4'} />
+        <VariablesList />
         <RequestBody body={requestBody} />
         <Separator className={'primary-color-component-bg my-2'} />
         <div className={'flex flex-col gap-[10px]'}>

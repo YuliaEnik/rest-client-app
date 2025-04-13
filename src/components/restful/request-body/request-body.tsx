@@ -52,6 +52,7 @@ export function RequestBody({ body = '' }: { body: string }) {
       <CodeEditor
         readOnly={false}
         value={value}
+        height={'140px'}
         onChangeAction={handleChange}
         onBlurAction={handleBlur}
         lang={mode}

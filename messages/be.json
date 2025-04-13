@@ -60,7 +60,10 @@
     "prettify": "Прыхарошваць",
     "bodyText": "Тэкст",
     "response": "Адказ",
-    "status": "Статус: "
+    "status": "Статус: ",
+    "variablesList": "Спіс зменных",
+    "noVariables": "Зменныя не знойдзеныя.",
+    "createVariables": "Дадаць зменныя"
   },
   "variablesPage": {
     "title": "Зменныя",
