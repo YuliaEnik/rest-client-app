@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { WandSparklesIcon } from 'lucide-react';
 
@@ -15,8 +14,6 @@ import { updateUrl } from '@/utils/request-url';
 export function RequestBody({ body = '' }: { body: string }) {
   const [value, setValue] = useState(body);
   const [mode, setMode] = useState<'json' | 'text'>('json');
-  const router = useRouter();
-
   const t = useTranslations('restfulPage');
 
   const handleClick = useCallback(() => {
@@ -29,8 +26,8 @@ export function RequestBody({ body = '' }: { body: string }) {
 
   const handleBlur = useCallback(() => {
     const newUrl = updateUrl({ requestBody: value || '' });
-    router.replace(newUrl);
-  }, [router, value]);
+    window.history.replaceState(null, '', newUrl);
+  }, [value]);
 
   const handleSwitchChange = useCallback((checked: boolean) => {
     setMode(checked ? 'text' : 'json');

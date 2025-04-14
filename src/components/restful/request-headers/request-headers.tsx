@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { PlusIcon, TrashIcon } from 'lucide-react';
 
@@ -17,7 +17,6 @@ export function RequestHeaders({
 }: {
   headers: Record<string, string | string[] | undefined>;
 }) {
-  const router = useRouter();
   const pathname = usePathname();
   const { control, getValues } = useForm<RequestHeadersInterface>({
     defaultValues: {
@@ -36,8 +35,12 @@ export function RequestHeaders({
 
   const updateHeaders = useCallback(() => {
     const searchParams = generateHeaders(getValues().headers);
-    router.push(`${pathname}?${searchParams.toString()}`);
-  }, [getValues, pathname, router]);
+    window.history.replaceState(
+      null,
+      '',
+      `${pathname}?${searchParams.toString()}`
+    );
+  }, [getValues, pathname]);
 
   const removeField = useCallback(
     (index: number) => {

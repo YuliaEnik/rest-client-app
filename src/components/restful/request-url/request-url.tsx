@@ -2,7 +2,6 @@
 
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -11,7 +10,6 @@ import { Input } from '@/components/ui/input';
 import { updateUrl } from '@/utils/request-url';
 
 export function RequestUrl({ url }: { url: string }) {
-  const router = useRouter();
   const {
     register,
     getValues,
@@ -29,9 +27,9 @@ export function RequestUrl({ url }: { url: string }) {
       const newUrl = updateUrl({
         apiUrl: getValues('API_URL'),
       });
-      router.replace(newUrl);
+      window.history.replaceState(null, '', newUrl);
     }
-  }, [getValues, isValid, router]);
+  }, [getValues, isValid]);
 
   return (
     <div className={'flex flex-col flex-1 relative'}>
