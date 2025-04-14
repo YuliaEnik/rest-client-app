@@ -10,15 +10,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { LOCAL_STORAGE_KEYS } from '@/constants/constants';
-import useLocalStorage from '@/hooks/local_storage';
-import { Variable } from '@/types/types';
+import { useVariables } from '@/hooks/use-variables';
 
 export function VariablesList() {
-  const [variables] = useLocalStorage<Variable[]>(
-    LOCAL_STORAGE_KEYS.VARIABLES,
-    []
-  );
+  const { variables } = useVariables();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

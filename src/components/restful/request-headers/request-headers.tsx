@@ -9,6 +9,7 @@ import { PlusIcon, TrashIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
+import { useVariables } from '@/hooks/use-variables';
 import { RequestHeadersInterface } from '@/types/types';
 import { generateHeaders, parseHeaders } from '@/utils/request-headers';
 
@@ -27,6 +28,8 @@ export function RequestHeaders({
     control,
     name: 'headers',
   });
+  const { insertVariables } = useVariables();
+
   const t = useTranslations('restfulPage');
 
   const appendHeader = useCallback(() => {
@@ -34,13 +37,21 @@ export function RequestHeaders({
   }, [append]);
 
   const updateHeaders = useCallback(() => {
-    const searchParams = generateHeaders(getValues().headers);
+    const headersWithVariables = getValues()
+      .headers.map((header) => ({
+        ...header,
+        headerValue: insertVariables(header.headerValue),
+      }))
+      .filter((header) => header.headerValue.isAllInserted)
+      .map((header) => ({ ...header, headerValue: header.headerValue.target }));
+    console.log(headersWithVariables);
+    const searchParams = generateHeaders(headersWithVariables);
     window.history.replaceState(
       null,
       '',
       `${pathname}?${searchParams.toString()}`
     );
-  }, [getValues, pathname]);
+  }, [getValues, insertVariables, pathname]);
 
   const removeField = useCallback(
     (index: number) => {
