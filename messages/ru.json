@@ -82,7 +82,10 @@
     "prettify": "Форматировать",
     "bodyText": "Текст",
     "response": "Ответ",
-    "status": "Статус: "
+    "status": "Статус: ",
+    "variablesList": "Список переменных",
+    "noVariables": "Переменные не найдены.",
+    "createVariables": "Добавить переменные"
   },
   "variablesPage": {
     "title": "Переменные",
