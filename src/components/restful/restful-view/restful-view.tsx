@@ -68,7 +68,7 @@ export function RestfulView({ method, url, headers }: Props) {
     <div className={'w-full flex justify-center'}>
       <div
         className={
-          'flex flex-1 flex-col gap-[15px] max-w-[1200px] p-[20px] primary-color-bg'
+          'flex flex-1 flex-col gap-[15px] max-w-[1200px] p-[20px] primary-color-bg rounded-lg'
         }
       >
         <div className={'flex gap-[5px] flex-col items-center sm:flex-row'}>
