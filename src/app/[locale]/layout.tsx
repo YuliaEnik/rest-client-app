@@ -6,6 +6,7 @@ import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
 import { Layout } from '@/components/layout';
+import { AuthProvider } from '@/context/auth-context';
 import { routing } from '@/i18n/routing';
 
 import './globals.css';
@@ -53,7 +54,9 @@ export default async function LocaleLayout({ children, params }: Props) {
         className={`${geistSans.variable} ${geistMono.variable} flex flex-col  h-full`}
       >
         <NextIntlClientProvider>
-          <Layout locale={locale}>{children}</Layout>
+          <AuthProvider>
+            <Layout locale={locale}>{children}</Layout>
+          </AuthProvider>
         </NextIntlClientProvider>
       </body>
     </html>

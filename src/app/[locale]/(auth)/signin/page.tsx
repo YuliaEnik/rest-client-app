@@ -1,27 +1,24 @@
 'use client';
-
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Button } from '@/components/ui/button';
-import { Link } from '@/i18n/navigation';
+import { useAuth } from '@/context/auth-context';
 import { signInWithEmail } from '@/lib/auth';
-import {
-  SignInFormData,
-  SignUpFormData,
-  useValidationSchemas,
-} from '@/lib/validation-auth';
+import { SignInFormData, useValidationSchemas } from '@/lib/validation-auth';
 
-export default function SignUpPage() {
+export default function SignInPage() {
   const t = useTranslations('auth');
+  const { user, loading } = useAuth();
   const router = useRouter();
-  const { signUpSchema } = useValidationSchemas();
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const { signInSchema } = useValidationSchemas();
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -32,8 +29,8 @@ export default function SignUpPage() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<SignUpFormData>({
-    resolver: yupResolver(signUpSchema),
+  } = useForm<SignInFormData>({
+    resolver: yupResolver(signInSchema),
   });
 
   const onSubmit = async (data: SignInFormData) => {
@@ -43,14 +40,20 @@ export default function SignUpPage() {
     } catch (error: any) {
       setError('root', {
         type: 'manual',
-        message: error.message || t('errors.registration_failed'),
+        message: error.message || t('errors.auth_failed'),
       });
     }
   };
 
+  if (loading) return <div>Loading...</div>;
+  if (user) {
+    //router.push('/');
+    return null;
+  }
+
   return (
     <div className="flex flex-col h-full gap-5 items-center justify-center p-4">
-      <h1 className="text-3xl my-5">{t('signUpTitle')}</h1>
+      <h1 className="text-3xl my-5">{t('signInTitle')}</h1>
 
       {errors.root && <p className="text-red-500">{errors.root.message}</p>}
 
@@ -59,21 +62,6 @@ export default function SignUpPage() {
         className="w-full max-w-md space-y-4"
         noValidate
       >
-        <div className="h-20">
-          <label htmlFor="displayName" className="block mb-1">
-            {t('displayName')}
-          </label>
-          <input
-            id="displayName"
-            type="text"
-            {...register('displayName')}
-            className="w-full p-2 border rounded"
-          />
-          {errors.displayName && (
-            <p className="text-red-500 text-sm">{errors.displayName.message}</p>
-          )}
-        </div>
-
         <div className="h-20">
           <label htmlFor="email" className="block mb-1">
             {t('email')}
@@ -113,20 +101,20 @@ export default function SignUpPage() {
 
         <Button
           type="submit"
-          className="w-full  mt-5 text-xl bg-lime-300 text-black rounded hover:bg-lime-400"
+          className="w-full text-xl bg-lime-300 text-black rounded hover:bg-lime-400"
         >
-          {t('signUp')}
+          {t('signIn')}
         </Button>
       </form>
 
       <div className="flex flex-wrap max-w-md w-full gap-2 italic justify-end text-sm">
-        {t('signUp_description_part1')}
+        {t('signIn_description_part1')}
         <Link
-          href="/signin"
+          href="/signup"
           passHref
-          className="text-blue-600 underline cursor-pointer hover:text-blue-800"
+          className="text-blue-600 text-underline cursor-pointer hover:text-lime-300"
         >
-          {t('signUp_description_part2')}
+          {t('signIn_description_part2')}
         </Link>
       </div>
     </div>
