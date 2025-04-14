@@ -45,3 +45,35 @@ export interface UrlParams {
   apiUrl: string;
   requestBody: string;
 }
+
+export interface RestfulResponse {
+  data: string;
+  code: number;
+}
+
+export interface Variable {
+  id: string;
+  name: string;
+  value: string;
+}
+
+export interface AddButtonProps {
+  setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
+}
+
+export interface CreateVariableProps {
+  showCreateBlock: (show: boolean) => void;
+  setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
+}
+
+export interface VariableItemProps {
+  variable: Variable;
+  variables: Variable[];
+  setVariables: React.Dispatch<React.SetStateAction<Variable[]>>;
+}
+
+export interface History {
+  executedAt: number;
+  apiUrl: string;
+  restfulUrl: string;
+}

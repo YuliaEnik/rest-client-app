@@ -2,28 +2,33 @@
 
 import { useEffect, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import codegen from 'postman-code-generators';
 import sdk from 'postman-collection';
 
 import { CodeEditor } from '@/components/restful/code-editor';
 import { SelectLanguage } from '@/components/restful/select-language';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 import { CODEMIRROR_LANGUAGES, LANGUAGES } from '@/constants/constants';
 import { generateHeadersForSnippet } from '@/utils/request-headers';
 import { parseUrl } from '@/utils/request-url';
 
-const SNIPPET_MESSAGE =
-  'Please provide at least api url to generate request snippet';
-
 export function HttpSnippet() {
+  const t = useTranslations('restfulPage');
   const [value, setValue] = useState<string>(LANGUAGES[0].value);
-  const [snippet, setSnippet] = useState(SNIPPET_MESSAGE);
+  const [snippet, setSnippet] = useState(t('snippetMessage'));
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const { method, apiUrl, requestBody } = parseUrl(pathname.slice(1));
+    const { method, apiUrl, requestBody } = parseUrl(pathname);
     if (!apiUrl) {
-      setSnippet(SNIPPET_MESSAGE);
+      setSnippet(t('snippetMessage'));
       return;
     }
     const [language, variant] = value.split('/');
@@ -48,22 +53,34 @@ export function HttpSnippet() {
         setSnippet(snippet);
       }
     );
-  }, [pathname, searchParams, value]);
+  }, [pathname, searchParams, t, value]);
 
   return (
-    <div className={'flex flex-col gap-[10px]'}>
-      <div className={'flex gap-[5px] items-center'}>
-        <h3>Code </h3>
-        <SelectLanguage
-          setLanguageAction={setValue}
-          className={'primary-color-component-bg'}
-        />
-      </div>
-      <CodeEditor
-        value={snippet}
-        lang={CODEMIRROR_LANGUAGES[value]}
-        readOnly={true}
-      />
-    </div>
+    <Accordion
+      type="single"
+      collapsible
+      className="w-full border-b border-gray-50"
+    >
+      <AccordionItem value="item-1">
+        <AccordionTrigger className={'p-0 pb-[5px]'}>
+          {t('snippet')}
+        </AccordionTrigger>
+        <AccordionContent>
+          <div className={'flex flex-col gap-[10px] pt-[10px]'}>
+            <div className={'flex gap-[5px] items-center'}>
+              <SelectLanguage
+                setLanguageAction={setValue}
+                className={'primary-color-component-bg'}
+              />
+            </div>
+            <CodeEditor
+              value={snippet}
+              lang={CODEMIRROR_LANGUAGES[value]}
+              readOnly={true}
+            />
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 }
