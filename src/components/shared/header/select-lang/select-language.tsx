@@ -48,7 +48,7 @@ export function LanguageSelect() {
       initialValue={locale}
       shortLabel={locale.toUpperCase()}
       handleChangeAction={handleLanguageChange}
-      className="w-15 bg-amber-200 text-sm p-2 gap-1"
+      className="w-15 bg-amber-200 text-sm p-2 gap-1 hover:bg-amber-100"
     />
   );
 }
