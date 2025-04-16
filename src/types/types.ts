@@ -77,3 +77,7 @@ export interface History {
   apiUrl: string;
   restfulUrl: string;
 }
+
+export interface HistoryItemProps {
+  request: History;
+}

@@ -75,5 +75,17 @@
     "varNameMatch": "Імя зменнай павінна быць у верхнім рэгістры ангельскіх літар, camelCase або ў верхнім рэгістры з адным падкрэсленнем",
     "varValuerequired": "Патрабуецца значэнне зменнай",
     "varValueMin": "Значэнне зменнай павінна быць не меншым за 1 сімвал"
+  },
+  "historyPage": {
+    "title": "Гісторыя",
+    "historyList": "Папярэднія запыты",
+    "historyListTable": "Спіс вашых папярэдніх запытаў",
+    "historyListTableResult": "Агульная колькасць запытаў",
+    "requestDate": "Дата запыту",
+    "requestType": "Тып запыту",
+    "requestURL": "URL запыту",
+    "loadingPage": "Загрузка старонкі гісторыі...",
+    "loadSavedRequests": "Загрузка запытаў...",
+    "emptySavedRequests": "Папярэднія запыты не знойдзены."
   }
 }

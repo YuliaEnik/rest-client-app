@@ -79,5 +79,17 @@ declare const messages: {
     varValuerequired: 'Variable value is required';
     varValueMin: 'Variable value must be at least 1 character';
   };
+  historyPage: {
+    title: 'History';
+    historyList: 'Previous requests';
+    historyListTable: 'List of your previous requests';
+    historyListTableResult: 'Total amount of requests';
+    requestDate: 'Date of request';
+    requestType: 'Type of request';
+    requestURL: 'URL of request';
+    loadingPage: 'Loading History Page...';
+    loadSavedRequests: 'Loading...';
+    emptySavedRequests: 'No requests saved.';
+  };
 };
 export default messages;
