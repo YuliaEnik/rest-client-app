@@ -44,7 +44,6 @@ export function RequestHeaders({
       }))
       .filter((header) => header.headerValue.isAllInserted)
       .map((header) => ({ ...header, headerValue: header.headerValue.target }));
-    console.log(headersWithVariables);
     const searchParams = generateHeaders(headersWithVariables);
     window.history.replaceState(
       null,
