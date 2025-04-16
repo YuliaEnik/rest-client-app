@@ -43,12 +43,34 @@ declare const messages: {
   };
   header: {
     main: 'go to main page';
-    signin: 'signin';
-    signup: 'signup';
+    signin: 'Sign In';
+    signup: 'Sign Up';
     logout: 'logout';
   };
   footer: {
     course: 'REACT';
+  };
+  auth: {
+    signInTitle: 'Sign In';
+    signUpTitle: 'Sign Up';
+    displayName: 'Name';
+    email: 'Email';
+    password: 'Password';
+    signIn: 'Sign In';
+    signUp: 'Sign Up';
+    signIn_description_part1: "Don't have an account,";
+    signUp_description_part1: 'Already have an account,';
+    signIn_description_part2: 'create an account';
+    signUp_description_part2: 'log in';
+    errors: {
+      displayName_required: 'Display name is required';
+      email_required: 'Email is required';
+      email_invalid: 'Invalid email format';
+      password_required: 'Password is required';
+      password_min: 'Password must be at least 8 characters';
+      password: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character(@#$!%*?&)';
+      auth_failed: 'Authentication failed';
+    };
   };
   restfulPage: {
     urlError: 'API URL must be a valid';

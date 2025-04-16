@@ -47,6 +47,28 @@
   "footer": {
     "course": "РЕАКТ"
   },
+  "auth": {
+    "signInTitle": "Вход",
+    "signUpTitle": "Авторизация",
+    "displayName": "Имя",
+    "signIn": "Войти",
+    "signUp": "Войти",
+    "email": "Электронная почта",
+    "password": "Пароль",
+    "signIn_description_part1": "Нет аккаунта,",
+    "signUp_description_part1": "Уже есть аккаунт,",
+    "signIn_description_part2": "cоздать аккаунт",
+    "signUp_description_part2": "войти",
+    "errors": {
+      "displayName_required": "Имя пользователя обязательно",
+      "email_required": "Email обязателен",
+      "email_invalid": "Неверный формат email",
+      "password_required": "Пароль обязателен",
+      "password_min": "Пароль должен содержать минимум 8 символов",
+      "password": "Пароль должен содержать как минимум одну заглавную букву, одну строчную букву, одну цифру и один специальный символ (@#$!%*?&)",
+      "auth_failed": "Ошибка аутентификации"
+    }
+  },
   "restfulPage": {
     "urlError": "API URL должен быть валидным",
     "send": "Отправить",
@@ -60,7 +82,10 @@
     "prettify": "Форматировать",
     "bodyText": "Текст",
     "response": "Ответ",
-    "status": "Статус: "
+    "status": "Статус: ",
+    "variablesList": "Список переменных",
+    "noVariables": "Переменные не найдены.",
+    "createVariables": "Добавить переменные"
   },
   "variablesPage": {
     "title": "Переменные",

@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { WandSparklesIcon } from 'lucide-react';
 
@@ -9,15 +8,15 @@ import { CodeEditor } from '@/components/restful/code-editor';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
+import { useVariables } from '@/hooks/use-variables';
 import { prettify } from '@/lib/utils';
 import { updateUrl } from '@/utils/request-url';
 
 export function RequestBody({ body = '' }: { body: string }) {
   const [value, setValue] = useState(body);
   const [mode, setMode] = useState<'json' | 'text'>('json');
-  const router = useRouter();
-
   const t = useTranslations('restfulPage');
+  const { insertVariables } = useVariables();
 
   const handleClick = useCallback(() => {
     setValue(prettify(value));
@@ -28,9 +27,14 @@ export function RequestBody({ body = '' }: { body: string }) {
   }, []);
 
   const handleBlur = useCallback(() => {
-    const newUrl = updateUrl({ requestBody: value || '' });
-    router.replace(newUrl);
-  }, [router, value]);
+    const { target, isAllInserted } = insertVariables(value, true);
+    if (isAllInserted) {
+      const newUrl = updateUrl({
+        requestBody: target || '',
+      });
+      window.history.replaceState(null, '', newUrl);
+    }
+  }, [insertVariables, value]);
 
   const handleSwitchChange = useCallback((checked: boolean) => {
     setMode(checked ? 'text' : 'json');
@@ -52,6 +56,7 @@ export function RequestBody({ body = '' }: { body: string }) {
       <CodeEditor
         readOnly={false}
         value={value}
+        height={'140px'}
         onChangeAction={handleChange}
         onBlurAction={handleBlur}
         lang={mode}

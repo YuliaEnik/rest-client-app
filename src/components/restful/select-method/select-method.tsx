@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback } from 'react';
-import { useRouter } from 'next/navigation';
 
 import { SelectElement } from '@/components/shared/select';
 import { RESTFUL_METHODS } from '@/constants/constants';
@@ -20,15 +19,10 @@ export function SelectMethod({
   currentMethod: METHODS;
   className?: string;
 }) {
-  const router = useRouter();
-
-  const handleChangeAction = useCallback(
-    (value: string) => {
-      const newUrl = updateUrl({ method: value });
-      router.replace(newUrl);
-    },
-    [router]
-  );
+  const handleChangeAction = useCallback((value: string) => {
+    const newUrl = updateUrl({ method: value });
+    window.history.replaceState(null, '', newUrl);
+  }, []);
 
   return (
     <SelectElement

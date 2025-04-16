@@ -41,6 +41,7 @@ export interface EncodedParams {
 }
 
 export interface UrlParams {
+  lang: string;
   method: string;
   apiUrl: string;
   requestBody: string;
@@ -78,6 +79,6 @@ export interface History {
   restfulUrl: string;
 }
 
-export interface HistoryItemProps {
-  request: History;
+export interface NormalizedVariables {
+  [name: string]: Variable;
 }

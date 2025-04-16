@@ -47,6 +47,28 @@
   "footer": {
     "course": "РЫЯКТ"
   },
+  "auth": {
+    "signInTitle": "Уваход",
+    "signUpTitle": "Аўтарызация",
+    "displayName": "Імя",
+    "signIn": "Увайсці",
+    "signUp": "Зарэгістравацца",
+    "email": "Электронная пошта",
+    "password": "Пароль",
+    "signIn_description_part1": "Нямаеце акаўнта,",
+    "signUp_description_part1": "Ужо ёсць акаўнт,",
+    "signIn_description_part2": "cтварыць акаўнт",
+    "signUp_description_part2": "увайсці",
+    "errors": {
+      "displayName_required": "Імя карыстальніка абавязкова",
+      "email_required": "Email абавязковы",
+      "email_invalid": "Няправільны фармат email",
+      "password_required": "Пароль абавязковы",
+      "password_min": "Пароль павінен змяшчаць мінімум 8 сімвалаў",
+      "password": "Пароль павінен змяшчаць хаця б адну вялікую літару, адну малую літару, адну лічбу і адзін спецыяльны сімвал (@#$!%*?&)",
+      "auth_failed": "Памылка аўтэнтыфікацыі"
+    }
+  },
   "restfulPage": {
     "urlError": "URL API павінен быць сапраўдным",
     "send": "Адправіць",
@@ -57,10 +79,13 @@
     "snippet": "Запытаць фрагмент кода",
     "snippetMessage": "Калі ласка, пакажыце хаця б URL-адрас api для генерацыі фрагмента запыту",
     "body": "Цела",
-    "prettify": "Прыхарошваць",
+    "prettify": "Фарматаваць",
     "bodyText": "Тэкст",
     "response": "Адказ",
-    "status": "Статус: "
+    "status": "Статус: ",
+    "variablesList": "Спіс зменных",
+    "noVariables": "Зменныя не знойдзеныя.",
+    "createVariables": "Дадаць зменныя"
   },
   "variablesPage": {
     "title": "Зменныя",
