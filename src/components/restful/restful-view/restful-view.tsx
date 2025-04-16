@@ -26,7 +26,7 @@ interface Props {
   headers: Record<string, string | string[] | undefined>;
 }
 
-export function RestfulView({ method, url, headers }: Props) {
+export default function RestfulView({ method, url, headers }: Props) {
   const { apiUrl, requestBody } = parseParams(url);
   const [data, setData] = useState<RestfulResponse>({ data: '', code: 0 });
   const [isLoading, setIsLoading] = useState(false);
