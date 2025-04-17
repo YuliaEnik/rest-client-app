@@ -80,7 +80,7 @@ export const VariableItem: React.FC<VariableItemProps> = ({
               className="bg-white"
             />
             <Button
-              className="max-w-[100px] bg-amber-200 hover:bg-primary-light"
+              className="max-w-[100px] bg-amber-200 hover:bg-lime-200"
               type="submit"
               variant="outline"
               data-testid="save-button"
@@ -123,7 +123,7 @@ export const VariableItem: React.FC<VariableItemProps> = ({
           <Input value={variable.name} disabled className="bg-white" />
           <Input value={variable.value} disabled className="bg-white" />
           <Button
-            className="max-w-[100px] bg-amber-200 hover:bg-primary-light"
+            className="max-w-[100px] bg-amber-200 hover:bg-lime-200"
             type="button"
             variant="outline"
             onClick={toggleEdit}

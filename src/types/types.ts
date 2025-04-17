@@ -79,6 +79,10 @@ export interface History {
   restfulUrl: string;
 }
 
+export interface HistoryItemProps {
+  request: History;
+}
+
 export interface NormalizedVariables {
   [name: string]: Variable;
 }
