@@ -66,7 +66,10 @@ export default function SignUpPage() {
           });
           break;
         default:
-          setAuthError(t('errors.auth_failed'));
+          setError('root', {
+            type: 'manual',
+            message: t('errors.auth_failed'),
+          });
       }
     } finally {
       setIsSubmitting(false);
