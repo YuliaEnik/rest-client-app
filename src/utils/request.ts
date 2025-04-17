@@ -10,6 +10,11 @@ export async function sendRequest(
 ): Promise<RestfulResponse> {
   try {
     const { method, requestBody, apiUrl } = parseUrl(url);
+    if (!method || !apiUrl)
+      return {
+        data: 'Invalid request data: method and/or api url are undefined',
+        code: 500,
+      };
     const searchParams = new URLSearchParams(search);
     const headers = generateHeadersForRequest(searchParams);
     const options = ['GET', 'HEAD'].includes(method)
