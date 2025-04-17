@@ -3,8 +3,8 @@ import { convertToAnsii } from '@/utils/base64';
 import { convertToBase64 } from '@/utils/base64';
 
 export function parseUrl(url: string) {
-  const [_lang, method, ...params] = url.slice(1).split('/');
-  const data: UrlParams = { method, apiUrl: '', requestBody: '' };
+  const [lang, method, ...params] = url.slice(1).split('/');
+  const data: UrlParams = { lang, method, apiUrl: '', requestBody: '' };
   if (!params.length) return data;
   const parsedParams = parseParams(params);
   return Object.assign(data, parsedParams);
@@ -21,10 +21,11 @@ export function parseParams(params: string[]) {
 }
 
 export function updateUrl({ method, apiUrl, requestBody }: Partial<UrlParams>) {
-  const currentUrl = window.location.pathname.slice(1);
+  const currentUrl = window.location.pathname;
   const searchParams = window.location.search;
   const parsedUrl = parseUrl(currentUrl);
   const url = [
+    parsedUrl.lang,
     method || parsedUrl.method,
     convertToBase64(apiUrl !== undefined ? apiUrl : parsedUrl.apiUrl),
     convertToBase64(

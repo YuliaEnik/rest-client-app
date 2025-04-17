@@ -93,6 +93,9 @@ declare const messages: {
     bodyText: 'Text';
     response: 'Response';
     status: 'Status: ';
+    variablesList: 'Variables list';
+    noVariables: 'Variables are not found.';
+    createVariables: 'Add variables';
   };
   variablesPage: {
     title: 'Variables';

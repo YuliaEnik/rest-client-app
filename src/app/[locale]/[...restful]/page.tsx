@@ -1,7 +1,12 @@
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
-import { METHODS } from 'node:http';
 
-import { RestfulView } from '@/components/restful/restful-view';
+import { RESTFUL_METHODS } from '@/constants/constants';
+
+const RestfulView = dynamic(
+  () => import('@/components/restful/restful-view/restful-view')
+);
 
 export default async function Page({
   params,
@@ -13,7 +18,10 @@ export default async function Page({
   const [method, ...url] = (await params).restful;
   const headers = await searchParams;
 
-  if (!METHODS.includes(method.toUpperCase())) redirect('/GET');
+  if (
+    !(RESTFUL_METHODS as ReadonlyArray<string>).includes(method.toUpperCase())
+  )
+    redirect('/GET');
 
   return (
     <section
@@ -25,7 +33,9 @@ export default async function Page({
         }
       >
         <h2 className={'self-start'}>RESTful</h2>
-        <RestfulView method={method} url={url} headers={headers} />
+        <Suspense>
+          <RestfulView method={method} url={url} headers={headers} />
+        </Suspense>
       </div>
     </section>
   );

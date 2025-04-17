@@ -2,16 +2,15 @@
 
 import { useCallback } from 'react';
 import { useForm } from 'react-hook-form';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { schema } from '@/components/restful/request-url/schema';
 import { Input } from '@/components/ui/input';
+import { useVariables } from '@/hooks/use-variables';
 import { updateUrl } from '@/utils/request-url';
 
 export function RequestUrl({ url }: { url: string }) {
-  const router = useRouter();
   const {
     register,
     getValues,
@@ -22,16 +21,23 @@ export function RequestUrl({ url }: { url: string }) {
     resolver: yupResolver(schema),
   });
 
+  const { insertVariables } = useVariables();
+
   const t = useTranslations('restfulPage');
 
   const handleBlur = useCallback(() => {
     if (isValid) {
+      const { target, isAllInserted } = insertVariables(
+        getValues('API_URL') as string
+      );
+      const url = URL.parse(target);
+      if (!isAllInserted || !url) return;
       const newUrl = updateUrl({
-        apiUrl: getValues('API_URL'),
+        apiUrl: target,
       });
-      router.replace(newUrl);
+      window.history.replaceState(null, '', newUrl);
     }
-  }, [getValues, isValid, router]);
+  }, [getValues, insertVariables, isValid]);
 
   return (
     <div className={'flex flex-col flex-1 relative'}>
