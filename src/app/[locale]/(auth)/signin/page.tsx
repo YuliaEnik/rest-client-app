@@ -38,12 +38,11 @@ export default function SignInPage() {
       await signInWithEmail(data);
       router.push('/');
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : t('errors.auth_failed');
       setError('root', {
         type: 'manual',
-        message: errorMessage,
+        message: t('errors.auth_failed'),
       });
+      console.error('Registration error:', error);
     } finally {
       setIsSubmitting(false);
     }

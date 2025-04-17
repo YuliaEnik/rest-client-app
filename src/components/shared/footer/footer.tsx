@@ -15,7 +15,7 @@ export async function Footer({ locale: _locale }: { locale: string }) {
         >
           <Image
             className="hover:opacity-50"
-            src="/img/rss-logo.svg"
+            src="/rss-logo.svg"
             alt="rsschool"
             width={40}
             height={40}

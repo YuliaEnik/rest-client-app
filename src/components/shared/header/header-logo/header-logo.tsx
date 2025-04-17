@@ -5,7 +5,7 @@ export const HeaderLogo: React.FC = () => {
   return (
     <Link href="/" className="w-30 cursor-pointer">
       <Image
-        src="/img/rest-api-1.svg"
+        src="/rest-api-1.svg"
         alt="rest"
         width={150}
         height={150}

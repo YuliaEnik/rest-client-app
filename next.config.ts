@@ -8,9 +8,6 @@ const withNextIntl = createNextIntlPlugin({
 });
 
 const config: NextConfig = {
-  images: {
-    unoptimized: true,
-  },
   basePath: process.env.NODE_ENV === 'production' ? '/rest-client-app' : '',
   assetPrefix: process.env.NODE_ENV === 'production' ? '/rest-client-app/' : '',
 };
