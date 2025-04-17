@@ -31,6 +31,26 @@ vi.mock('next/navigation', () => ({
   useSearchParams: vi.fn(),
 }));
 
+vi.mock('@codemirror', () => ({
+  textRange: vi.fn(),
+}));
+
+document.createRange = () => {
+  const range = new Range();
+
+  range.getBoundingClientRect = vi.fn();
+
+  range.getClientRects = () => {
+    return {
+      item: () => null,
+      length: 0,
+      [Symbol.iterator]: vi.fn(),
+    };
+  };
+
+  return range;
+};
+
 window.ResizeObserver = vi.fn().mockImplementation(() => ({
   observe: vi.fn(),
   unobserve: vi.fn(),

@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { redirect } from 'next/navigation';
 
+import { Loader } from '@/components/shared/loader';
 import { RESTFUL_METHODS } from '@/constants/constants';
 
 const RestfulView = dynamic(
@@ -32,8 +33,7 @@ export default async function Page({
           'flex-1 flex flex-col gap-[15px] items-center p-[15px] max-w-[1200px]'
         }
       >
-        <h2 className={'self-start'}>RESTful</h2>
-        <Suspense>
+        <Suspense fallback={<Loader />}>
           <RestfulView method={method} url={url} headers={headers} />
         </Suspense>
       </div>

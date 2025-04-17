@@ -1,8 +1,9 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { HttpSnippet } from '@/components/restful/http-snippet/http-snippet';
+import { LANGUAGES } from '@/constants/constants';
 
 const messages = {
   restfulPage: {
@@ -29,12 +30,10 @@ describe('HttpSnippet', () => {
     cleanup();
   });
   it('Should render correctly', () => {
-    const title = screen.getByText(messages.restfulPage.snippet);
-    expect(title).toBeDefined();
+    const select = screen.getByText(LANGUAGES[0].label);
+    expect(select).toBeDefined();
   });
   it('Should display message', () => {
-    const title = screen.getByText(messages.restfulPage.snippet);
-    fireEvent.click(title);
     const message = screen.getByText(
       messages.restfulPage.snippetMessage.split(',')[0]
     );
