@@ -57,7 +57,7 @@ export default function RestfulView({ method, url, headers }: Props) {
       if (response.code < 300) {
         const historyItem: History = {
           executedAt: new Date().getTime(),
-          restfulUrl: `${pathname}?${searchParams.toString()}`,
+          restfulUrl: `${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ''}`,
           apiUrl: parseUrl(pathname).apiUrl,
         };
         saveToHistory([...history, historyItem]);
