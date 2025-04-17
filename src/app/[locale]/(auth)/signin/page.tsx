@@ -8,15 +8,14 @@ import { useTranslations } from 'next-intl';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Button } from '@/components/ui/button';
-import { useAuth } from '@/context/auth-context';
 import { signInWithEmail } from '@/lib/auth';
 import { SignInFormData, useValidationSchemas } from '@/lib/validation-auth';
 
 export default function SignInPage() {
   const t = useTranslations('auth');
-  const { user, loading } = useAuth();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { signInSchema } = useValidationSchemas();
 
@@ -34,28 +33,25 @@ export default function SignInPage() {
   });
 
   const onSubmit = async (data: SignInFormData) => {
+    setIsSubmitting(true);
     try {
       await signInWithEmail(data);
       router.push('/');
-    } catch (error: any) {
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : t('errors.auth_failed');
       setError('root', {
         type: 'manual',
-        message: error.message || t('errors.auth_failed'),
+        message: errorMessage,
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
-  if (loading) return <div>Loading...</div>;
-  if (user) {
-    //router.push('/');
-    return null;
-  }
 
   return (
     <div className="flex flex-col h-full gap-5 items-center justify-center p-4">
       <h1 className="text-3xl my-5">{t('signInTitle')}</h1>
-
-      {errors.root && <p className="text-red-500">{errors.root.message}</p>}
 
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -71,6 +67,7 @@ export default function SignInPage() {
             type="email"
             {...register('email')}
             className="w-full p-2 border rounded"
+            disabled={isSubmitting}
           />
           {errors.email && (
             <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -86,13 +83,14 @@ export default function SignInPage() {
             type={showPassword ? 'text' : 'password'}
             {...register('password')}
             className="w-full p-2 border rounded"
+            disabled={isSubmitting}
           />
           <button
             type="button"
             className="absolute right-4 top-10"
             onClick={togglePasswordVisibility}
           >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
+            {showPassword ? <FaEye /> : <FaEyeSlash />}
           </button>
           {errors.password && (
             <p className="text-red-500 text-sm">{errors.password.message}</p>
@@ -101,7 +99,8 @@ export default function SignInPage() {
 
         <Button
           type="submit"
-          className="w-full text-xl bg-lime-300 text-black rounded hover:bg-lime-400"
+          className="w-full mt-5 text-xl bg-lime-300 text-black rounded hover:bg-lime-400"
+          disabled={isSubmitting}
         >
           {t('signIn')}
         </Button>
@@ -112,11 +111,12 @@ export default function SignInPage() {
         <Link
           href="/signup"
           passHref
-          className="text-blue-600 text-underline cursor-pointer hover:text-lime-300"
+          className="text-blue-600 underline cursor-pointer hover:text-lime-300"
         >
           {t('signIn_description_part2')}
         </Link>
       </div>
+      {errors.root && <p>{errors.root.message}</p>}
     </div>
   );
 }

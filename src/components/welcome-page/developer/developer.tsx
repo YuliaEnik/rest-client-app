@@ -4,7 +4,7 @@ import { useTranslations } from 'next-intl';
 
 import { IDeveloper } from '@/types/types';
 
-import { GitHubIcon } from '../github-Icon/ghicon';
+import { GitHubIcon } from '../github-Icon';
 
 export function Developer(props: IDeveloper) {
   const t = useTranslations('developers');

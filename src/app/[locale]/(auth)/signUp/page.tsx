@@ -6,22 +6,26 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { yupResolver } from '@hookform/resolvers/yup';
+import {
+  AuthError,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
 
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/context/auth-context';
 import { Link } from '@/i18n/navigation';
-import { signInWithEmail } from '@/lib/auth';
-import {
-  SignInFormData,
-  SignUpFormData,
-  useValidationSchemas,
-} from '@/lib/validation-auth';
+import { auth } from '@/lib/firebase';
+import { SignUpFormData, useValidationSchemas } from '@/lib/validation-auth';
 
 export default function SignUpPage() {
   const t = useTranslations('auth');
   const router = useRouter();
   const { signUpSchema } = useValidationSchemas();
+  const { setAuthError } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -36,23 +40,42 @@ export default function SignUpPage() {
     resolver: yupResolver(signUpSchema),
   });
 
-  const onSubmit = async (data: SignInFormData) => {
+  const onSubmit = async (data: SignUpFormData) => {
+    setIsSubmitting(true);
+    setAuthError(null);
+
     try {
-      await signInWithEmail(data);
-      router.push('/');
-    } catch (error: any) {
-      setError('root', {
-        type: 'manual',
-        message: error.message || t('errors.registration_failed'),
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      );
+      await updateProfile(userCredential.user, {
+        displayName: data.displayName,
       });
+
+      router.push('/');
+    } catch (error) {
+      const firebaseError = error as AuthError;
+      console.error('Registration error:', firebaseError);
+      switch (firebaseError.code) {
+        case 'auth/email-already-in-use':
+          setError('email', {
+            type: 'manual',
+            message: t('errors.email_already_used'),
+          });
+          break;
+        default:
+          setAuthError(t('errors.auth_failed'));
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <div className="flex flex-col h-full gap-5 items-center justify-center p-4">
       <h1 className="text-3xl my-5">{t('signUpTitle')}</h1>
-
-      {errors.root && <p className="text-red-500">{errors.root.message}</p>}
 
       <form
         onSubmit={handleSubmit(onSubmit)}
@@ -68,6 +91,7 @@ export default function SignUpPage() {
             type="text"
             {...register('displayName')}
             className="w-full p-2 border rounded"
+            disabled={isSubmitting}
           />
           {errors.displayName && (
             <p className="text-red-500 text-sm">{errors.displayName.message}</p>
@@ -83,6 +107,7 @@ export default function SignUpPage() {
             type="email"
             {...register('email')}
             className="w-full p-2 border rounded"
+            disabled={isSubmitting}
           />
           {errors.email && (
             <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -98,13 +123,15 @@ export default function SignUpPage() {
             type={showPassword ? 'text' : 'password'}
             {...register('password')}
             className="w-full p-2 border rounded"
+            disabled={isSubmitting}
           />
           <button
             type="button"
             className="absolute right-4 top-10"
             onClick={togglePasswordVisibility}
+            disabled={isSubmitting}
           >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
+            {showPassword ? <FaEye /> : <FaEyeSlash />}
           </button>
           {errors.password && (
             <p className="text-red-500 text-sm">{errors.password.message}</p>
@@ -114,6 +141,7 @@ export default function SignUpPage() {
         <Button
           type="submit"
           className="w-full  mt-5 text-xl bg-lime-300 text-black rounded hover:bg-lime-400"
+          disabled={isSubmitting}
         >
           {t('signUp')}
         </Button>
@@ -124,11 +152,12 @@ export default function SignUpPage() {
         <Link
           href="/signin"
           passHref
-          className="text-blue-600 underline cursor-pointer hover:text-blue-800"
+          className="text-blue-600 underline cursor-pointer hover:text-lime-300"
         >
           {t('signUp_description_part2')}
         </Link>
       </div>
+      {errors.root && <p>{errors.root.message}</p>}
     </div>
   );
 }

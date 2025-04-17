@@ -16,7 +16,7 @@ export const useValidationSchemas = () => {
         .required(t('password_required'))
         .min(8, t('password_min'))
         .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&<>])[A-Za-z\d@#$!%*?&]/,
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$!%*?&<>])[A-Za-z\d@#$!%*?&<>]/,
           t('password')
         ),
     }),

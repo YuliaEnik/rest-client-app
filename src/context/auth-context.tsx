@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 
 import { auth } from '@/lib/firebase';
@@ -13,13 +13,9 @@ type AuthContextType = {
   setAuthError: (error: string | null) => void;
 };
 
-export const AuthContext = createContext<AuthContextType>({
-  user: null,
-  loading: true,
-  isEmailVerified: false,
-  authError: null,
-  setAuthError: () => {},
-});
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -38,19 +34,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const isEmailVerified = user?.emailVerified || false;
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        isEmailVerified,
-        authError,
-        setAuthError,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+  const value = useMemo(
+    () => ({
+      user,
+      loading,
+      isEmailVerified,
+      authError,
+      setAuthError,
+    }),
+    [user, loading, isEmailVerified, authError]
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};

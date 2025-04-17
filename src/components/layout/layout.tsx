@@ -14,7 +14,7 @@ export async function Layout({ children, locale }: Props) {
   return (
     <>
       <StickyHeaderWrapper>
-        <Header locale={locale} />
+        <Header />
       </StickyHeaderWrapper>
       <main className="flex-1 h-full w-full">{children}</main>
       <Footer locale={locale} />

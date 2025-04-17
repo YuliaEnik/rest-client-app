@@ -45,11 +45,10 @@ export default async function LocaleLayout({ children, params }: Props) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
-
   setRequestLocale(locale);
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="be" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} flex flex-col  h-full`}
       >
