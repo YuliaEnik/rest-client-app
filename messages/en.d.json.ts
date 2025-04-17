@@ -86,6 +86,9 @@ declare const messages: {
     bodyText: 'Text';
     response: 'Response';
     status: 'Status: ';
+    variablesList: 'Variables list';
+    noVariables: 'Variables are not found.';
+    createVariables: 'Add variables';
   };
   variablesPage: {
     title: 'Variables';
@@ -98,8 +101,22 @@ declare const messages: {
     varNamerequired: 'Variable name is required';
     varNameMin: 'Variable name must be at least 2 characters';
     varNameMatch: 'Variable name must be on English uppercase, camelCase, or uppercase with one underscore';
+    varNameExist: 'Variable with such name has already exists';
     varValuerequired: 'Variable value is required';
     varValueMin: 'Variable value must be at least 1 character';
+  };
+  historyPage: {
+    title: 'History';
+    historyList: 'Previous requests';
+    historyListTable: 'List of your previous requests';
+    historyListTableResult: 'Total amount of requests';
+    requestDate: 'Date of request';
+    requestType: 'Type of request';
+    requestURL: 'URL of request';
+    loadingPage: 'Loading History Page...';
+    loadSavedRequests: 'Loading...';
+    emptySavedRequests: 'No requests saved.';
+    goToRestfulPage: 'Restful page';
   };
 };
 export default messages;

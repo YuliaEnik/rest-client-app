@@ -98,7 +98,21 @@
     "varNamerequired": "Требуется имя переменной",
     "varNameMin": "Имя переменной должно содержать не менее 2 символов",
     "varNameMatch": "Имя переменной должно быть в верхнем регистре английских букв, camelCase или в верхнем регистре с одним подчеркиванием",
+    "varNameExist": "Переменная с таким именем уже существует",
     "varValuerequired": "Требуется значение переменной",
     "varValueMin": "Значение переменной должно быть не менее 1 символа"
+  },
+  "historyPage": {
+    "title": "История",
+    "historyList": "Предыдущие запросы",
+    "historyListTable": "Список ваших предыдущих запросов",
+    "historyListTableResult": "Общее количество запросов",
+    "requestDate": "Дата запроса",
+    "requestType": "Тип запроса",
+    "requestURL": "URL запроса",
+    "loadingPage": "Загрузка странички с историей...",
+    "loadSavedRequests": "Загрузка запросов...",
+    "emptySavedRequests": "Предыдущие запросы не найдены.",
+    "goToRestfulPage": "Restful страничка"
   }
 }
