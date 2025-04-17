@@ -23,7 +23,7 @@ const HistoryPage = () => {
 
   return (
     <section className="flex flex-col items-center gap-4 p-4">
-      <div className="flex flex-col items-center gap-4 border border-gray-300 rounded-lg primary-color-component-bg p-4 w-full md:w-1/2 lg:w-1/3">
+      <div className="flex flex-col items-center gap-4 border border-gray-300 rounded-lg primary-color-component-bg p-4 w-full md:w-1/2 lg:w-1/2">
         <h2 className="text-2xl font-semibold text-center">{t('title')}</h2>
         <div className="flex flex-col items-center gap-4 w-full">
           <Suspense fallback={<div>{t('loadingPage')}</div>}>

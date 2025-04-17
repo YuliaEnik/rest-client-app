@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
 import { History } from '@/types/types';
@@ -18,10 +19,10 @@ import {
 import { HistoryItem } from './history_item';
 
 interface HistoryListProps {
-  requests: History[];
+  requests: History[] | undefined;
 }
 
-export const HistoryList: React.FC<HistoryListProps> = ({ requests = [] }) => {
+export const HistoryList: React.FC<HistoryListProps> = ({ requests }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [sortedRequests, setSortedRequests] = useState<History[]>([]);
   const t = useTranslations('historyPage');
@@ -30,16 +31,26 @@ export const HistoryList: React.FC<HistoryListProps> = ({ requests = [] }) => {
     if (requests) {
       const sorted = [...requests].sort((a, b) => a.executedAt - b.executedAt);
       setSortedRequests(sorted);
-      setIsLoading(false);
     }
+    setIsLoading(false);
   }, [requests]);
 
   if (isLoading) {
     return <div>{t('loadSavedRequests')}</div>;
   }
 
-  if (requests.length === 0) {
-    return <div>{t('emptySavedRequests')}</div>;
+  if (!requests || requests.length === 0) {
+    return (
+      <div className="flex flex-col items-center gap-4">
+        <p>{t('emptySavedRequests')}</p>
+        <Link
+          href="/restful-page"
+          className="h-9 rounded-md p-4 font-semibold flex items-center bg-amber-200 hover:bg-amber-200"
+        >
+          {t('goToRestfulPage')}
+        </Link>
+      </div>
+    );
   }
 
   return (
@@ -67,7 +78,7 @@ export const HistoryList: React.FC<HistoryListProps> = ({ requests = [] }) => {
         <TableFooter>
           <TableRow className="flex justify-between">
             <TableCell colSpan={3}>{t('historyListTableResult')}</TableCell>
-            <TableCell>{requests.length}</TableCell>
+            <TableCell>{sortedRequests.length}</TableCell>
           </TableRow>
         </TableFooter>
         <TableCaption>{t('historyListTable')}</TableCaption>
@@ -75,4 +86,5 @@ export const HistoryList: React.FC<HistoryListProps> = ({ requests = [] }) => {
     </div>
   );
 };
+
 export default HistoryList;
