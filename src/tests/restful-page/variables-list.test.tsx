@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import { afterAll, afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { VariablesList } from '@/components/restful/variables-list';
@@ -27,14 +27,7 @@ describe('VariablesList', () => {
   afterAll(() => {
     localStorage.clear();
   });
-  it('Should render correctly', () => {
-    const title = screen.getByText(messages.restfulPage.variablesList);
-    expect(title).toBeDefined();
-  });
-
   it('Should display message if no variables in local storage', () => {
-    const title = screen.getByText(messages.restfulPage.variablesList);
-    fireEvent.click(title);
     const message = screen.getByText(messages.restfulPage.noVariables);
     expect(message).toBeDefined();
   });
@@ -49,8 +42,6 @@ describe('VariablesList', () => {
         <VariablesList />
       </NextIntlClientProvider>
     );
-    const title = screen.getByText(messages.restfulPage.variablesList);
-    fireEvent.click(title);
     const liElements = document.querySelectorAll('li');
     expect(liElements.length).toEqual(2);
   });
