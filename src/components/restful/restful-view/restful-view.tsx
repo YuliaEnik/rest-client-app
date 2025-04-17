@@ -45,23 +45,25 @@ export default function RestfulView({ method, url, headers }: Props) {
     if (Math.floor(data.code / 100) >= 4) return 'text-red-500';
   }, [data.code]);
 
-  const handleClick = useCallback(async () => {
-    setData({ data: '', code: 0 });
-    setIsLoading(true);
-    const response = await sendRequest(
-      pathname.slice(1),
-      searchParams.toString()
-    );
-    if (response.code < 300) {
-      const historyItem: History = {
-        executedAt: new Date().getTime(),
-        restfulUrl: `${pathname}?${searchParams.toString()}`,
-        apiUrl: parseUrl(pathname).apiUrl,
-      };
-      saveToHistory([...history, historyItem]);
-    }
-    setData(response);
-    setIsLoading(false);
+  const handleClick = useCallback(() => {
+    setTimeout(async () => {
+      setData({ data: '', code: 0 });
+      setIsLoading(true);
+      const response = await sendRequest(
+        pathname.slice(1),
+        searchParams.toString()
+      );
+      if (response.code < 300) {
+        const historyItem: History = {
+          executedAt: new Date().getTime(),
+          restfulUrl: `${pathname}?${searchParams.toString()}`,
+          apiUrl: parseUrl(pathname).apiUrl,
+        };
+        saveToHistory([...history, historyItem]);
+      }
+      setData(response);
+      setIsLoading(false);
+    });
   }, [history, pathname, saveToHistory, searchParams]);
 
   return (
