@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { VariableItem } from '@/components/welcome-page';
 import { Variable } from '@/types/types';
+
+import { VariableItem } from './variable_item';
 
 interface VariableListProps {
   variables: Variable[];
