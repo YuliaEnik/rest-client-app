@@ -3,38 +3,55 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
+import { Loader } from '@/components/shared/loader';
 import { Developer } from '@/components/welcome-page/developer';
+import { UserGreeting } from '@/components/welcome-page/user-greeting';
+import { useAuth } from '@/context/auth-context';
 import { developers } from '@/utils';
 
 export default function WelcomePage() {
   const t = useTranslations('welcomePage');
+  const { user, loading } = useAuth();
   const [activeTab, setActiveTab] = useState<'rest' | 'team'>('rest');
 
   const handleTabChange = (tab: 'rest' | 'team') => {
     setActiveTab(tab);
   };
 
+  if (loading) {
+    console.log(user);
+    return <Loader />;
+  }
+
   return (
-    <div className="flex  flex-col h-full w-full justify-between   items-center  my-0 p-5 mx-auto gap-5 primary-color-bg">
+    <div className="flex flex-col h-full w-full justify-between items-center my-0 p-5 mx-auto gap-4 primary-color-bg">
       <div className="flex flex-col flex-grow w-full h-full items-center">
         <div className="flex justify-center gap-5">
           <button
-            className={`flex h-10 w-42 items-center justify-center cursor-pointer ${activeTab === 'rest' ? 'primary-color-component-bg' : 'bg-gray-300'}`}
+            className={`flex h-10 w-42 items-center justify-center cursor-pointer ${
+              activeTab === 'rest'
+                ? 'primary-color-component-bg'
+                : 'bg-gray-300'
+            }`}
             onClick={() => handleTabChange('rest')}
           >
             {t('tabs.rest')}
           </button>
           <button
-            className={`flex h-10 w-42 items-center justify-center cursor-pointer ${activeTab === 'team' ? 'primary-color-component-bg' : 'bg-gray-300'}`}
+            className={`flex h-10 w-42 items-center justify-center cursor-pointer ${
+              activeTab === 'team'
+                ? 'primary-color-component-bg'
+                : 'bg-gray-300'
+            }`}
             onClick={() => handleTabChange('team')}
           >
             {t('tabs.team')}
           </button>
         </div>
 
-        <div className="w-screen p-6 primary-color-component-bg ">
-          <div className="flex flex-col w-full items-center  mx-auto px-4 gap-5">
-            <h2 className="w-full text-center text-2xl font-medium">
+        <div className="w-screen min-h-80 p-6 flex items-center primary-color-component-bg">
+          <div className="flex flex-col w-full items-center mx-auto px-4 gap-5">
+            <h2 className="w-full text-center text-xl font-medium ">
               {activeTab === 'rest'
                 ? t('title_main.rest')
                 : t('title_main.team')}
@@ -53,8 +70,11 @@ export default function WelcomePage() {
             border-r-[20px] border-r-transparent"
         ></div>
       </div>
-      <h2 className="w-full text-center text-2xl">{t('title1')}</h2>
-      <h3 className="w-full text-center text-xl">{t('title2')}</h3>
+
+      {user && <UserGreeting user={user} t={t} />}
+
+      <h2 className="w-full text-center text-xl">{t('title1')}</h2>
+      <h3 className="w-full text-center text-l">{t('title2')}</h3>
       <div className="flex flex-wrap justify-center gap-5 w-full max-w-7xl">
         {developers.map((dev) => (
           <div

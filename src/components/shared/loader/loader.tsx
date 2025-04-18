@@ -1,18 +1,27 @@
-export function Loader() {
+import React from 'react';
+import { useTranslations } from 'next-intl';
+
+export const Loader = () => {
+  const t = useTranslations();
+
   return (
-    <div
-      className={
-        'fixed top-0 right-0 bottom-0 left-0 z-10 flex justify-center items-center bg-black/10'
-      }
-    >
-      <div className={'relative flex justify-center items-center'}>
-        <span
-          className={
-            'w-[100px] h-[100px] border-[4px] border-gray-100 border-t-lime-500 rounded-[50%] animate-spin'
-          }
-        ></span>
-        <span className={'absolute'}>Loading...</span>
+    <div className="fixed inset-0 flex items-center justify-center">
+      <div className="flex flex-col items-center justify-center w-full h-full gap-2">
+        <div className="flex items-center justify-center gap-2">
+          {[0, 1, 2, 3].map((i) => (
+            <div
+              key={i}
+              className="w-3 h-3 bg-green-500 rounded-full animate-bounce"
+              style={{
+                animationDelay: `${i * 0.15}s`,
+                animationDuration: '1.4s',
+              }}
+            />
+          ))}
+        </div>
+
+        <p className="text-base font-medium text-gray-800">{t('loading')}</p>
       </div>
     </div>
   );
-}
+};

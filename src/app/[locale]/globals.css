@@ -8,6 +8,7 @@
   --color-primary-light: rgba(152, 219, 198, 1);
   --color-secondary-yellow: rgba(230, 215, 42, 1);
   --color-secondary-rose: rgba(241, 141, 158, 1);
+  --color-blue: rgba(1, 181, 230, 1);
 }
 
 /* custom rest app variables*/
@@ -16,8 +17,16 @@
   --primary-color-bg: #e5e7eb;
   --primary-color-component: #f9fafb;
   --color-details-primary: #e63ae3;
+  --color-blue: rgba(93, 241, 25, 0.765);
+  --color-blue-hover: #459e36;
 }
 
+.welcome-btn {
+  background-color: var(--color-blue);
+}
+.welcome-btn:hover {
+  background-color: var(--color-blue-hover);
+}
 .primary-color-bg {
   background-color: var(--primary-color-bg);
 }
