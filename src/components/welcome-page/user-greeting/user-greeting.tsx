@@ -15,22 +15,22 @@ export const UserGreeting = ({ user, t }: UserGreetingProps) => {
         {t('welcome')}
         <span className="text-amber-600 font-medium">{user.displayName}</span>!
       </p>
-      <div className="w-full flex justify-around gap-4">
+      <div className="w-full flex justify-around gap-3">
         <Link
           href="/restful"
-          className="h-10 w-30 flex justify-center items-center bg-primary-light border rounded-lg shadow-xs hover:bg-lime-200 transition-colors"
+          className="h-10 w-30 flex justify-center items-center bg-lime-300 border border-gray-300 rounded-lg shadow-xs hover:bg-lime-400 transition-colors"
         >
           {t('links.restclient')}
         </Link>
         <Link
           href="/history"
-          className="h-10 w-30 flex bg-primary-light justify-center items-center rounded-lg border shadow-xs hover:bg-lime-200 transition-colors"
+          className="h-10 w-30 flex bg-lime-300 justify-center items-center rounded-lg border border-gray-300 shadow-xs hover:bg-lime-400 transition-colors"
         >
           {t('links.history')}
         </Link>
         <Link
           href="/variables"
-          className="h-10 w-30 flex bg-primary-light justify-center items-center rounded-lg border shadow-xs hover:bg-lime-200 transition-colors"
+          className="h-10 w-30 flex p-1 bg-lime-300 justify-center items-center rounded-lg border border-gray-300 shadow-xs hover:bg-lime-400 transition-colors"
         >
           {t('links.variables')}
         </Link>

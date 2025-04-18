@@ -111,5 +111,15 @@ declare const messages: {
     varValuerequired: 'Variable value is required';
     varValueMin: 'Variable value must be at least 1 character';
   };
+  loading: 'Loading...';
+  NotFound: {
+    title: 'Page Not Found';
+    description: "The page you're looking for doesn't exist or has been moved.";
+    backHome: 'Go Back Home';
+  };
+  ErrorBoundary: {
+    title: 'Something went wrong';
+    message: 'Please refresh the page or try again later.';
+  };
 };
 export default messages;

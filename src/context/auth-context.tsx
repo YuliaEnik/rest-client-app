@@ -1,7 +1,12 @@
 'use client';
 
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { onAuthStateChanged, User } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
+import {
+  onAuthStateChanged,
+  signOut as firebaseSignOut,
+  User,
+} from 'firebase/auth';
 
 import { auth } from '@/lib/firebase';
 
@@ -21,16 +26,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
       setLoading(false);
+      if (!user) {
+        router.push('/');
+      }
       setAuthError(null);
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [router]);
+
+  const signOut = async () => {
+    await firebaseSignOut(auth);
+  };
 
   const isEmailVerified = user?.emailVerified || false;
 
@@ -41,6 +54,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       isEmailVerified,
       authError,
       setAuthError,
+      signOut,
     }),
     [user, loading, isEmailVerified, authError]
   );

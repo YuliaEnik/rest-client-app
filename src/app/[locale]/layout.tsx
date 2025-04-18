@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { hasLocale, Locale, NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 
+import { ErrorBoundary } from '@/components/error-boundary';
 import { Layout } from '@/components/layout';
 import { AuthProvider } from '@/context/auth-context';
 import { routing } from '@/i18n/routing';
@@ -45,17 +46,20 @@ export default async function LocaleLayout({ children, params }: Props) {
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
   setRequestLocale(locale);
 
   return (
-    <html lang="be" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} flex flex-col  h-full`}
       >
         <NextIntlClientProvider>
-          <AuthProvider>
-            <Layout locale={locale}>{children}</Layout>
-          </AuthProvider>
+          <ErrorBoundary>
+            <AuthProvider>
+              <Layout locale={locale}>{children}</Layout>
+            </AuthProvider>
+          </ErrorBoundary>
         </NextIntlClientProvider>
       </body>
     </html>

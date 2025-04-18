@@ -3,18 +3,14 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  AuthError,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/auth-context';
-import { Link } from '@/i18n/navigation';
 import { auth } from '@/lib/firebase';
 import { SignUpFormData, useValidationSchemas } from '@/lib/validation-auth';
 
@@ -56,21 +52,11 @@ export default function SignUpPage() {
 
       router.push('/');
     } catch (error) {
-      const firebaseError = error as AuthError;
-      console.error('Registration error:', firebaseError);
-      switch (firebaseError.code) {
-        case 'auth/email-already-in-use':
-          setError('email', {
-            type: 'manual',
-            message: t('errors.email_already_used'),
-          });
-          break;
-        default:
-          setError('root', {
-            type: 'manual',
-            message: t('errors.auth_failed'),
-          });
-      }
+      console.error('Auth error:', error);
+      setError('root', {
+        type: 'manual',
+        message: t('errors.auth_failed'),
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -154,7 +140,6 @@ export default function SignUpPage() {
         {t('signUp_description_part1')}
         <Link
           href="/signin"
-          passHref
           className="text-blue-600 underline cursor-pointer hover:text-lime-300"
         >
           {t('signUp_description_part2')}

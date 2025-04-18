@@ -38,11 +38,11 @@ export default function SignInPage() {
       await signInWithEmail(data);
       router.push('/');
     } catch (error) {
+      console.error('Auth error:', error);
       setError('root', {
         type: 'manual',
         message: t('errors.auth_failed'),
       });
-      console.error('Registration error:', error);
     } finally {
       setIsSubmitting(false);
     }

@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
+import { Loader } from '@/components/shared/loader';
 import { Developer } from '@/components/welcome-page/developer';
 import { UserGreeting } from '@/components/welcome-page/user-greeting';
 import { useAuth } from '@/context/auth-context';
@@ -18,7 +19,8 @@ export default function WelcomePage() {
   };
 
   if (loading) {
-    return <div className="text-center py-8">Loading...</div>;
+    console.log(user);
+    return <Loader />;
   }
 
   return (
