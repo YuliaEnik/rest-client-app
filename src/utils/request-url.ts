@@ -4,7 +4,12 @@ import { convertToBase64 } from '@/utils/base64';
 
 export function parseUrl(url: string) {
   const [lang, method, ...params] = url.slice(1).split('/');
-  const data: UrlParams = { lang, method, apiUrl: '', requestBody: '' };
+  const data: UrlParams = {
+    lang,
+    method: method.toUpperCase(),
+    apiUrl: '',
+    requestBody: '',
+  };
   if (!params.length) return data;
   const parsedParams = parseParams(params);
   return Object.assign(data, parsedParams);

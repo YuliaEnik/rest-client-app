@@ -21,7 +21,7 @@ export const AddButton: React.FC<AddButtonProps> = ({ setVariables }) => {
   return (
     <>
       <Button
-        className="w-full bg-amber-200 hover:bg-primary-light transition-colors"
+        className="w-full bg-amber-200 hover:bg-lime-200 transition-colors"
         type="button"
         variant="outline"
         onClick={toggleInputBlock}

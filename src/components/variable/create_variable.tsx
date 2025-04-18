@@ -91,7 +91,7 @@ export const CreateVariable: React.FC<CreateVariableProps> = ({
         />
         <Button
           type="submit"
-          className="max-w-[100px] bg-amber-200 hover:bg-primary-light"
+          className="max-w-[100px] bg-amber-200 hover:bg-lime-200"
           variant="outline"
           disabled={isSubmitting}
           data-testid="addnewvar-button"

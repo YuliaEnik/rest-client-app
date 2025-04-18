@@ -11,8 +11,11 @@ configure({
 
 window.HTMLElement.prototype.scrollIntoView = vi.fn();
 
+const initLocation = '/ru/GET';
+
 describe('SelectMethod', () => {
   beforeEach(() => {
+    window.history.pushState(null, '', initLocation);
     render(<SelectMethod currentMethod={'GET'} />);
   });
   afterEach(() => {
@@ -34,8 +37,6 @@ describe('SelectMethod', () => {
     expect(select.children[0].textContent === fourthMethod);
   });
   it('Should update url', () => {
-    const initLocation = '/ru/GET';
-    window.history.pushState(null, '', initLocation);
     const select = screen.getByRole('combobox');
     fireEvent.click(select);
     const methods = screen.getAllByTestId('select-item');

@@ -12,11 +12,10 @@ export async function sendRequest(
     const { method, requestBody, apiUrl } = parseUrl(url);
     const searchParams = new URLSearchParams(search);
     const headers = generateHeadersForRequest(searchParams);
-    const request = new Request(apiUrl, {
-      headers,
-      method,
-      body: method !== 'GET' ? requestBody : null,
-    });
+    const options = ['GET', 'HEAD'].includes(method)
+      ? { headers, method }
+      : { headers, method, body: requestBody };
+    const request = new Request(apiUrl, options);
     const response = await fetch(request);
     if (!response.ok) {
       return { data: response.statusText, code: response.status };

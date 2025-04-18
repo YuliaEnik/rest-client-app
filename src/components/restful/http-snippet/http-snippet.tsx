@@ -8,12 +8,6 @@ import sdk from 'postman-collection';
 
 import { CodeEditor } from '@/components/restful/code-editor';
 import { SelectLanguage } from '@/components/restful/select-language';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
 import { CODEMIRROR_LANGUAGES, LANGUAGES } from '@/constants/constants';
 import { generateHeadersForSnippet } from '@/utils/request-headers';
 import { parseUrl } from '@/utils/request-url';
@@ -56,31 +50,19 @@ export function HttpSnippet() {
   }, [pathname, searchParams, t, value]);
 
   return (
-    <Accordion
-      type="single"
-      collapsible
-      className="w-full border-b border-gray-50"
-    >
-      <AccordionItem value="item-1">
-        <AccordionTrigger className={'p-0 pb-[5px]'}>
-          {t('snippet')}
-        </AccordionTrigger>
-        <AccordionContent>
-          <div className={'flex flex-col gap-[10px] pt-[10px]'}>
-            <div className={'flex gap-[5px] items-center'}>
-              <SelectLanguage
-                setLanguageAction={setValue}
-                className={'primary-color-component-bg'}
-              />
-            </div>
-            <CodeEditor
-              value={snippet}
-              lang={CODEMIRROR_LANGUAGES[value]}
-              readOnly={true}
-            />
-          </div>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+    <div className={'flex flex-col gap-[10px] pt-[10px]'}>
+      <div className={'flex gap-[5px] items-center'}>
+        <SelectLanguage
+          setLanguageAction={setValue}
+          className={'primary-color-component-bg'}
+        />
+      </div>
+      <CodeEditor
+        value={snippet}
+        lang={CODEMIRROR_LANGUAGES[value]}
+        readOnly={true}
+        height={'140px'}
+      />
+    </div>
   );
 }
