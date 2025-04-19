@@ -6,6 +6,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { FirebaseError } from '@firebase/app';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
@@ -30,10 +31,11 @@ export default function SignUpPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     setError,
   } = useForm<SignUpFormData>({
     resolver: yupResolver(signUpSchema),
+    mode: 'onChange',
   });
 
   const onSubmit = async (data: SignUpFormData) => {
@@ -53,10 +55,18 @@ export default function SignUpPage() {
       router.push('/');
     } catch (error) {
       console.error('Auth error:', error);
-      setError('root', {
-        type: 'manual',
-        message: t('errors.auth_failed'),
-      });
+      if (error instanceof FirebaseError) {
+        if (error.code === 'auth/email-already-in-use')
+          setError('root', {
+            type: 'manual',
+            message: t('errors.auth/email-already-in-use'),
+          });
+        else
+          setError('root', {
+            type: 'manual',
+            message: t('errors.auth_failed'),
+          });
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -103,7 +113,7 @@ export default function SignUpPage() {
           )}
         </div>
 
-        <div className="h-20 relative">
+        <div className="relative">
           <label htmlFor="password" className="block mb-1">
             {t('password')}
           </label>
@@ -122,15 +132,15 @@ export default function SignUpPage() {
           >
             {showPassword ? <FaEye /> : <FaEyeSlash />}
           </button>
-          {errors.password && (
-            <p className="text-red-500 text-sm">{errors.password.message}</p>
-          )}
+          <p className="py-1 text-red-500 text-sm min-h-[60px]">
+            {errors.password && errors.password.message}
+          </p>
         </div>
 
         <Button
           type="submit"
-          className="w-full  mt-5 text-xl bg-lime-300 text-black rounded hover:bg-lime-400"
-          disabled={isSubmitting}
+          className="w-full text-xl bg-lime-300 text-black rounded hover:bg-lime-400"
+          disabled={isSubmitting || !isValid}
         >
           {t('signUp')}
         </Button>
