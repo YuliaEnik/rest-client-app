@@ -13,12 +13,12 @@ export const HistoryItem: React.FC<HistoryItemProps> = ({ request }) => {
   useEffect(() => {
     const parts = request.restfulUrl.split('/');
     const type = parts[2];
-
     setRequsetType(type);
   }, [request.restfulUrl]);
 
   return (
     <TableRow
+      data-testid="link-button"
       key={request.executedAt}
       className="grid grid-cols-[2fr_1fr_3fr] gap-2 hover:bg-amber-200 hover:cursor-pointer active:bg-lime-200"
       onClick={() => router.push(`${request.restfulUrl}`)}
