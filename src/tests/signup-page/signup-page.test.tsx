@@ -6,18 +6,32 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import { beforeEach } from 'node:test';
-import { afterEach, describe, expect, test, vi } from 'vitest';
+import { User } from 'firebase/auth';
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
-import SignInPage from '@/app/[locale]/(auth)/signin/page';
-import { signInWithEmail } from '@/lib/auth';
+import SignUpPage from '@/app/[locale]/(auth)/signUp/page';
 
-vi.mock('next/navigation', () => ({
-  useRouter: vi.fn(),
+vi.mock('firebase/auth', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    actual,
+    createUserWithEmailAndPassword: vi.fn(),
+    updateProfile: vi.fn(),
+    getAuth: vi.fn().mockReturnValue({ currentUser: null }),
+  };
+});
+
+vi.mock('@/context/auth-context', () => ({
+  useAuth: vi.fn(() => ({
+    user: {} as User,
+    loading: false,
+  })),
 }));
 
-vi.mock('@/lib/auth', () => ({
-  signInWithEmail: vi.fn(),
+vi.mock('next/navigation', () => ({
+  useRouter: vi.fn(() => ({
+    push: vi.fn(),
+  })),
 }));
 
 const messages = {
@@ -47,31 +61,32 @@ const messages = {
   },
 };
 
-describe('SignInPage Component', () => {
+describe('SignUpPage Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   afterEach(cleanup);
 
-  test('renders sign in form', () => {
+  test('renders sign-up form', () => {
     render(
       <NextIntlClientProvider locale="en" messages={messages}>
-        <SignInPage />
+        <SignUpPage />
       </NextIntlClientProvider>
     );
     waitFor(() => {
-      expect(screen.getByText('Sign In')).toBeTruthy();
+      expect(screen.getByText('Sign Up')).toBeTruthy();
+      expect(screen.getByLabelText('Display Name')).toBeTruthy();
       expect(screen.getByLabelText('Email')).toBeTruthy();
       expect(screen.getByLabelText('Password')).toBeTruthy();
-      expect(screen.getByLabelText('Sign In')).toBeTruthy();
+      expect(screen.getByRole('button', { name: 'Sign Up' })).toBeTruthy();
     });
   });
 
-  test('toggles password visibility', () => {
+  test('shows password visibility toggle', () => {
     render(
       <NextIntlClientProvider locale="en" messages={messages}>
-        <SignInPage />
+        <SignUpPage />
       </NextIntlClientProvider>
     );
     const passwordInput = screen.getByLabelText('Password');
@@ -88,28 +103,6 @@ describe('SignInPage Component', () => {
     fireEvent.click(toggleButton);
     waitFor(() => {
       expect(passwordInput).haveOwnProperty('type', 'password');
-    });
-  });
-
-  test('submits the form successfully', () => {
-    render(
-      <NextIntlClientProvider locale="en" messages={messages}>
-        <SignInPage />
-      </NextIntlClientProvider>
-    );
-    fireEvent.input(screen.getByLabelText('Email'), {
-      target: { value: 'test@example.com' },
-    });
-    fireEvent.input(screen.getByLabelText('Password'), {
-      target: { value: 'password123' },
-    });
-    const signInButton = screen.getByRole('button', { name: 'Sign In' });
-    fireEvent.click(signInButton);
-    waitFor(() => {
-      expect(signInWithEmail).toHaveBeenCalledWith({
-        email: 'test@example.com',
-        password: 'password123',
-      });
     });
   });
 });

@@ -38,7 +38,7 @@ declare const messages: {
       name: 'Anastasiya';
       task1: 'History page';
       task2: 'Variables page';
-      description: "i'm the best too";
+      description: 'Hello, my name is Anastasiya. I am fond of development usefull and convinient apps. Backend part of development attracts me most of all. I have strong intentions to became a full-stack developer';
     };
     yuliya: {
       name: 'Julia';

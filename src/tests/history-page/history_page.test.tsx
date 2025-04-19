@@ -1,9 +1,9 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { User } from 'firebase/auth';
 import { describe, expect, test, vi } from 'vitest';
 
-import VariablesPage from '@/app/[locale]/variables/page';
+import HistoryPage from '@/app/[locale]/history/page';
 
 vi.mock('@/context/auth-context', () => ({
   useAuth: vi.fn(() => ({
@@ -14,26 +14,30 @@ vi.mock('@/context/auth-context', () => ({
 
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(() => ({
-    replace: vi.fn(),
+    push: vi.fn(),
   })),
-  usePathname: vi.fn(() => '/'),
 }));
 
 const messages = {
   loading: 'Loading...',
-  variablesPage: {
-    title: 'Variables',
-    loadingPage: 'Loading Variables Page...',
+  historyPage: {
+    title: 'History',
+    loadingPage: 'Loading History Page...',
+    loadSavedRequests: 'Loading...',
+    loading: 'Loading...',
   },
 };
 
-describe('VariablesPage Component', () => {
-  test('renders correctly variables page', () => {
+describe('HistoryPage Component', () => {
+  test('renders correctly history page', () => {
     render(
       <NextIntlClientProvider locale="en" messages={messages}>
-        <VariablesPage />
+        <HistoryPage />
       </NextIntlClientProvider>
     );
-    expect(screen.getByText('Variables')).toBeTruthy();
+
+    waitFor(() => {
+      expect(screen.getByText('History'));
+    });
   });
 });

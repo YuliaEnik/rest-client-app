@@ -99,6 +99,8 @@ export default function SignInPage() {
               type="button"
               className="absolute right-4 top-10"
               onClick={togglePasswordVisibility}
+              data-testid="eye"
+              name="eye"
             >
               {showPassword ? <FaEye /> : <FaEyeSlash />}
             </button>
