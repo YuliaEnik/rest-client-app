@@ -7,6 +7,7 @@ export const RESTFUL_METHODS = [
   'PATCH',
   'DELETE',
   'HEAD',
+  'OPTIONS',
 ] as const;
 
 export const LANGUAGES: Option[] = [

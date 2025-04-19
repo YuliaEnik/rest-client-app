@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 import { notFound } from 'next/navigation';
 
 import { ProtectedRoutes } from '@/components/protected-routes';
+import { Loader } from '@/components/shared/loader';
 import { RESTFUL_METHODS } from '@/constants/constants';
 
 const RestfulView = dynamic(
@@ -36,7 +37,7 @@ export default async function Page({
           }
         >
           <h2 className={'self-start'}>RESTful</h2>
-          <Suspense>
+          <Suspense fallback={<Loader />}>
             <RestfulView method={method} url={url} headers={headers} />
           </Suspense>
         </div>
