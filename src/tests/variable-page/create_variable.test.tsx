@@ -8,7 +8,7 @@ import {
 } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
-import { CreateVariable } from '@/components/welcome-page';
+import { CreateVariable } from '@/components';
 
 const mockSetVariables = vi.fn();
 const mockshowCreateBlock = vi.fn();

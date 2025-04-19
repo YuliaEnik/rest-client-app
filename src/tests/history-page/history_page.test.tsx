@@ -1,13 +1,30 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { render, screen, waitFor } from '@testing-library/react';
-import { describe, expect, test } from 'vitest';
+import { User } from 'firebase/auth';
+import { describe, expect, test, vi } from 'vitest';
 
 import HistoryPage from '@/app/[locale]/history/page';
 
+vi.mock('@/context/auth-context', () => ({
+  useAuth: vi.fn(() => ({
+    user: {} as User,
+    loading: false,
+  })),
+}));
+
+vi.mock('next/navigation', () => ({
+  useRouter: vi.fn(() => ({
+    push: vi.fn(),
+  })),
+}));
+
 const messages = {
+  loading: 'Loading...',
   historyPage: {
     title: 'History',
     loadingPage: 'Loading History Page...',
+    loadSavedRequests: 'Loading...',
+    loading: 'Loading...',
   },
 };
 

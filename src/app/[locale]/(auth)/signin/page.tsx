@@ -86,6 +86,8 @@ export default function SignInPage() {
           />
           <button
             type="button"
+            data-testid="eye"
+            name="eye"
             className="absolute right-4 top-10"
             onClick={togglePasswordVisibility}
           >

@@ -2,9 +2,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
+import { HistoryList } from '@/components';
 import { History } from '@/types/types';
-
-import HistoryList from './history_list';
 
 vi.mock('next/navigation', () => {
   const actual = vi.importActual('next/navigation');

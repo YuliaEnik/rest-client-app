@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, test, vi } from 'vitest';
 
-import { HistoryItem } from '../../components/history/history_item';
+import { HistoryItem } from '@/components';
 
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(),
