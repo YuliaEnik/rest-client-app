@@ -19,7 +19,6 @@ export default function WelcomePage() {
   };
 
   if (loading) {
-    console.log(user);
     return <Loader />;
   }
 

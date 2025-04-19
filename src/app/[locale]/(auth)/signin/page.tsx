@@ -5,6 +5,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { FirebaseError } from '@firebase/app';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Button } from '@/components/ui/button';
@@ -26,7 +27,7 @@ export default function SignInPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     setError,
   } = useForm<SignInFormData>({
     resolver: yupResolver(signInSchema),
@@ -39,10 +40,18 @@ export default function SignInPage() {
       router.push('/');
     } catch (error) {
       console.error('Auth error:', error);
-      setError('root', {
-        type: 'manual',
-        message: t('errors.auth_failed'),
-      });
+      if (error instanceof FirebaseError) {
+        if (error.code === 'auth/invalid-credential') {
+          setError('root', {
+            type: 'manual',
+            message: t('errors.auth/invalid-credential'),
+          });
+        } else
+          setError('root', {
+            type: 'manual',
+            message: t('errors.auth_failed'),
+          });
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -99,7 +108,7 @@ export default function SignInPage() {
         <Button
           type="submit"
           className="w-full mt-5 text-xl bg-lime-300 text-black rounded hover:bg-lime-400"
-          disabled={isSubmitting}
+          disabled={isSubmitting || !isValid}
         >
           {t('signIn')}
         </Button>
