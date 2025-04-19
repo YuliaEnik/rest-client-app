@@ -36,7 +36,6 @@ export default async function Page({
             'flex-1 flex flex-col gap-[15px] items-center p-[15px] max-w-[1200px]'
           }
         >
-          <h2 className={'self-start'}>RESTful</h2>
           <Suspense fallback={<Loader />}>
             <RestfulView method={method} url={url} headers={headers} />
           </Suspense>
