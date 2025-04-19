@@ -27,9 +27,9 @@
   "developers": {
     "nikolay": {
       "name": "Nikolay",
-      "task1": "REST page",
-      "task2": "Client page",
-      "description": "i'm the best"
+      "task1": "RESTful client",
+      "task2": "Code review",
+      "description": "Hi! I am Nikolai. At RS School since 2022. During this time, I took courses in JavaScript, Angular, NodeJS and React. I am trying to improve my knowledge in the field of frontend development."
     },
     "anastasiya": {
       "name": "Anastasiya",
