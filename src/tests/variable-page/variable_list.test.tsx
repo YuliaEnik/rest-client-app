@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
-import { VariableList } from '@/components/welcome-page';
+import { VariableList } from '@/components';
 import { Variable } from '@/types/types';
 
 const mockSetVariables = vi.fn();

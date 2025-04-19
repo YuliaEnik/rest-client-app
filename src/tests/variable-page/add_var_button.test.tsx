@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import { AddButton } from '@/components/welcome-page';
+import { AddButton } from '@/components';
 
 const messages = {
   variablesPage: {
