@@ -45,7 +45,7 @@ export const HistoryList: React.FC<HistoryListProps> = ({ requests }) => {
         <p>{t('emptySavedRequests')}</p>
         <Link
           href="/restful-page"
-          className="h-9 rounded-md p-4 font-semibold flex items-center bg-amber-200 hover:bg-amber-200"
+          className="h-9 rounded-md p-4 font-semibold flex items-center bg-lime-300 hover:bg-lime-500"
         >
           {t('goToRestfulPage')}
         </Link>

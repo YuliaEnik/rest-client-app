@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo '🚀 Running pre-commit checks'
-npx lint-staged || {
+npx lint || {
   echo '❌ Pre-commit checks failed'
   exit 1
 }
