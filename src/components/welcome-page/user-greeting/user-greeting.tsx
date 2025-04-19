@@ -17,7 +17,7 @@ export const UserGreeting = ({ user, t }: UserGreetingProps) => {
       </p>
       <div className="w-full flex justify-around gap-3">
         <Link
-          href="/restful"
+          href="/GET"
           className="h-10 w-30 flex justify-center items-center bg-lime-300 border border-gray-300 rounded-lg shadow-xs hover:bg-lime-400 transition-colors"
         >
           {t('links.restclient')}

@@ -73,7 +73,8 @@
       "password_min": "Password must be at least 8 characters",
       "password": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character(@#$!%*?&<>",
       "auth_failed": "Authentication failed",
-      "email_already_used": "This email is already registered"
+      "auth/email-already-in-use": "This email is already registered",
+      "auth/invalid-credential": "Invalid email or/and password"
     }
   },
   "restfulPage": {
