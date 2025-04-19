@@ -20,6 +20,12 @@ declare const messages: {
       rest: 'Rest App';
       team: 'Team';
     };
+    welcome: 'Welcome, ';
+    links: {
+      restclient: 'REST Client';
+      history: 'History';
+      variables: 'Variables';
+    };
   };
   developers: {
     nikolay: {
@@ -45,7 +51,7 @@ declare const messages: {
     main: 'go to main page';
     signin: 'Sign In';
     signup: 'Sign Up';
-    logout: 'logout';
+    logout: 'Log out';
   };
   footer: {
     course: 'REACT';
@@ -68,8 +74,9 @@ declare const messages: {
       email_invalid: 'Invalid email format';
       password_required: 'Password is required';
       password_min: 'Password must be at least 8 characters';
-      password: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character(@#$!%*?&)';
+      password: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character(@#$!%*?&<>';
       auth_failed: 'Authentication failed';
+      email_already_used: 'This email is already registered';
     };
   };
   restfulPage: {
@@ -104,6 +111,16 @@ declare const messages: {
     varNameExist: 'Variable with such name has already exists';
     varValuerequired: 'Variable value is required';
     varValueMin: 'Variable value must be at least 1 character';
+  };
+  loading: 'Loading...';
+  NotFound: {
+    title: 'Page Not Found';
+    description: "The page you're looking for doesn't exist or has been moved.";
+    backHome: 'Go Back Home';
+  };
+  ErrorBoundary: {
+    title: 'Something went wrong';
+    message: 'Please refresh the page or try again later.';
   };
   historyPage: {
     title: 'History';

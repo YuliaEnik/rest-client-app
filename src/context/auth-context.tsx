@@ -1,7 +1,12 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged, User } from 'firebase/auth';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import {
+  onAuthStateChanged,
+  signOut as firebaseSignOut,
+  User,
+} from 'firebase/auth';
 
 import { auth } from '@/lib/firebase';
 
@@ -13,44 +18,54 @@ type AuthContextType = {
   setAuthError: (error: string | null) => void;
 };
 
-export const AuthContext = createContext<AuthContextType>({
-  user: null,
-  loading: true,
-  isEmailVerified: false,
-  authError: null,
-  setAuthError: () => {},
-});
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [authError, setAuthError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
       setLoading(false);
+      if (!user) {
+        router.push('/');
+      }
       setAuthError(null);
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [router]);
+
+  const signOut = async () => {
+    await firebaseSignOut(auth);
+  };
 
   const isEmailVerified = user?.emailVerified || false;
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        isEmailVerified,
-        authError,
-        setAuthError,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
+  const value = useMemo(
+    () => ({
+      user,
+      loading,
+      isEmailVerified,
+      authError,
+      setAuthError,
+      signOut,
+    }),
+    [user, loading, isEmailVerified, authError]
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};

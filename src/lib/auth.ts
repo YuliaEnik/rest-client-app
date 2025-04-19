@@ -1,6 +1,5 @@
 import {
   createUserWithEmailAndPassword,
-  sendEmailVerification,
   signInWithEmailAndPassword,
   signOut as firebaseSignOut,
   updateProfile,
@@ -16,7 +15,6 @@ export const signUpWithEmail = async (data: SignUpFormData) => {
     data.password
   );
   await updateProfile(userCredential.user, { displayName: data.displayName });
-  await sendEmailVerification(userCredential.user);
   return userCredential;
 };
 
