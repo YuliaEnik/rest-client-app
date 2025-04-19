@@ -38,7 +38,7 @@ declare const messages: {
       name: 'Anastasiya';
       task1: 'History page';
       task2: 'Variables page';
-      description: "i'm the best too";
+      description: 'Hello, my name is Anastasiya. I am fond of development usefull and convinient apps. Backend part of development attracts me most of all. I have strong intentions to became a full-stack developer';
     };
     yuliya: {
       name: 'Julia';
@@ -76,7 +76,8 @@ declare const messages: {
       password_min: 'Password must be at least 8 characters';
       password: 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character(@#$!%*?&<>';
       auth_failed: 'Authentication failed';
-      email_already_used: 'This email is already registered';
+      'auth/email-already-in-use': 'This email is already registered';
+      'auth/invalid-credential': 'Invalid email or/and password';
     };
   };
   restfulPage: {
