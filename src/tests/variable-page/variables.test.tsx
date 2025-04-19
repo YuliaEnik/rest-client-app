@@ -14,8 +14,9 @@ vi.mock('@/context/auth-context', () => ({
 
 vi.mock('next/navigation', () => ({
   useRouter: vi.fn(() => ({
-    push: vi.fn(),
+    replace: vi.fn(),
   })),
+  usePathname: vi.fn(() => '/'),
 }));
 
 const messages = {
