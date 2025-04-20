@@ -23,7 +23,7 @@ export default function WelcomePage() {
   }
 
   return (
-    <div className="flex flex-col h-full w-full justify-between items-center my-0 p-5 mx-auto gap-4 primary-color-bg">
+    <section className="flex flex-col h-full w-full justify-between items-center my-0 p-5 mx-auto gap-4 primary-color-bg">
       <div className="flex flex-col flex-grow w-full h-full items-center">
         <div className="flex justify-center gap-5">
           <button
@@ -48,7 +48,7 @@ export default function WelcomePage() {
           </button>
         </div>
 
-        <div className="w-screen min-h-80 p-6 flex items-center primary-color-component-bg">
+        <div className="w-full min-h-80 p-6 flex items-center primary-color-component-bg">
           <div className="flex flex-col w-full items-center mx-auto px-4 gap-5">
             <h2 className="w-full text-center text-xl font-medium ">
               {activeTab === 'rest'
@@ -70,20 +70,22 @@ export default function WelcomePage() {
         ></div>
       </div>
 
-      {user && <UserGreeting user={user} t={t} />}
+      <div className="flex flex-wrap justify-center gap-5 w-full max-w-7xl">
+        {user && <UserGreeting user={user} t={t} />}
+      </div>
 
       <h2 className="w-full text-center text-xl">{t('title1')}</h2>
       <h3 className="w-full text-center text-l">{t('title2')}</h3>
       <div className="flex flex-wrap justify-center gap-5 w-full max-w-7xl">
         {developers.map((dev) => (
-          <div
+          <ul
             key={dev.id}
             className="w-full sm:w-auto sm:flex-1 sm:min-w-[calc(33.33%-16px)] flex"
           >
             <Developer key={dev.id} {...dev} />
-          </div>
+          </ul>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

@@ -134,6 +134,7 @@ export default function SignUpPage() {
               onClick={togglePasswordVisibility}
               disabled={isSubmitting}
               data-testid="eye"
+              name="eye"
             >
               {showPassword ? <FaEye /> : <FaEyeSlash />}
             </button>
