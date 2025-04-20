@@ -40,7 +40,7 @@ export function RequestUrl({ url }: { url: string }) {
   }, [getValues, insertVariables, isValid]);
 
   return (
-    <div className={'flex flex-col flex-1 relative'}>
+    <div className={'flex flex-col flex-1 relative w-full'}>
       <Input
         className={'primary-color-component-bg'}
         type={'text'}
