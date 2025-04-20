@@ -99,6 +99,7 @@ export default function SignInPage() {
               type="button"
               className="absolute right-4 top-10"
               onClick={togglePasswordVisibility}
+              disabled={isSubmitting}
               data-testid="eye"
               name="eye"
             >
@@ -122,7 +123,6 @@ export default function SignInPage() {
           {t('signIn_description_part1')}
           <Link
             href="/signup"
-            passHref
             className="text-blue-600 underline cursor-pointer hover:text-lime-300"
           >
             {t('signIn_description_part2')}
