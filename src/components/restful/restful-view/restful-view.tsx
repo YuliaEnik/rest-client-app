@@ -68,13 +68,17 @@ export default function RestfulView({ method, url, headers }: Props) {
   }, [history, pathname, saveToHistory, searchParams]);
 
   return (
-    <div className={'w-full flex justify-center'}>
+    <div className={'w-full'}>
       <div
         className={
           'flex flex-1 flex-col gap-[15px] max-w-[1200px] p-[20px] primary-color-bg rounded-lg'
         }
       >
-        <div className={'flex gap-[5px] flex-col items-center sm:flex-row'}>
+        <div
+          className={
+            'flex gap-[15px] flex-col items-center sm:flex-row py-[10px]'
+          }
+        >
           <SelectMethod
             className={'primary-color-component-bg'}
             currentMethod={method.toUpperCase() as METHODS}
@@ -85,7 +89,7 @@ export default function RestfulView({ method, url, headers }: Props) {
             type={'button'}
             onClick={handleClick}
             variant={'outline'}
-            className={'bg-lime-300'}
+            className={'bg-lime-300 mt-[10px] sm:mt-0'}
           >
             {t('send')}
           </Button>
