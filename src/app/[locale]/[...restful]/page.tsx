@@ -28,12 +28,10 @@ export default async function Page({
 
   return (
     <ProtectedRoutes>
-      <section
-        className={'flex justify-center primary-color-component-bg w-full'}
-      >
+      <section className={'primary-color-component-bg w-full'}>
         <div
           className={
-            'flex-1 flex flex-col gap-[15px] items-center p-[15px] max-w-[1200px]'
+            'flex flex-col gap-[15px] items-center p-[15px] max-w-[1200px] mx-auto'
           }
         >
           <Suspense fallback={<Loader />}>
