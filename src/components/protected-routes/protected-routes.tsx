@@ -10,6 +10,7 @@ import { Loader } from '../shared/loader';
 
 const authRoutes = [
   ...RESTFUL_METHODS.map((route) => `/${route}`),
+  ...RESTFUL_METHODS.map((route) => `/${route.toLowerCase()}`),
   '/',
   '/variables',
   '/history',
