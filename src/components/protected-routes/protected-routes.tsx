@@ -21,7 +21,7 @@ export function ProtectedRoutes({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
-  const [shouldRender, setShouldRender] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   useEffect(() => {
     if (loading) return;
@@ -41,10 +41,10 @@ export function ProtectedRoutes({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    setShouldRender(true);
+    setIsCheckingAuth(false);
   }, [user, loading, pathname, router]);
 
-  if (loading || !shouldRender) {
+  if (loading || isCheckingAuth) {
     return <Loader />;
   }
 

@@ -20,9 +20,9 @@ export function LanguageSelect() {
   const [_, startTransition] = useTransition();
 
   const LanguageOptions: Option[] = [
+    { value: 'be', label: t('belarusian') },
     { value: 'en', label: t('english') },
     { value: 'ru', label: t('russian') },
-    { value: 'be', label: t('belarusian') },
   ];
 
   const generateQuery = useCallback(() => {
