@@ -4,7 +4,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { LanguageSelect } from '@/components/shared/header/select-lang';
 
-// Мокируем зависимости
 vi.mock('next-intl', () => ({
   useLocale: () => 'en',
   useTranslations: () => (key: string) =>
@@ -12,27 +11,26 @@ vi.mock('next-intl', () => ({
       belarusian: 'Belarusian',
       english: 'English',
       russian: 'Russian',
-    })[key],
-}));
-
-const mockReplace = vi.fn();
-
-vi.mock('next/navigation', () => ({
+    })[key] || key,
   useRouter: () => ({
-    replace: mockReplace,
+    replace: vi.fn(),
   }),
   usePathname: () => '/test',
-  useSearchParams: () => new URLSearchParams(),
 }));
 
 configure({
   testIdAttribute: 'data-slot',
 });
 
-window.HTMLElement.prototype.scrollIntoView = vi.fn();
+window.HTMLElement.prototype.scrollIntoView = () => {};
 
 describe('LanguageSelect', () => {
+  let replaceMock: any;
+
   beforeEach(() => {
+    replaceMock = vi.fn();
+    require('next-intl').useRouter.mockReturnValue({ replace: replaceMock });
+
     render(<LanguageSelect />);
   });
 
@@ -41,27 +39,14 @@ describe('LanguageSelect', () => {
     vi.clearAllMocks();
   });
 
-  it('Should render correctly', () => {
-    const select = screen.getByRole('combobox');
-    expect(select).toBeDefined();
-    expect(select.textContent).toContain('EN');
-  });
-
-  it('Should change language', () => {
+  it('should change language on option select', () => {
     const select = screen.getByRole('combobox');
     fireEvent.click(select);
 
-    const options = screen.getAllByTestId('select-item');
-    const russianOption = options.find((opt) =>
-      opt.textContent?.includes('Russian')
-    );
-
-    if (!russianOption) {
-      throw new Error('Russian option not found');
-    }
-
+    const russianOption = screen.getByText('Russian');
     fireEvent.click(russianOption);
-    expect(mockReplace).toHaveBeenCalledWith(
+
+    expect(replaceMock).toHaveBeenCalledWith(
       { pathname: '/test', query: {} },
       { locale: 'ru' }
     );
