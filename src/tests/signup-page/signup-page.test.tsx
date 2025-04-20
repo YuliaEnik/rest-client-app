@@ -9,7 +9,7 @@ import {
 import { User } from 'firebase/auth';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
-import SignUpPage from '@/app/[locale]/(auth)/signUp/page';
+import SignUpPage from '@/app/[locale]/(auth)/signup/page';
 
 vi.mock('firebase/auth', async (importOriginal) => {
   const actual = await importOriginal();
@@ -28,13 +28,20 @@ vi.mock('@/context/auth-context', () => ({
   })),
 }));
 
-vi.mock('next/navigation', () => ({
-  useRouter: vi.fn(() => ({
-    push: vi.fn(),
-  })),
-}));
+vi.mock('next/navigation', async () => {
+  const actual = await vi.importActual('next/navigation');
+  return {
+    ...actual,
+    useRouter: () => ({
+      push: vi.fn(),
+      replace: vi.fn(),
+    }),
+    usePathname: () => '/signup',
+  };
+});
 
 const messages = {
+  loading: 'Loading...',
   auth: {
     signInTitle: 'Sign In',
     signUpTitle: 'Sign Up',

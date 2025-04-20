@@ -1,9 +1,13 @@
 import { NextRequest } from 'next/server';
 import createMiddleware from 'next-intl/middleware';
 
-import { routing } from './i18n/routing';
+export const locales = ['be', 'ru', 'en'] as const;
+export const defaultLocale = 'be' as const;
 
-const intlMiddleware = createMiddleware(routing);
+const intlMiddleware = createMiddleware({
+  locales,
+  defaultLocale,
+});
 
 export async function middleware(request: NextRequest) {
   return intlMiddleware(request);
