@@ -50,7 +50,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang="be" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} flex flex-col  h-full`}
       >

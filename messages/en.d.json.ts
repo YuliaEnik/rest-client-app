@@ -30,9 +30,9 @@ declare const messages: {
   developers: {
     nikolay: {
       name: 'Nikolay';
-      task1: 'REST page';
-      task2: 'Client page';
-      description: "i'm the best";
+      task1: 'RESTful client';
+      task2: 'Code review';
+      description: 'Hi! I am Nikolai. At RS School since 2022. During this time, I took courses in JavaScript, Angular, NodeJS and React. I am trying to improve my knowledge in the field of frontend development.';
     };
     anastasiya: {
       name: 'Anastasiya';
@@ -44,6 +44,8 @@ declare const messages: {
       name: 'Julia';
       task1: 'Welcome page';
       task2: 'Localization';
+      task3: 'Authorization';
+      task4: 'Main route';
       description: 'Hello, my name is Yuliya. I am a self-taught front-end developer. I primarily focus on writing clean, elegant, and efficient code. I am proficient in HTML, CSS, SCSS, JavaScript, React and Type Script. And I get real pleasure from the results of my work.';
     };
   };

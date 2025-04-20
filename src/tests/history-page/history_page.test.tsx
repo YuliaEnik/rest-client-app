@@ -12,11 +12,18 @@ vi.mock('@/context/auth-context', () => ({
   })),
 }));
 
-vi.mock('next/navigation', () => ({
-  useRouter: vi.fn(() => ({
-    push: vi.fn(),
-  })),
-}));
+vi.mock('next/navigation', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('next/navigation')>();
+  return {
+    ...actual,
+    usePathname: vi.fn(() => '/history'),
+    useRouter: vi.fn(() => ({
+      push: vi.fn(),
+      replace: vi.fn(),
+      back: vi.fn(),
+    })),
+  };
+});
 
 const messages = {
   loading: 'Loading...',

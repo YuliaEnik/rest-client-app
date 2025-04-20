@@ -21,6 +21,6 @@ export const developers = [
     photo: '/person-2.jpeg',
     gitHub: 'https://github.com/YuliaEnik',
     description: 'yuliya.description',
-    tasks: ['yuliya.task1', 'yuliya.task2'],
+    tasks: ['yuliya.task1', 'yuliya.task2', 'yuliya.task3', 'yuliya.task4'],
   },
 ];

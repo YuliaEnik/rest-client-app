@@ -10,6 +10,7 @@ import { FirebaseError } from '@firebase/app';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 
+import { ProtectedRoutes } from '@/components/protected-routes';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/auth-context';
 import { auth } from '@/lib/firebase';
@@ -73,90 +74,94 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="flex flex-col h-full gap-5 items-center justify-center p-4">
-      <h1 className="text-3xl my-5">{t('signUpTitle')}</h1>
+    <ProtectedRoutes>
+      <div className="flex flex-col h-full gap-4 items-center justify-center p-4">
+        <h2 className="text-3xl my-4">{t('signUpTitle')}</h2>
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-md space-y-4"
-        noValidate
-      >
-        <div className="h-20">
-          <label htmlFor="displayName" className="block mb-1">
-            {t('displayName')}
-          </label>
-          <input
-            id="displayName"
-            type="text"
-            {...register('displayName')}
-            className="w-full p-2 border rounded"
-            disabled={isSubmitting}
-          />
-          {errors.displayName && (
-            <p className="text-red-500 text-sm">{errors.displayName.message}</p>
-          )}
-        </div>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full max-w-md space-y-4"
+          noValidate
+        >
+          <div className="h-20">
+            <label htmlFor="displayName" className="block mb-1">
+              {t('displayName')}
+            </label>
+            <input
+              id="displayName"
+              type="text"
+              {...register('displayName')}
+              className="w-full p-2 border rounded"
+              disabled={isSubmitting}
+            />
+            {errors.displayName && (
+              <p className="text-red-500 text-sm">
+                {errors.displayName.message}
+              </p>
+            )}
+          </div>
 
-        <div className="h-20">
-          <label htmlFor="email" className="block mb-1">
-            {t('email')}
-          </label>
-          <input
-            id="email"
-            type="email"
-            {...register('email')}
-            className="w-full p-2 border rounded"
-            disabled={isSubmitting}
-          />
-          {errors.email && (
-            <p className="text-red-500 text-sm">{errors.email.message}</p>
-          )}
-        </div>
+          <div className="h-20">
+            <label htmlFor="email" className="block mb-1">
+              {t('email')}
+            </label>
+            <input
+              id="email"
+              type="email"
+              {...register('email')}
+              className="w-full p-2 border rounded"
+              disabled={isSubmitting}
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
+            )}
+          </div>
 
-        <div className="relative">
-          <label htmlFor="password" className="block mb-1">
-            {t('password')}
-          </label>
-          <input
-            id="password"
-            type={showPassword ? 'text' : 'password'}
-            {...register('password')}
-            className="w-full p-2 border rounded"
-            disabled={isSubmitting}
-          />
-          <button
-            type="button"
-            className="absolute right-4 top-10"
-            onClick={togglePasswordVisibility}
-            data-testid="eye"
-            disabled={isSubmitting}
+          <div className="relative">
+            <label htmlFor="password" className="block mb-1">
+              {t('password')}
+            </label>
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              {...register('password')}
+              className="w-full p-2 border rounded"
+              disabled={isSubmitting}
+            />
+            <button
+              type="button"
+              className="absolute right-4 top-10"
+              onClick={togglePasswordVisibility}
+              disabled={isSubmitting}
+              data-testid="eye"
+            >
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </button>
+            <p className="py-1 text-red-500 text-sm min-h-[60px]">
+              {errors.password && errors.password.message}
+            </p>
+          </div>
+
+          <Button
+            type="submit"
+            className="w-full text-xl bg-lime-300 text-black rounded hover:bg-lime-400"
+            disabled={isSubmitting || !isValid}
           >
-            {showPassword ? <FaEye /> : <FaEyeSlash />}
-          </button>
-          <p className="py-1 text-red-500 text-sm min-h-[60px]">
-            {errors.password && errors.password.message}
-          </p>
+            {t('signUp')}
+          </Button>
+        </form>
+
+        <div className="flex flex-wrap max-w-md w-full gap-1 italic justify-end text-sm">
+          {t('signUp_description_part1')}
+          <Link
+            href="/signin"
+            className="text-blue-600 underline cursor-pointer hover:text-lime-300"
+          >
+            {t('signUp_description_part2')}
+          </Link>
         </div>
-
-        <Button
-          type="submit"
-          className="w-full text-xl bg-lime-300 text-black rounded hover:bg-lime-400"
-          disabled={isSubmitting || !isValid}
-        >
-          {t('signUp')}
-        </Button>
-      </form>
-
-      <div className="flex flex-wrap max-w-md w-full gap-2 italic justify-end text-sm">
-        {t('signUp_description_part1')}
-        <Link
-          href="/signin"
-          className="text-blue-600 underline cursor-pointer hover:text-lime-300"
-        >
-          {t('signUp_description_part2')}
-        </Link>
+        {errors.root && <p className="text-red-500">{errors.root.message}</p>}
       </div>
-      {errors.root && <p>{errors.root.message}</p>}
-    </div>
+    </ProtectedRoutes>
   );
 }
