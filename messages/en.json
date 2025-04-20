@@ -1,0 +1,138 @@
+{
+  "LanguageSwitcher": {
+    "english": "English (EN)",
+    "russian": "Russian (RU)",
+    "belarusian": "Belarusian (BE)"
+  },
+  "welcomePage": {
+    "description_restAppText": "A powerful REST API integrated development environment (IDE). This tool provides everything you need to build, test, and debug RESTful services. Key features: smart code completion, interactive API testing, built-in documentation, and team collaboration support. Perfect for developers, testers, and API architects.",
+    "description_ourTeamText": "Our team consists of experienced developers specializing in modern web applications. We use cutting-edge technologies and best development practices. Each team member contributes to creating a high-quality product. Our specializations include: frontend, UX/UI design, and testing.",
+    "title_main": {
+      "rest": "REST Client App",
+      "team": "Our Team"
+    },
+    "title1": "WEB Developers of our team",
+    "title2": " We may not have much experience, but we are wearing navy stripes!",
+    "tabs": {
+      "rest": "Rest App",
+      "team": "Team"
+    },
+    "welcome": "Welcome, ",
+    "links": {
+      "restclient": "REST Client",
+      "history": "History",
+      "variables": "Variables"
+    }
+  },
+  "developers": {
+    "nikolay": {
+      "name": "Nikolay",
+      "task1": "RESTful client",
+      "task2": "Code review",
+      "description": "Hi! I am Nikolai. At RS School since 2022. During this time, I took courses in JavaScript, Angular, NodeJS and React. I am trying to improve my knowledge in the field of frontend development."
+    },
+    "anastasiya": {
+      "name": "Anastasiya",
+      "task1": "History page",
+      "task2": "Variables page",
+      "description": "Hello, my name is Anastasiya. I am fond of development usefull and convinient apps. Backend part of development attracts me most of all. I have strong intentions to became a full-stack developer"
+    },
+    "yuliya": {
+      "name": "Julia",
+      "task1": "Welcome page",
+      "task2": "Localization",
+      "task3": "Authorization",
+      "task4": "Main route",
+      "description": "Hello. I am a self-taught front-end developer. I primarily focus on writing clean and efficient code. And I get real pleasure from the results of my work."
+    }
+  },
+  "header": {
+    "main": "go to main page",
+    "signin": "Sign In",
+    "signup": "Sign Up",
+    "logout": "Log out"
+  },
+  "footer": {
+    "course": "REACT"
+  },
+  "auth": {
+    "signInTitle": "Sign In",
+    "signUpTitle": "Sign Up",
+    "displayName": "Name",
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signIn_description_part1": "Don't have an account,",
+    "signUp_description_part1": "Already have an account,",
+    "signIn_description_part2": "create an account",
+    "signUp_description_part2": "log in",
+    "errors": {
+      "displayName_required": "Display name is required",
+      "email_required": "Email is required",
+      "email_invalid": "Invalid email format",
+      "password_required": "Password is required",
+      "password_min": "Password must be at least 8 characters",
+      "password": "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character(@#$!%*?&<>",
+      "auth_failed": "Authentication failed",
+      "auth/email-already-in-use": "This email is already registered",
+      "auth/invalid-credential": "Invalid email or/and password"
+    }
+  },
+  "restfulPage": {
+    "urlError": "API URL must be a valid",
+    "send": "Send",
+    "headers": "Headers",
+    "addHeader": "Add header",
+    "placeholderKey": "key",
+    "placeholderValue": "value",
+    "snippet": "Request code snippet",
+    "snippetMessage": "Please provide at least api url to generate request snippet",
+    "body": "Body",
+    "prettify": "Prettify",
+    "bodyText": "Text",
+    "response": "Response",
+    "status": "Status: ",
+    "variablesList": "Variables list",
+    "noVariables": "Variables are not found.",
+    "createVariables": "Add variables"
+  },
+  "variablesPage": {
+    "title": "Variables",
+    "varList": "Saved variables",
+    "loadingPage": "Loading Variables Page...",
+    "addButton": "New variable",
+    "loadSavedVars": "Loading...",
+    "emptySavedVars": "No variables saved.",
+    "error": "Error",
+    "varNamerequired": "Variable name is required",
+    "varNameMin": "Variable name must be at least 2 characters",
+    "varNameMatch": "Variable name must be on English uppercase, camelCase, or uppercase with one underscore",
+    "varNameExist": "Variable with such name has already exists",
+    "varValuerequired": "Variable value is required",
+    "varValueMin": "Variable value must be at least 1 character"
+  },
+  "loading": "Loading...",
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Go Back Home"
+  },
+  "ErrorBoundary": {
+    "title": "Something went wrong",
+    "message": "Please refresh the page or try again later."
+  },
+  "historyPage": {
+    "title": "History",
+    "historyList": "Previous requests",
+    "historyListTable": "List of your previous requests",
+    "historyListTableResult": "Total amount of requests",
+    "requestDate": "Date of request",
+    "requestType": "Type of request",
+    "requestURL": "URL of request",
+    "loadingPage": "Loading History Page...",
+    "loadSavedRequests": "Loading...",
+    "emptySavedRequests": "No requests saved.",
+    "goToRestfulPage": "Restful page"
+  }
+}
