@@ -25,9 +25,9 @@ export default function WelcomePage() {
   return (
     <section className="flex flex-col h-full w-full justify-between items-center my-0 p-5 mx-auto gap-4 primary-color-bg">
       <div className="flex flex-col flex-grow w-full h-full items-center">
-        <div className="flex justify-center gap-5">
+        <div className="flex justify-center gap-3">
           <button
-            className={`flex h-10 w-42 items-center justify-center cursor-pointer ${
+            className={`flex h-10 w-32 items-center justify-center cursor-pointer ${
               activeTab === 'rest'
                 ? 'primary-color-component-bg'
                 : 'bg-gray-300'
@@ -37,7 +37,7 @@ export default function WelcomePage() {
             {t('tabs.rest')}
           </button>
           <button
-            className={`flex h-10 w-42 items-center justify-center cursor-pointer ${
+            className={`flex h-10 w-32 items-center justify-center cursor-pointer ${
               activeTab === 'team'
                 ? 'primary-color-component-bg'
                 : 'bg-gray-300'
@@ -55,7 +55,7 @@ export default function WelcomePage() {
                 ? t('title_main.rest')
                 : t('title_main.team')}
             </h2>
-            <p className="max-w-7xl w-3/4 text-center">
+            <p className="max-w-7xl w-full md:w-3/4 text-center">
               {activeTab === 'rest'
                 ? t('description_restAppText')
                 : t('description_ourTeamText')}

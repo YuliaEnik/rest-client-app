@@ -67,7 +67,7 @@ export function Developer(props: IDeveloper) {
           </li>
         ))}
       </ul>
-      <p>{t(props.description)}</p>
+      <p className="text-justify">{t(props.description)}</p>
     </li>
   );
 }

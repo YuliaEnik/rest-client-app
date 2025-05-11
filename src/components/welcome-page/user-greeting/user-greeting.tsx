@@ -9,9 +9,6 @@ type UserGreetingProps = {
 };
 
 export const UserGreeting = ({ user, t }: UserGreetingProps) => {
-  
-  if (!user?.displayName) return null;
-
   return (
     <>
       <p className="w-full text-center text-3xl">
