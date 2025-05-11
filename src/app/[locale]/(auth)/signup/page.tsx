@@ -6,7 +6,11 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useTranslations } from 'next-intl';
 import { FirebaseError } from '@firebase/app';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  updateProfile,
+} from 'firebase/auth';
 
 import { ProtectedRoutes } from '@/components/protected-routes';
 import { Button } from '@/components/ui/button';
@@ -50,6 +54,15 @@ export default function SignUpPage() {
       );
       await updateProfile(userCredential.user, {
         displayName: data.displayName,
+      });
+
+      await new Promise((resolve) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            unsubscribe();
+            resolve(null);
+          }
+        });
       });
 
       router.push('/');
