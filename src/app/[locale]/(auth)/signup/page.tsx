@@ -3,8 +3,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { FirebaseError } from '@firebase/app';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -13,6 +11,7 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { ProtectedRoutes } from '@/components/protected-routes';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/auth-context';
+import { Link, useRouter } from '@/i18n/navigation';
 import { auth } from '@/lib/firebase';
 import { SignUpFormData, useValidationSchemas } from '@/lib/validation-auth';
 

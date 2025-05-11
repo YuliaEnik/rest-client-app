@@ -1,7 +1,7 @@
 'use client';
-
-import Link from 'next/link';
 import { User } from 'firebase/auth';
+
+import { Link } from '@/i18n/navigation';
 
 type UserGreetingProps = {
   user: User;
@@ -9,6 +9,9 @@ type UserGreetingProps = {
 };
 
 export const UserGreeting = ({ user, t }: UserGreetingProps) => {
+  
+  if (!user?.displayName) return null;
+
   return (
     <>
       <p className="w-full text-center text-3xl">
