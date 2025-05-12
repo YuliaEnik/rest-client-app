@@ -4,4 +4,4 @@
 
 ### This is a tutorial project to learn about react. And as a result we present the final team task.
 
-## [REST Client](https://YuliaEnik.github.io/rest-client-app)
+## [REST Client](https://dreamy-pie-1954bc.netlify.app/ru)
