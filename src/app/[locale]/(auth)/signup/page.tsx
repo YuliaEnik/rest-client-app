@@ -51,7 +51,7 @@ export default function SignUpPage() {
       await updateProfile(userCredential.user, {
         displayName: data.displayName,
       });
-
+      await auth.currentUser?.reload();
       router.push('/');
     } catch (error) {
       console.error('Auth error:', error);
