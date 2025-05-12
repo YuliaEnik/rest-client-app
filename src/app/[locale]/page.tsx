@@ -27,7 +27,7 @@ export default function WelcomePage() {
       <div className="flex flex-col flex-grow w-full h-full items-center">
         <div className="flex justify-center gap-3">
           <button
-            className={`flex h-10 w-32 items-center justify-center cursor-pointer ${
+            className={`flex h-10 w-36 items-center justify-center cursor-pointer ${
               activeTab === 'rest'
                 ? 'primary-color-component-bg'
                 : 'bg-gray-300'
@@ -37,7 +37,7 @@ export default function WelcomePage() {
             {t('tabs.rest')}
           </button>
           <button
-            className={`flex h-10 w-32 items-center justify-center cursor-pointer ${
+            className={`flex h-10 w-36 items-center justify-center cursor-pointer ${
               activeTab === 'team'
                 ? 'primary-color-component-bg'
                 : 'bg-gray-300'
